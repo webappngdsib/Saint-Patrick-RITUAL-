@@ -40,7 +40,17 @@
       <p>Published entries and photographs are public.</p>
       <label>Date <input name="date" type="date" required></label>
       <label>Location <input name="location" type="text" maxlength="160" required></label>
-      <label>Lodge chamber <input name="chamber" type="text" maxlength="160" required></label>
+      <label>Lodge
+        <select name="chamber" required>
+          <option value="" selected disabled>Select a Lodge</option>
+          <option value="Limerick Lodge">Limerick Lodge</option>
+          <option value="Downpatrick Lodge">Downpatrick Lodge</option>
+          <option value="Buru Lodge">Buru Lodge</option>
+          <option value="Florida Lodge T.I.">Florida Lodge T.I.</option>
+          <option value="Lorica Lodge T.I.">Lorica Lodge T.I.</option>
+          <option value="Eri Lodge T.I.">Eri Lodge T.I.</option>
+        </select>
+      </label>
       <label>Photographs <small>Optional · up to 3 · 10 MB each</small>
         <input name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" multiple>
       </label>

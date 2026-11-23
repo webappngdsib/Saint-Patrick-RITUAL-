@@ -62,7 +62,7 @@ dialog { width: min(32rem, 100% - 2rem); padding: 1.3rem; background: #222c26; c
 dialog::backdrop { background: #0b100dd9; }
 form { display: grid; gap: .8rem; }
 form label:not([hidden]) { display: grid; gap: .2rem; min-width: 0; }
-form input { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; border: 1px solid var(--line); color: inherit; }
+form input, form select { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; border: 1px solid var(--line); color: inherit; }
 .form-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: .6rem; }
 #form-error { color: #ffd0b3; }
 #form-error:empty, #diary-status:empty { display: none; }
