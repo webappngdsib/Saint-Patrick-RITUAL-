@@ -711,6 +711,40 @@
         width: 1.4em;
         height: auto;
       }
+
+      .language-picker { display: flex; gap: 0.4rem; }
+      .language-flag {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border-radius: 50%;
+        border: 2px solid var(--gold-soft);
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .language-flag img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .language-flag:focus-visible,
+      .language-flag[aria-pressed="true"] { outline: 2px solid var(--emerald-deep); outline-offset: 2px; }
+      .header-actions { flex-wrap: wrap; }
+      .language-flag[data-language="el"] img { object-position: left center; }
+      @media (max-width: 40rem) {
+        .site-header { flex-wrap: wrap; gap: 0.6rem; }
+      }
+      .knock-count { font-weight: 700; }
+      .ritual-translation { display: none; }
+      [data-translation="el"] .ritual-translation[lang="el"],
+      [data-translation="es"] .ritual-translation[lang="es"],
+      [data-translation="fr"] .ritual-translation[lang="fr"] {
+        display: block;
+        margin-block: 0.5rem;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+      div.ritual-translation {
+        padding: 0.65rem;
+        border-inline-start: 3px solid var(--emerald);
+        background: #edf5ed;
+      }
     </style>
   </head>
   <body>
@@ -723,6 +757,11 @@
         </span>
       </a>
       <div class="header-actions">
+        <div class="language-picker" role="group" aria-label="Ritual translation">
+          <button class="language-flag" type="button" data-language="el" aria-label="Greek translation" aria-pressed="false" title="Ελληνικά"><img src="./flags/gr.png" alt=""></button>
+          <button class="language-flag" type="button" data-language="es" aria-label="Spanish translation" aria-pressed="false" title="Español"><img src="./flags/es.png" alt=""></button>
+          <button class="language-flag" type="button" data-language="fr" aria-label="French translation" aria-pressed="false" title="Français"><img src="./flags/fr.png" alt=""></button>
+        </div>
         <a class="pill-btn" href="./saint-patrick-ritual.pdf">PDF ritual</a>
         <button id="jump-next-btn" class="pill-btn gold" type="button" hidden>Next My Line ↓</button>
       </div>
@@ -875,121 +914,178 @@
       </section>
 
 <section class="section-block" aria-label="Ritual text">
-<div class="section-head"><h2>OPENING A LODGE OF SAINT PATRICK</h2></div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>OPENING A LODGE OF SAINT PATRICK<span class="ritual-translation" lang="el">ΑΝΟΙΓΜΑ ΚΑΤΑΣΚΕΥΗΣ ΑΓΙΟΥ ΠΑΤΡΙΚΟΥ</span><span class="ritual-translation" lang="es">APERTURA DE UNA LOGIA DE SAN PATRICIO</span><span class="ritual-translation" lang="fr">OUVERTURE D&#x27;UNE LODGE SAINT PATRICK</span></h2></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Sir Knights, clothe yourselves, Officers take your stations.
 		Assist me to open this Lodge of the Order of Saint Patrick.
-<span class="rubric">  (All Rise).</span></div>
+<span class="rubric">  (All Rise).</span></div><div class="ritual-translation" lang="el">Κύριε Knights, ντυθείτε, οι αξιωματικοί παίρνουν τους σταθμούς σας.
+		Βοηθήστε με να ανοίξω αυτή τη Στοά του Τάγματος του Αγίου Πατρικίου.
+  (All Rise).</div><div class="ritual-translation" lang="es">Señores Caballeros, vístanse, los oficiales tomen sus puestos.
+		Ayúdame a abrir esta Logia de la Orden de San Patricio.
+  (Todos se levantan).</div><div class="ritual-translation" lang="fr">Messieurs les Chevaliers, habillez-vous, les officiers prennent vos postes.
+		Aidez-moi à ouvrir cette Loge de l&#x27;Ordre de Saint Patrick.
+  (Tous se lèvent).</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies.</span></div>
-<div class="speech-en ritual-copy">Are all present Sir Knights of the Order of Saint Patrick?</div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies.<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies.</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias.</span><span class="ritual-translation" lang="fr">Sir Chevalier Maître de Cérémonie.</span></span></div>
+<div class="speech-en ritual-copy">Are all present Sir Knights of the Order of Saint Patrick?</div><div class="ritual-translation" lang="el">Είναι όλοι οι παρόντες Sir Knights of Order of Saint Patrick;</div><div class="ritual-translation" lang="es">¿Están todos los presentes Señores Caballeros de la Orden de San Patricio?</div><div class="ritual-translation" lang="fr">Est-ce que tous sont présents Sir Chevaliers de l&#x27;Ordre de Saint Patrick ?</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies</span></div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias</span><span class="ritual-translation" lang="fr">Sir Knight Maître de Cérémonie</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(After Visual Examination).  </span>
-Sir Knight Commander, all present are Sir Knights of the Order of Saint Patrick and have the words of this Degree.</div>
+Sir Knight Commander, all present are Sir Knights of the Order of Saint Patrick and have the words of this Degree.</div><div class="ritual-translation" lang="el">(Μετά από Οπτική Εξέταση).
+Sir Knight Commander, όλοι οι παρόντες είναι Sir Knights του Τάγματος του Saint Patrick και έχουν τα λόγια αυτού του Βαθμού.</div><div class="ritual-translation" lang="es">(Después del examen visual).
+Señor Caballero Comandante, todos los presentes son Señores Caballeros de la Orden de San Patricio y tienen las palabras de este Grado.</div><div class="ritual-translation" lang="fr">(Après examen visuel).
+Sir Knight Commander, tous présents sont Sir Knights de l&#x27;Ordre de Saint Patrick et portent les paroles de ce Diplôme.</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy">What are the words?</div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy">What are the words?</div><div class="ritual-translation" lang="el">Ποιες είναι οι λέξεις;</div><div class="ritual-translation" lang="es">¿Cuales son las palabras?</div><div class="ritual-translation" lang="fr">Quels sont les mots ?</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies</span></div>
-<div class="speech-en ritual-copy">Follow Me.</div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias</span><span class="ritual-translation" lang="fr">Sir Knight Maître de Cérémonie</span></span></div>
+<div class="speech-en ritual-copy">Follow Me.</div><div class="ritual-translation" lang="el">Ακολούθησέ με.</div><div class="ritual-translation" lang="es">Sígueme.</div><div class="ritual-translation" lang="fr">Suivez-moi.</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Sir Knight Senior Warden.
-What is the first care of every Knight of the Order of Saint Patrick?</div>
+What is the first care of every Knight of the Order of Saint Patrick?</div><div class="ritual-translation" lang="el">Sir Knight Senior Warden.
+Ποια είναι η πρώτη φροντίδα κάθε Ιππότη του Τάγματος του Αγίου Πατρικίου;</div><div class="ritual-translation" lang="es">Señor Caballero Guardián Mayor.
+¿Cuál es el primer cuidado de todo Caballero de la Orden de San Patricio?</div><div class="ritual-translation" lang="fr">Sir Knight, directeur principal.
+Quel est le premier soin de tout Chevalier de l&#x27;Ordre de Saint Patrick ?</div>
 </article>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
-<div class="speech-en ritual-copy">To see the Lodge is properly tiled.</div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
+<div class="speech-en ritual-copy">To see the Lodge is properly tiled.</div><div class="ritual-translation" lang="el">Για να δείτε το Lodge είναι σωστά πλακάκι.</div><div class="ritual-translation" lang="es">Para ver el Lodge está correctamente alicatado.</div><div class="ritual-translation" lang="fr">A voir le Lodge est dûment gardé.</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy">Direct that duty to be done.</div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy">Direct that duty to be done.</div><div class="ritual-translation" lang="el">Κατευθύνετε αυτό το καθήκον να γίνει.</div><div class="ritual-translation" lang="es">Dirige ese deber a cumplirse.</div><div class="ritual-translation" lang="fr">Ordonnez que ce devoir soit accompli.</div>
 </article>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
 <div class="speech-en ritual-copy">
-Sir Knight Deacon, you will attend the door.</div>
+Sir Knight Deacon, you will attend the door.</div><div class="ritual-translation" lang="el">Κύριε Knight Deacon, θα παρευρεθείτε στην πόρτα.</div><div class="ritual-translation" lang="es">Señor Caballero Diácono, atenderá la puerta.</div><div class="ritual-translation" lang="fr">Sir Chevalier Deacon, vous vous présenterez à la porte.</div>
 </article>
-<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon</span></div>
+<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon<span class="ritual-translation" lang="el">Sir Knight Deacon</span><span class="ritual-translation" lang="es">Señor Caballero Diácono</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Diacre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric"> 	(Goes to the door). </span>
-                  </div>
+                  </div><div class="ritual-translation" lang="el">(Πηγαίνει στην πόρτα).</div><div class="ritual-translation" lang="es">(Se acerca a la puerta).</div><div class="ritual-translation" lang="fr">(Il se dirige vers la porte).</div>
 </article>
-<article class="speech-card" data-role="sentinel"><div class="speech-header"><span class="speaker-title">Sir Knight Sentinel</span></div>
+<article class="speech-card" data-role="sentinel"><div class="speech-header"><span class="speaker-title">Sir Knight Sentinel<span class="ritual-translation" lang="el">Σερ Νάιτ Σέντινελ</span><span class="ritual-translation" lang="es">Señor Caballero Centinela</span><span class="ritual-translation" lang="fr">Sir Knight Sentinelle</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Responds). </span>
-                  </div>
+                  </div><div class="ritual-translation" lang="el">(Απαντά).</div><div class="ritual-translation" lang="es">(Responde).</div><div class="ritual-translation" lang="fr">(Répond).</div>
 </article>
-<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon</span></div>
+<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon<span class="ritual-translation" lang="el">Sir Knight Deacon</span><span class="ritual-translation" lang="es">Señor Caballero Diácono</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Diacre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric"> 	(Returns to his seat and remains standing). </span>
-Sir Knight Senior Warden, your order has been obeyed and we are properly tiled. </div>
+Sir Knight Senior Warden, your order has been obeyed and we are properly tiled. </div><div class="ritual-translation" lang="el">(Επιστρέφει στη θέση του και παραμένει όρθιος).
+Sir Knight Senior Warden, η διαταγή σας τηρήθηκε και είμαστε κατάλληλα φυλασσόμενοι.</div><div class="ritual-translation" lang="es">(Vuelve a su asiento y se queda de pie).
+Señor Caballero Guardián Mayor, su orden ha sido obedecida y estamos debidamente resguardados.</div><div class="ritual-translation" lang="fr">(Retourne à sa place et reste debout).
+Sir Knight Senior Warden, votre ordre a été obéi et nous sommes dûment gardés.</div>
 </article>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
 <div class="speech-en ritual-copy">
 Sir Knight Commander your order has been obeyed and we are properly tiled.
-	</div>
+	</div><div class="ritual-translation" lang="el">Κύριε Knight Commander, η διαταγή σας τηρήθηκε και έχουμε πλακώσει σωστά.</div><div class="ritual-translation" lang="es">Señor Caballero Comandante, su orden ha sido obedecida y estamos debidamente resguardados.</div><div class="ritual-translation" lang="fr">Sir Knight Commander, votre ordre a été obéi et nous sommes dûment gardés.</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Sir Knight Priest attend the Altar.
-<span class="rubric">    (All adopt the Sign of Reverence).</span></div>
+<span class="rubric">    (All adopt the Sign of Reverence).</span></div><div class="ritual-translation" lang="el">Ο Sir Knight Priest παρευρίσκεται στο Βωμό.
+    (Όλοι υιοθετούν το Σημείο Ευλάβειας).</div><div class="ritual-translation" lang="es">Sir Knight Priest asiste al Altar.
+    (Todos adoptan el Signo de Reverencia).</div><div class="ritual-translation" lang="fr">Sir Knight Priest assiste à l&#x27;autel.
+    (Tous adoptent le Signe de Révérence).</div>
 </article>
-<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest</span></div>
+<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest<span class="ritual-translation" lang="el">Sir Knight Priest</span><span class="ritual-translation" lang="es">Señor Caballero Sacerdote</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Prêtre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Proceeds to the Altar, opens the Bible at Psalms 23, kneels, gives the ‘Sign of Adoration’ and then says:) </span>
 May this undertaking contrived by Wisdom, be executed in Strength and adorned with Beauty, so that a Fellowship where Peace, Harmony and Brotherly Love shall perpetually reign.
-<span class="rubric">(Rises and steps back. All discharge the Sign of Reverence).</span></div>
+<span class="rubric">(Rises and steps back. All discharge the Sign of Reverence).</span></div><div class="ritual-translation" lang="el">(Προχωρεί στο Θυσιαστήριο, ανοίγει τη Βίβλο στον Ψαλμό 23, γονατίζει, δίνει το «Σήμα της Λατρείας» και μετά λέει:)
+Είθε αυτό το εγχείρημα που επινοήθηκε από τη Σοφία, να εκτελεστεί με Δύναμη και να στολιστεί με Ομορφιά, έτσι ώστε μια Συντροφιά όπου η Ειρήνη, η Αρμονία και η Αδελφική Αγάπη θα βασιλεύουν διαρκώς.
+(Σηκώνεται και υποχωρεί. Όλοι εκφορτίζουν το Σημείο Ευλάβειας).</div><div class="ritual-translation" lang="es">(Se dirige al Altar, abre la Biblia en el Salmo 23, se arrodilla, hace la &#x27;Señal de Adoración&#x27; y luego dice:)
+Que esta empresa ideada por la Sabiduría, sea ejecutada con Fuerza y adornada con Belleza, para que reine perpetuamente una Comunidad donde reine perpetuamente la Paz, la Armonía y el Amor Fraternal.
+(Se levanta y retrocede. Todos hacen el Signo de Reverencia).</div><div class="ritual-translation" lang="fr">(Il se dirige vers l&#x27;autel, ouvre la Bible au Psaume 23, s&#x27;agenouille, donne le « Signe d&#x27;adoration » puis dit :)
+Que cette entreprise conçue par la Sagesse soit exécutée avec Force et parée de Beauté, afin qu&#x27;une Fraternité où règnent perpétuellement la Paix, l&#x27;Harmonie et l&#x27;Amour Fraternel.
+(Il se lève et recule. Tous déchargent le signe de révérence).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Let us proceed with the Formation.
- </div>
+ </div><div class="ritual-translation" lang="el">Ας προχωρήσουμε στον Σχηματισμό.</div><div class="ritual-translation" lang="es">Procedamos con la Formación.</div><div class="ritual-translation" lang="fr">Passons à la Formation.</div>
 </article>
-<div class="section-head"><h2>THE FORMATION</h2></div>
-<div class="speech-en ritual-copy">Sir Knight Priest remains to the west of the Altar, Sir Knight Commander stands to the east of the Altar, with Sir Knight Senior Warden to his immediate right and Sir Knight Junior Warden to his immediate left (facing west). Sir Knight Master of Ceremonies stands in the west to the immediate left of Sir Knight Priest and Sir Knight Deacon stands to the immediate right of Sir Knight Priest (facing east). </div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>THE FORMATION<span class="ritual-translation" lang="el">Ο ΣΧΗΜΑΤΙΣΜΟΣ</span><span class="ritual-translation" lang="es">LA FORMACIÓN</span><span class="ritual-translation" lang="fr">LA FORMATION</span></h2></div>
+<div class="speech-en ritual-copy">Sir Knight Priest remains to the west of the Altar, Sir Knight Commander stands to the east of the Altar, with Sir Knight Senior Warden to his immediate right and Sir Knight Junior Warden to his immediate left (facing west). Sir Knight Master of Ceremonies stands in the west to the immediate left of Sir Knight Priest and Sir Knight Deacon stands to the immediate right of Sir Knight Priest (facing east). </div><div class="ritual-translation" lang="el">Ο Sir Knight Priest παραμένει στα δυτικά του Altar, ο Sir Knight Commander στέκεται στα ανατολικά του Altar, με τον Sir Knight Senior Warden στα αμέσως δεξιά του και τον Sir Knight Junior Warden στα αμέσως αριστερά του (με κατεύθυνση προς τα δυτικά). Ο Sir Knight Master of Ceremonies στέκεται στα δυτικά, αμέσως στα αριστερά του Sir Knight Priest και ο Sir Knight Deacon στέκεται αμέσως δεξιά του Sir Knight Priest (με κατεύθυνση προς τα ανατολικά).</div><div class="ritual-translation" lang="es">Sir Knight Priest permanece al oeste del Altar, Sir Knight Commander se encuentra al este del Altar, con Sir Knight Senior Warden a su derecha inmediata y Sir Knight Junior Warden a su izquierda inmediata (mirando hacia el oeste). Sir Knight Master of Ceremonies se encuentra en el oeste, inmediatamente a la izquierda de Sir Knight Priest y Sir Knight Deacon se encuentra inmediatamente a la derecha de Sir Knight Priest (mirando hacia el este).</div><div class="ritual-translation" lang="fr">Sir Knight Priest reste à l&#x27;ouest de l&#x27;autel, Sir Knight Commander se tient à l&#x27;est de l&#x27;autel, avec Sir Knight Senior Warden à sa droite immédiate et Sir Knight Junior Warden à sa gauche immédiate (face à l&#x27;ouest). Sir Knight Master of Ceremonies se tient à l&#x27;ouest, immédiatement à gauche de Sir Knight Priest, et Sir Knight Deacon se tient immédiatement à droite de Sir Knight Priest (face à l&#x27;est).</div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Sir Knights, you will form a circle around the altar with the left hand on the right shoulder of the Knight on your left.
-<span class="rubric">(All Sir Knights present now join the Lodge Officers to form a circle around the Altar with their left hand on the right shoulder of the Knight on their left. When formed the ceremony continues).</span></div>
+<span class="rubric">(All Sir Knights present now join the Lodge Officers to form a circle around the Altar with their left hand on the right shoulder of the Knight on their left. When formed the ceremony continues).</span></div><div class="ritual-translation" lang="el">Κύριε Knights, θα σχηματίσετε έναν κύκλο γύρω από το βωμό με το αριστερό χέρι στον δεξιό ώμο του Ιππότη στον αριστερό σας.
+(Όλοι οι παρόντες Sir Knights τώρα ενώνονται με τους Αξιωματικούς της Στοάς για να σχηματίσουν έναν κύκλο γύρω από τον Βωμό με το αριστερό τους χέρι στον δεξιό ώμο του Ιππότη στα αριστερά τους. Όταν σχηματιστεί η τελετή συνεχίζεται).</div><div class="ritual-translation" lang="es">Señores Caballeros, formarán un círculo alrededor del altar con la mano izquierda en el hombro derecho del Caballero a su izquierda.
+(Todos los Señores Caballeros presentes ahora se unen a los Oficiales de la Logia para formar un círculo alrededor del Altar con su mano izquierda en el hombro derecho del Caballero a su izquierda. Cuando se forma, la ceremonia continúa).</div><div class="ritual-translation" lang="fr">Messieurs les Chevaliers, vous formerez un cercle autour de l&#x27;autel avec la main gauche sur l&#x27;épaule droite du chevalier à votre gauche.
+(Tous les Sir Knights présents rejoignent maintenant les Officiers de Loge pour former un cercle autour de l&#x27;Autel avec leur main gauche sur l&#x27;épaule droite du Chevalier à leur gauche. Une fois formés, la cérémonie continue).</div>
 </article>
-<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest</span></div>
+<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest<span class="ritual-translation" lang="el">Sir Knight Priest</span><span class="ritual-translation" lang="es">Señor Caballero Sacerdote</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Prêtre</span></span></div>
 <div class="speech-en ritual-copy">May this solemn chain bind us in the performance of our solemn obligations.
-<span class="rubric">(All drop their hands to their side and stand straight).</span></div>
+<span class="rubric">(All drop their hands to their side and stand straight).</span></div><div class="ritual-translation" lang="el">Είθε αυτή η πανηγυρική αλυσίδα να μας δέσει στην εκτέλεση των επίσημων υποχρεώσεών μας.
+(Όλοι ρίχνουν τα χέρια τους στο πλάι και στέκονται ίσια).</div><div class="ritual-translation" lang="es">Que esta solemne cadena nos vincule en el cumplimiento de nuestras solemnes obligaciones.
+(Todos dejan caer las manos a los costados y se mantienen erguidos).</div><div class="ritual-translation" lang="fr">Que cette chaîne solennelle nous lie dans l&#x27;accomplissement de nos obligations solennelles.
+(Tous laissent tomber leurs mains sur le côté et se tiennent droits).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Officers you will prove your proficiency with the Battery.
-<span class="rubric">(The Battery is given by stamping the right foot. After the Battery, each Officer states aloud the name of the Order).</span></div>
+<span class="rubric">(The Battery is given by stamping the right foot. After the Battery, each Officer states aloud the name of the Order).</span></div><div class="ritual-translation" lang="el">Αξιωματικοί θα αποδείξετε την επάρκειά σας με την Μπαταρία.
+(Η Μπαταρία δίνεται πατώντας το δεξί πόδι. Μετά τη Μπαταρία, κάθε Αξιωματικός δηλώνει φωναχτά το όνομα της Διαταγής).</div><div class="ritual-translation" lang="es">Oficiales, demostrarán su competencia con la batería.
+(La Batería se da dando un golpe con el pie derecho. Después de la Batería, cada Oficial dice en voz alta el nombre de la Orden).</div><div class="ritual-translation" lang="fr">Officiers, vous prouverez votre maîtrise de la batterie.
+(La Batterie est donnée en tapant du pied droit. Après la Batterie, chaque Officier prononce à haute voix le nom de l&#x27;Ordre).</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Lodge</div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias</span><span class="ritual-translation" lang="fr">Sir Knight Maître de Cérémonie</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(3)</span> Lodge</div><div class="ritual-translation" lang="el">Lodge</div><div class="ritual-translation" lang="es">Logia</div><div class="ritual-translation" lang="fr">Loge</div>
 </article>
-<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 3 knocks, 1 knock"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Chapter</div>
+<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden<span class="ritual-translation" lang="el">Sir Knight Junior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Junior Guardián</span><span class="ritual-translation" lang="fr">Sir Knight Gardien Junior</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 3 knocks, 1 knock"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(7)</span> Chapter</div><div class="ritual-translation" lang="el">Κεφάλαιο</div><div class="ritual-translation" lang="es">Capítulo</div><div class="ritual-translation" lang="fr">Chapitre</div>
 </article>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 2 knocks, 2 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Knight Masonry</div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 2 knocks, 2 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(7)</span> Knight Masonry</div><div class="ritual-translation" lang="el">Ιππότης Τεκτονισμός</div><div class="ritual-translation" lang="es">Albañilería de caballeros</div><div class="ritual-translation" lang="fr">Chevalier Maçonnerie</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="5 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Order of Saint Patrick
-<span class="rubric">(Following a short pause).</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="5 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(5)</span> Order of Saint Patrick
+<span class="rubric">(Following a short pause).</span></div><div class="ritual-translation" lang="el">Τάγμα του Αγίου Πατρικίου
+(Μετά από μια μικρή παύση).</div><div class="ritual-translation" lang="es">Orden de San Patricio
+(Tras una breve pausa).</div><div class="ritual-translation" lang="fr">Ordre de Saint Patrick
+(Après une courte pause).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">I now declare this Lodge of the Order of Saint Patrick properly tiled and duly open.
-<span class="rubric">(He stamps his right foot, then each Sir Knight, commencing with Sir Knight Junior Warden, stamps once with his right foot continuing clockwise finishing with Sir Knight Senior Warden).</span></div>
+<span class="rubric">(He stamps his right foot, then each Sir Knight, commencing with Sir Knight Junior Warden, stamps once with his right foot continuing clockwise finishing with Sir Knight Senior Warden).</span></div><div class="ritual-translation" lang="el">Δηλώνω τώρα αυτή τη Στοά του Τάγματος του Αγίου Πατρικίου κατάλληλα πλακωμένη και δεόντως ανοιχτή.
+(Σφραγίζει το δεξί του πόδι, μετά κάθε Sir Knight, ξεκινώντας με τον Sir Knight Junior Warden, χτυπά μια φορά με το δεξί του πόδι συνεχίζοντας δεξιόστροφα τελειώνοντας με τον Sir Knight Senior Warden).</div><div class="ritual-translation" lang="es">Declaro ahora esta Logia de la Orden de San Patricio debidamente embaldosada y debidamente abierta.
+(Él golpea su pie derecho, luego cada Sir Knight, comenzando con Sir Knight Junior Warden, golpea una vez con su pie derecho continuando en el sentido de las agujas del reloj y terminando con Sir Knight Senior Warden).</div><div class="ritual-translation" lang="fr">Je déclare désormais cette Loge de l&#x27;Ordre de Saint Patrick bien carrelée et dûment ouverte.
+(Il frappe du pied droit, puis chaque Sir Knight, en commençant par Sir Knight Junior Warden, frappe une fois avec son pied droit en continuant dans le sens des aiguilles d&#x27;une montre en terminant par Sir Knight Senior Warden).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Please be seated.
 <span class="rubric">(All return to their stations and all sit).</span>
- </div>
+ </div><div class="ritual-translation" lang="el">Παρακαλώ καθίστε.
+(Όλοι επιστρέφουν στους σταθμούς τους και όλοι κάθονται).</div><div class="ritual-translation" lang="es">Por favor tomen asiento.
+(Todos regresan a sus puestos y todos se sientan).</div><div class="ritual-translation" lang="fr">Veuillez vous asseoir.
+(Tous retournent à leur poste et tous s&#x27;assoient).</div>
 </article>
-<div class="section-head"><h2>THE PRESENTATION</h2></div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy">Sir Knight Deacon (Deacon rises) you will present the Candidates.</div>
+<div class="section-head"><h2>THE PRESENTATION<span class="ritual-translation" lang="el">Η ΠΑΡΟΥΣΙΑΣΗ</span><span class="ritual-translation" lang="es">LA PRESENTACIÓN</span><span class="ritual-translation" lang="fr">LA PRÉSENTATION</span></h2></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy">Sir Knight Deacon (Deacon rises) you will present the Candidates.</div><div class="ritual-translation" lang="el">Sir Knight Deacon (Deacon rises) θα παρουσιάσετε τους Υποψηφίους.</div><div class="ritual-translation" lang="es">Señor Caballero Diácono (el diácono se levanta) presentará a los candidatos.</div><div class="ritual-translation" lang="fr">Sir Knight Deacon (Deacon se lève), vous présenterez les candidats.</div>
 </article>
-<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon</span></div>
+<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon<span class="ritual-translation" lang="el">Sir Knight Deacon</span><span class="ritual-translation" lang="es">Señor Caballero Diácono</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Diacre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Retires and then presents the Representative Candidate to the west of the Altar).  </span>
-Sir Knight Commander, I have the pleasure of introducing Companion ---------- and others who have received the Degrees of Symbolic Masonry, are qualified by service, and now wish to be set aside in the Order of Saint Patrick with those members of vision and leadership.</div>
+Sir Knight Commander, I have the pleasure of introducing Companion ---------- and others who have received the Degrees of Symbolic Masonry, are qualified by service, and now wish to be set aside in the Order of Saint Patrick with those members of vision and leadership.</div><div class="ritual-translation" lang="el">(Αποσύρεται και στη συνέχεια παρουσιάζει τον Υποψήφιο Αντιπρόσωπο στα δυτικά του Βωμού).
+Κύριε Knight Commander, έχω τη χαρά να σας συστήσω τον Σύντροφο ---------- και άλλους που έχουν λάβει τα πτυχία του Συμβολικού Τεκτονισμού, έχουν τα προσόντα της υπηρεσίας και τώρα επιθυμούν να παραμεριστούν στο Τάγμα του Αγίου Πατρικίου με αυτά τα μέλη του οράματος και της ηγεσίας.</div><div class="ritual-translation" lang="es">(Se retira y luego presenta al Candidato a Representante al oeste del Altar).
+Señor Caballero Comandante, tengo el placer de presentarle al Compañero ---------- y a otros que han recibido los Grados de Masonería Simbólica, están calificados por su servicio y ahora desean ser apartados en la Orden de San Patricio con aquellos miembros de visión y liderazgo.</div><div class="ritual-translation" lang="fr">(Il se retire puis présente le candidat représentatif à l&#x27;ouest de l&#x27;autel).
+Sir Chevalier Commandeur, j&#x27;ai le plaisir de vous présenter Companion ---------- et d&#x27;autres qui ont reçu les degrés de maçonnerie symbolique, sont qualifiés par leur service et souhaitent maintenant être mis de côté dans l&#x27;Ordre de Saint Patrick avec ces membres de vision et de leadership.</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">The reactivation of the Order of Saint Patrick has a solemn purpose.
 From the beginning of time, mankind has found a way to provide for his needs by using men of vision and leadership. In providing for those needs, he has either utilized his experiences of the past or invented a new instrument for his needs in the present and the future.
 
 The purpose of the Order of Saint Patrick is to recognize those men who have provided vision and leadership; men who are the Salt of the Earth and Light of the World.
-<span class="rubric">(Takes salt and pours it into a paper envelope and seals it).</span></div>
+<span class="rubric">(Takes salt and pours it into a paper envelope and seals it).</span></div><div class="ritual-translation" lang="el">Η επανενεργοποίηση του Τάγματος του Αγίου Πατρικίου έχει έναν πανηγυρικό σκοπό.
+Από την αρχή του χρόνου, η ανθρωπότητα βρήκε έναν τρόπο να καλύψει τις ανάγκες του χρησιμοποιώντας ανθρώπους με όραμα και ηγεσία. Για να καλύψει αυτές τις ανάγκες, είτε έχει χρησιμοποιήσει τις εμπειρίες του από το παρελθόν είτε έχει εφεύρει ένα νέο εργαλείο για τις ανάγκες του στο παρόν και το μέλλον.
+
+Ο σκοπός του Τάγματος του Αγίου Πατρικίου είναι να αναγνωρίσει εκείνους τους άνδρες που έχουν προσφέρει όραμα και ηγεσία. άνδρες που είναι το Αλάτι της Γης και το Φως του Κόσμου.
+(Παίρνει αλάτι και το ρίχνει σε χάρτινο φάκελο και τον σφραγίζει).</div><div class="ritual-translation" lang="es">La reactivación de la Orden de San Patricio tiene un propósito solemne.
+Desde el principio de los tiempos, la humanidad ha encontrado una manera de satisfacer sus necesidades utilizando hombres con visión y liderazgo. Para satisfacer esas necesidades, ha utilizado sus experiencias del pasado o ha inventado un nuevo instrumento para sus necesidades presentes y futuras.
+
+El propósito de la Orden de San Patricio es reconocer a aquellos hombres que han aportado visión y liderazgo; hombres que son la Sal de la Tierra y Luz del Mundo.
+(Toma sal y la vierte en un sobre de papel y lo sella).</div><div class="ritual-translation" lang="fr">La réactivation de l&#x27;Ordre de Saint Patrick a un objectif solennel.
+Depuis la nuit des temps, l’humanité a trouvé le moyen de subvenir à ses besoins en faisant appel à des hommes visionnaires et dirigeants. En pourvoyant à ces besoins, il a soit utilisé ses expériences du passé, soit inventé un nouvel instrument pour répondre à ses besoins présents et futurs.
+
+Le but de l&#x27;Ordre de Saint Patrick est de reconnaître les hommes qui ont apporté une vision et un leadership ; des hommes qui sont le Sel de la Terre et la Lumière du Monde.
+(Il prend du sel, le verse dans une enveloppe en papier et la scelle).</div>
 </article>
-<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest</span></div>
+<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest<span class="ritual-translation" lang="el">Sir Knight Priest</span><span class="ritual-translation" lang="es">Señor Caballero Sacerdote</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Prêtre</span></span></div>
 <div class="speech-en ritual-copy">We read in the Holy Scriptures where Our Lord has said:
 
 “Ye are the Salt of the Earth; but if the Salt has lost its savour, wherewith shall it be Salted? It is thencefore good for nothing but to be cast out and to be trodden under the foot of men”.
@@ -998,10 +1094,34 @@ The purpose of the Order of Saint Patrick is to recognize those men who have pro
 “Ye are the Light of the Earth. A city that is set on a hill cannot be hid. Neither do men light a candle and put it under a bushel, but on a candlestick; and giveth light unto all that are in the house”.
 <span class="rubric">(Knight Commander lights the candle it).</span>
 
-“Let your light so shine before men, that they may see your good works and glorify your Father which is in Heaven”.</div>
+“Let your light so shine before men, that they may see your good works and glorify your Father which is in Heaven”.</div><div class="ritual-translation" lang="el">Διαβάζουμε στις Αγίες Γραφές όπου ο Κύριός μας είπε:
+
+«Εσείς είστε το Αλάτι της Γης· αλλά αν το Αλάτι έχει χάσει τη γεύση του, με ποιον τρόπο θα αλατιστεί; Δεν είναι λοιπόν καλό παρά να το πετάξουν έξω και να το πατήσουν κάτω από τα πόδια των ανθρώπων».
+(Ο Knight Commander τοποθετεί τον φάκελο στο πάτωμα για να τον δουν όλοι και τον σφραγίζει).
+
+&quot;Εσείς είστε το φως της γης. Μια πόλη που βρίσκεται σε λόφο δεν μπορεί να κρυφτεί. Ούτε οι άνθρωποι ανάβουν ένα κερί και το βάζουν κάτω από μια θήκη, αλλά σε ένα κηροπήγιο και φωτίζει όλους όσους είναι στο σπίτι&quot;.
+(Ο Ιππότης Διοικητής ανάβει το κερί).
+
+«Ας λάμψει το φως σας μπροστά στους ανθρώπους, για να δουν τα καλά σας έργα και να δοξάσουν τον Πατέρα σας που είναι στους Ουρανούς».</div><div class="ritual-translation" lang="es">Leemos en las Sagradas Escrituras donde Nuestro Señor ha dicho:
+
+&quot;Vosotros sois la sal de la tierra; pero si la sal ha perdido su sabor, ¿con qué será salada? Por tanto, no sirve para nada más que para ser arrojada fuera y hollada por los hombres&quot;.
+(Knight Commander coloca el sobre en el suelo para que todos lo vean y lo sella).
+
+&quot;Vosotros sois la luz de la tierra. Una ciudad asentada sobre un monte no se puede esconder. Ni se enciende una lámpara y se pone debajo de un almud, sino sobre un candelero, y alumbra a todos los que están en casa&quot;.
+(Knight Commander enciende la vela).
+
+“Así alumbre vuestra luz delante de los hombres, para que vean vuestras buenas obras y glorifiquen a vuestro Padre que está en los cielos”.</div><div class="ritual-translation" lang="fr">Nous lisons dans les Saintes Écritures où Notre Seigneur a dit :
+
+&quot;Vous êtes le sel de la terre ; mais si le sel a perdu sa saveur, avec quoi sera-t-il salé ? Il ne sert donc à rien d&#x27;autre qu&#x27;à être jeté dehors et foulé aux pieds des hommes&quot;.
+(Knight Commander place l&#x27;enveloppe sur le sol à la vue de tous et la tamponne).
+
+&quot;Vous êtes la Lumière de la Terre. Une ville située sur une colline ne peut être cachée. Les hommes n&#x27;allument pas non plus une bougie et ne la mettent pas sous le boisseau, mais sur un chandelier et éclairent tous ceux qui sont dans la maison&quot;.
+(Le Chevalier Commandant allume la bougie).
+
+« Que votre lumière brille ainsi devant les hommes, afin qu&#x27;ils voient vos bonnes œuvres et glorifient votre Père qui est aux cieux ».</div>
 </article>
-<div class="section-head"><h2>THE HISTORY</h2></div>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
+<div class="section-head"><h2>THE HISTORY<span class="ritual-translation" lang="el">Η ΙΣΤΟΡΙΑ</span><span class="ritual-translation" lang="es">LA HISTORIA</span><span class="ritual-translation" lang="fr">L&#x27;HISTOIRE</span></h2></div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and steps to the east of Altar facing the Candidate).</span>
 The Masonic Order of Saint Patrick was established as a means of recognizing the vision and leadership of those few preeminent and exceptional brethren, of providing a closer bond of fellowship, of teaching anew the finest philosophy the world has ever known, and of pointing out the importance of using your Salt of Service in life as a Beacon of Light to men.
 
@@ -1011,10 +1131,37 @@ Saint Patrick, in his aspirations to teach the Oneness of the Triune God, used t
 <span class="rubric">(Gives Sign of Reverence).</span>
 
 “Love thy Lord, thy God, with all thy heart and thy neighbor as thyself”.
-<span class="rubric">(Drops sign and returns to his place and sits).</span></div>
+<span class="rubric">(Drops sign and returns to his place and sits).</span></div><div class="ritual-translation" lang="el">(Ανεβαίνει και βαδίζει ανατολικά του Βωμού με όψη προς τον Υποψήφιο).
+Το Τεκτονικό Τάγμα του Αγίου Πατρικίου καθιερώθηκε ως μέσο αναγνώρισης του οράματος και της ηγεσίας αυτών των λίγων επιφανών και εξαιρετικών αδελφών, παροχής στενότερου δεσμού συναναστροφής, διδασκαλίας εκ νέου της καλύτερης φιλοσοφίας που γνώρισε ποτέ ο κόσμος και επισήμανσης της σημασίας της χρήσης του Αλατιού της Υπηρεσίας σας στη ζωή ως Φάρος Φωτός στους ανθρώπους.
+
+Το αρχικό Τάγμα του Αγίου Πατρικίου ιδρύθηκε από τον Βασιλιά Γεώργιο Γ&#x27; της Αγγλίας το έτος 1783, για την πολύτιμη βοήθεια που του παρείχαν οι θαρραλέοι Ιππότες του Έρι. Αυτό το Τάγμα είχε χριστιανικό χαρακτήρα και το σύμβολο της Ιρλανδίας υιοθετήθηκε ως το κόσμημα του Τάγματος. Ο Άγιος Πατρίκιος, που τιμάται με υψηλή σεβασμό, έγινε προστάτης Άγιος, με τη ζωή του να είναι μια ζωή υπηρεσίας προς τον Θεό και τους συνανθρώπους του.
+
+Ο Άγιος Πατρίκιος, στις φιλοδοξίες του να διδάξει την Ενότητα του Τριαδικού Θεού, χρησιμοποίησε το Τριφύλλι λόγω του φυσικού του σχηματισμού, για να δείξει ότι ο Θεός είναι τρία πρόσωπα σε ένα – Πατέρας, Υιός και Άγιο Πνεύμα. Πέρασε τα πρώτα παιδικά του χρόνια ως βοσκός και κατά τη διάρκεια αυτής της περιόδου, μεγάλο μέρος του χρόνου του περνούσε στην προσευχή. Καθώς προσευχόταν πιστά, η Μεγάλη Εντολή έγινε σαφής σε αυτόν και έγινε κυρίαρχο μέρος της μελλοντικής ζωής και της υπηρεσίας του.
+(Δίνει σημάδι ευλάβειας).
+
+«Αγάπα τον Κύριό σου, τον Θεό σου, με όλη σου την καρδιά και τον πλησίον σου όπως τον εαυτό σου».
+(Πέφτει το σημάδι και επιστρέφει στη θέση του και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y camina hacia el este del Altar de cara al Candidato).
+La Orden Masónica de San Patricio se estableció como un medio para reconocer la visión y el liderazgo de esos pocos hermanos preeminentes y excepcionales, para proporcionar un vínculo más estrecho de compañerismo, para enseñar de nuevo la mejor filosofía que el mundo haya conocido jamás y para señalar la importancia de utilizar su Sal de Servicio en la vida como un Faro de Luz para los hombres.
+
+La Orden de San Patricio original fue instituida por el rey Jorge III de Inglaterra en el año 1783, por la valiosa ayuda que le prestaron los valientes Caballeros de Erie. Esta Orden era de naturaleza cristiana y el símbolo de Irlanda fue adoptado como Joya de la Orden. San Patricio, muy venerado, fue nombrado santo patrón y su vida fue de servicio a Dios y a sus semejantes.
+
+San Patricio, en sus aspiraciones de enseñar la Unidad del Dios Triuno, usó el Trébol debido a su formación natural, para mostrar que Dios es tres personas en una: Padre, Hijo y Espíritu Santo. Pasó su niñez como pastor y durante este período, gran parte de su tiempo lo dedicó a la oración. Mientras oraba fielmente, el Gran Mandamiento se le hizo claro y se convirtió en una parte dominante de su vida y servicio futuros.
+(Da señal de reverencia).
+
+“Ama a tu Señor, a tu Dios, con todo tu corazón y a tu prójimo como a ti mismo”.
+(Suelta el cartel y regresa a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Se lève et marche à l&#x27;est de l&#x27;autel face au candidat).
+L&#x27;Ordre maçonnique de Saint Patrick a été créé dans le but de reconnaître la vision et le leadership de ces quelques frères prééminents et exceptionnels, d&#x27;établir un lien de camaraderie plus étroit, d&#x27;enseigner à nouveau la plus belle philosophie que le monde ait jamais connue et de souligner l&#x27;importance d&#x27;utiliser votre sel de service dans la vie comme un phare de lumière pour les hommes.
+
+L&#x27;Ordre original de Saint Patrick a été institué par le roi George III d&#x27;Angleterre en 1783, pour l&#x27;aide précieuse que lui ont apportée les courageux Chevaliers d&#x27;Érié. Cet Ordre était de nature chrétienne et le symbole de l&#x27;Irlande a été adopté comme joyau de l&#x27;Ordre. Saint Patrick, tenu en haute vénération, est devenu le saint patron, sa vie étant au service de Dieu et de ses semblables.
+
+Saint Patrick, dans ses aspirations à enseigner l&#x27;unité du Dieu Trinitaire, a utilisé le trèfle en raison de sa formation naturelle, pour montrer que Dieu est trois personnes en une : Père, Fils et Saint-Esprit. Il a passé sa petite enfance comme berger et pendant cette période, une grande partie de son temps était consacrée à la prière. Alors qu’il priait fidèlement, le Grand Commandement lui devint clair et devint une partie dominante de sa vie et de son service futurs.
+(donne un signe de révérence).
+
+« Aime ton Seigneur, ton Dieu, de tout ton cœur et ton prochain comme toi-même ».
+(Il laisse tomber le panneau, retourne à sa place et s&#x27;assoit).</div>
 </article>
-<div class="section-head"><h2>THE HONOR</h2></div>
-<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden</span></div>
+<div class="section-head"><h2>THE HONOR<span class="ritual-translation" lang="el">Η ΤΙΜΗ</span><span class="ritual-translation" lang="es">EL HONOR</span><span class="ritual-translation" lang="fr">L&#x27;HONNEUR</span></h2></div>
+<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden<span class="ritual-translation" lang="el">Sir Knight Junior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Junior Guardián</span><span class="ritual-translation" lang="fr">Sir Knight Gardien Junior</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and steps to the east of Altar facing the Candidate).</span>
 This Honor is intended to impress upon you the importance of making this Great Commandment a dominant part of your life.
 
@@ -1024,26 +1171,74 @@ In the latter days of his life Saint Patrick wrote these words which seem to sum
 
 This was apparently the secret of the inexhaustible courage and determination that prevailed throughout his life. Hence, God and Service became the theme of this Order, which has lain dormant these many years, and takes life into the twenty-first Century.
 <span class="rubric">(Returns to place and sits).</span>
- </div>
+ </div><div class="ritual-translation" lang="el">(Ανεβαίνει και βαδίζει ανατολικά του Βωμού με όψη προς τον Υποψήφιο).
+Αυτή η Τιμή έχει σκοπό να σας αποτυπώσει τη σημασία του να κάνετε αυτή τη Μεγάλη Εντολή κυρίαρχο μέρος της ζωής σας.
+
+Τις τελευταίες μέρες της ζωής του ο Άγιος Πάτρικ έγραψε αυτά τα λόγια που φαίνεται να συνοψίζουν ολόκληρη τη ζωή του:
+
+&quot;Καθημερινά περιμένω είτε έναν βίαιο θάνατο είτε να με ληστέψουν και να μείνουν σε σκλαβιά ή να συμβεί κάποια τέτοια συμφορά. Έχω παραδοθεί στα χέρια του Θεού, γιατί Αυτός κυβερνά τα πάντα&quot;.
+
+Αυτό ήταν προφανώς το μυστικό του ανεξάντλητου θάρρους και της αποφασιστικότητας που κυριάρχησε σε όλη του τη ζωή. Ως εκ τούτου, ο Θεός και η υπηρεσία έγιναν το θέμα αυτού του Τάγματος, το οποίο παρέμεινε αδρανές αυτά τα πολλά χρόνια, και μεταφέρει τη ζωή στον εικοστό πρώτο Αιώνα.
+(Επιστρέφει στη θέση και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y camina hacia el este del Altar de cara al Candidato).
+Este Honor tiene como objetivo inculcarle la importancia de hacer de este Gran Mandamiento una parte dominante de su vida.
+
+En los últimos días de su vida San Patricio escribió estas palabras que parecen resumir toda su vida:
+
+&quot;Diariamente espero una muerte violenta o que me roben y me reduzcan a la esclavitud o que ocurra alguna calamidad semejante. Me he arrojado en manos de Dios, porque Él lo gobierna todo&quot;.
+
+Éste fue aparentemente el secreto del coraje y la determinación inagotables que prevalecieron durante toda su vida. Por lo tanto, Dios y el Servicio se convirtieron en el tema de esta Orden, que ha permanecido dormida durante muchos años y que cobra vida en el siglo XXI.
+(Vuelve a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Se lève et marche à l&#x27;est de l&#x27;autel face au candidat).
+Cet Honneur est destiné à vous faire comprendre l’importance de faire de ce Grand Commandement une partie dominante de votre vie.
+
+Dans les derniers jours de sa vie, saint Patrick écrivit ces mots qui semblent résumer toute sa vie :
+
+&quot;Chaque jour, je m&#x27;attends soit à une mort violente, soit à un vol et à une réduction en esclavage, soit à l&#x27;apparition d&#x27;une telle calamité. Je me suis jeté entre les mains de Dieu, car Il gouverne tout&quot;.
+
+C&#x27;était apparemment le secret du courage et de la détermination inépuisables qui ont prévalu tout au long de sa vie. Ainsi, Dieu et le Service sont devenus le thème de cet Ordre, resté en sommeil pendant de nombreuses années, et qui prend vie au XXIe siècle.
+(Retourne à sa place et s&#x27;assoit).</div>
 </article>
-<div class="section-head"><h2>THE PSALTER</h2></div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>THE PSALTER<span class="ritual-translation" lang="el">ΤΟ ΨΑΛΤΡΟ</span><span class="ritual-translation" lang="es">EL SALTERIO</span><span class="ritual-translation" lang="fr">LE PSAUTIER</span></h2></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises at his place).</span>
 
 
 Our Emblem is a Cross with Five Bars, symbolizing our Lord in the Lodge, Chapter, our various bodies of Erie and Knight Masonry and the Order of Saint Patrick.
-   </div>
+   </div><div class="ritual-translation" lang="el">(Σηκώνεται στη θέση του).
+
+
+Το έμβλημά μας είναι ένας Σταυρός με πέντε ράβδους, που συμβολίζει τον Κύριό μας στη Στοά, το Κεφάλαιο, τα διάφορα σώματά μας του Έρι και του Ιππότη Τεκτονισμού και το Τάγμα του Αγίου Πατρικίου.</div><div class="ritual-translation" lang="es">(Se levanta en su lugar).
+
+
+Nuestro Emblema es una Cruz con Cinco Barras, que simboliza a nuestro Señor en la Logia, el Capítulo, nuestros diversos cuerpos de Erie y la Masonería de Caballeros y la Orden de San Patricio.</div><div class="ritual-translation" lang="fr">(Il se lève à sa place).
+
+
+Notre emblème est une croix à cinq barres, symbolisant notre Seigneur dans la Loge, le Chapitre, nos différents corps de maçonnerie d&#x27;Érié et de Chevalier et l&#x27;Ordre de Saint Patrick.</div>
 </article>
-<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest</span></div>
+<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest<span class="ritual-translation" lang="el">Sir Knight Priest</span><span class="ritual-translation" lang="es">Señor Caballero Sacerdote</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Prêtre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises at his place).</span>
 Sir Knights Arise and join with me in repeating our Psalter, the 23rd Psalm:
 <span class="rubric">(All rise and all repeat).</span>
 
 “The Lord is my shepherd; I shall not want. He maketh me to lie down in green pastures. He leadeth me besides still waters. He restoreth my soul. He leadeth me in the paths of righteousness for His Names sake. Yea, though I walk through the Valley of the Shadow of Death, I will fear no evil, for thou art with me. Thy Rod and Thy Staff, they comfort me. Thou preparest a table before me in the presence of mine enemies. Thou annoinest my head with oil. My cup runneth over. Surely goodness and mercy shall follow me all the days of my life and I will dwell in the House of the Lord forever”.
-<span class="rubric">(All sit except for the Candidate).</span></div>
+<span class="rubric">(All sit except for the Candidate).</span></div><div class="ritual-translation" lang="el">(Σηκώνεται στη θέση του).
+Sir Knights σηκωθείτε και ελάτε μαζί μου στην επανάληψη του Ψαλτηρίου μας, του 23ου Ψαλμού:
+(Όλοι ανεβαίνουν και όλοι επαναλαμβάνονται).
+
+&quot;Ο Κύριος είναι ο βοσκός μου, δεν θέλω. Με βάζει να ξαπλώνω σε καταπράσινα λιβάδια. Με οδηγεί εκτός από γαλήνια νερά. Αποκαθιστά την ψυχή μου. Με οδηγεί στα μονοπάτια της δικαιοσύνης για χάρη των ονομάτων Του. Ετοίμασε ένα τραπέζι μπροστά μου ενώπιον των εχθρών μου, αλείφεις το κεφάλι μου με λάδι.
+(Όλοι κάθονται εκτός από τον Υποψήφιο).</div><div class="ritual-translation" lang="es">(Se levanta en su lugar).
+Señores Caballeros, levántense y únanse a mí para repetir nuestro Salterio, el Salmo 23:
+(Todos se levantan y todos repiten).
+
+&quot;El Señor es mi pastor; nada me faltará. En verdes pastos me hace descansar. Junto a aguas tranquilas me guía. Él restaura mi alma. Él me guía por sendas de justicia por amor de Su Nombre. Sí, aunque camine por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo. Tu vara y tu cayado me consuelan. Preparas una mesa delante de mí en presencia de mis enemigos. Ungirás mi cabeza con aceite. Mi copa rebosará. Ciertamente el bien y la misericordia me seguirán todos los días de mi vida y habitaré en la Casa del Señor para siempre”.
+(Todos se sientan excepto el Candidato).</div><div class="ritual-translation" lang="fr">(Il se lève à sa place).
+Messieurs les Chevaliers, levez-vous et joignez-vous à moi pour répéter notre Psautier, le 23ème Psaume :
+(Tous se lèvent et tous répètent).
+
+&quot;Le Seigneur est mon berger ; je ne manquerai de rien. Il me fait reposer dans de verts pâturages. Il me conduit au bord des eaux calmes. Il restaure mon âme. Il me conduit dans les sentiers de la justice à cause de son nom. Oui, même si je marche dans la vallée de l&#x27;ombre de la mort, je ne crains aucun mal, car tu es avec moi. Ta verge et ton bâton me réconfortent. Tu prépares une table devant moi en présence de mes ennemis. Tu annoins ma tête est remplie d&#x27;huile. Ma coupe déborde. Assurément, la bonté et la miséricorde m&#x27;accompagneront tous les jours de ma vie et j&#x27;habiterai pour toujours dans la Maison du Seigneur.
+(Tous siègent sauf le candidat).</div>
 </article>
-<div class="section-head"><h2>THE AFFIRMATION</h2></div>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
+<div class="section-head"><h2>THE AFFIRMATION<span class="ritual-translation" lang="el">Η ΕΠΙΒΕΒΑΙΩΣΗ</span><span class="ritual-translation" lang="es">LA AFIRMACIÓN</span><span class="ritual-translation" lang="fr">L&#x27;AFFIRMATION</span></h2></div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and steps to the east of Altar facing the Candidate).</span>
 For our Affirmation, repeat after me;
 
@@ -1075,10 +1270,103 @@ will finally prevail on Earth,
 and we look for Eternal Life after death.
 
 Amen, Amen, Amen.
-<span class="rubric">(Senior Warden returns to place and sits).</span></div>
+<span class="rubric">(Senior Warden returns to place and sits).</span></div><div class="ritual-translation" lang="el">(Ανεβαίνει και βαδίζει ανατολικά του Βωμού με όψη προς τον Υποψήφιο).
+Για την επιβεβαίωσή μας, επαναλάβετε μετά από μένα.
+
+Πιστεύουμε ότι ο Θεός μας αγαπά σαν πατέρα,
+ότι ακούει τις προσευχές μας,
+δίνει τροφή στους πεινασμένους,
+δύναμη στους αδύναμους,
+παρηγοριά στους θλιμμένους,
+φως σε όσους βρίσκονται στο σκοτάδι,
+και συγχώρεση στον μετανοούντα.
+
+
+
+Πιστεύουμε στο να αγαπάμε τον πλησίον μας όπως τον εαυτό μας,
+και να κάνουμε στους άλλους όπως θα κάναμε εμείς,
+καθώς και βοηθώντας όσους βρίσκονται σε στενοχώρια.
+
+Πιστεύουμε ότι ο Θεός κοιτάζει την καλοσύνη.
+ως προσωπική χάρη στον εαυτό του.
+
+Πιστεύουμε ότι η υπηρεσία σε άλλους.
+δίνει την πιο αληθινή ευτυχία,
+και ότι η υπηρεσία είναι το μέτρο του μεγαλείου.
+
+Πιστεύουμε στη συγχώρεση των τραυματισμών.
+
+Πιστεύουμε ότι η αγάπη και η ειρήνη.
+θα επικρατήσει επιτέλους στη Γη,
+και αναζητούμε την Αιώνια Ζωή μετά θάνατον.
+
+Αμήν, Αμήν, Αμήν.
+(Ο Senior Warden επιστρέφει στη θέση του και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y camina hacia el este del Altar de cara al Candidato).
+Para nuestra Afirmación, repite conmigo;
+
+Creemos que Dios nos ama como un padre,
+que escuche nuestras oraciones,
+da de comer al hambriento,
+fuerza a los débiles,
+consuelo a los afligidos,
+luz para los que están en la oscuridad,
+y perdón al penitente.
+
+
+
+Creemos en amar a nuestro prójimo como a nosotros mismos,
+y al hacer a los demás lo que nos harían a nosotros,
+además de ayudar a quienes se encuentran en apuros.
+
+Creemos que Dios mira la bondad.
+como un favor personal para sí mismo.
+
+Creemos en ese servicio a los demás.
+da la verdadera felicidad,
+y ese servicio es la medida de la grandeza.
+
+Creemos en el perdón de las heridas.
+
+Creemos que el amor y la paz.
+finalmente prevalecerá en la Tierra,
+y buscamos la Vida Eterna después de la muerte.
+
+Amén, Amén, Amén.
+(El Guardián Mayor regresa a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Se lève et marche à l&#x27;est de l&#x27;autel face au candidat).
+Pour notre Affirmation, répétez après moi ;
+
+Nous croyons que Dieu nous aime comme un père,
+qu&#x27;il entend nos prières,
+donne à manger à ceux qui ont faim,
+la force aux faibles,
+réconfort aux affligés,
+lumière pour ceux qui sont dans les ténèbres,
+et le pardon au pénitent.
+
+
+
+Nous croyons qu&#x27;il faut aimer notre prochain comme nous-mêmes,
+et en faisant aux autres ce que nous serions faits par,
+ainsi que d&#x27;aider les personnes en détresse.
+
+Nous croyons que Dieu considère la gentillesse.
+comme une faveur personnelle pour lui-même.
+
+Nous croyons au service des autres.
+donne le vrai bonheur,
+et ce service est la mesure de la grandeur.
+
+Nous croyons au pardon des blessures.
+
+Nous croyons à l&#x27;amour et à la paix.
+prévaudra enfin sur Terre,
+et nous recherchons la Vie Eternelle après la mort.
+
+Amen, Amen, Amen.
+(Le directeur principal revient à sa place et s&#x27;assoit).</div>
 </article>
-<div class="section-head"><h2>THE OBLIGATION</h2></div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>THE OBLIGATION<span class="ritual-translation" lang="el">Η ΥΠΟΧΡΕΩΣΗ</span><span class="ritual-translation" lang="es">LA OBLIGACIÓN</span><span class="ritual-translation" lang="fr">L&#x27;OBLIGATION</span></h2></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises at his place).</span>
 Each Candidate will place his right hand over his heart, say “I” pronounce his name and repeat after me the Solemn Obligation:
 
@@ -1093,10 +1381,52 @@ May the Father of us all bless our endeavors.
 Amen. Amen. Amen.
 
 You may be seated.
-<span class="rubric">(All sit including the Sir Knight Commander).</span></div>
+<span class="rubric">(All sit including the Sir Knight Commander).</span></div><div class="ritual-translation" lang="el">(Σηκώνεται στη θέση του).
+Κάθε Υποψήφιος θα τοποθετήσει το δεξί του χέρι πάνω από την καρδιά του, θα πει «Εγώ» προφέρω το όνομά του και θα επαναλάβει μετά από μένα την Επίσημη Υποχρέωση:
+
+Με τη δική μου ελεύθερη βούληση, και με τη θέλησή μου, παρουσία του Μεγάλου Αρχιτέκτονα του Σύμπαντος, ο οποίος δεν είναι νεκρός και δεν θα πεθάνει ποτέ, και πριν από αυτούς τους αφιερωμένους Ιππότες συγκεντρωμένους, πιστοί φύλακες του Φοβισμένου Θησαυρού, κάνουν επίσημα την Ιερή μου Τιμή, επιβεβαιώνω την πίστη μου στο Υπέρτατο Όν, τον Πατέρα, τον Υιό και την Παναγία Προσπάθειά Του να παρατηρήσω το ασυγκίνητο και άγιο Πνεύμα μου. Νόμοι.
+
+Περαιτέρω ορκίζομαι ότι θα ασκήσω, στο μέτρο που βρίσκεται στη δύναμή μου, τη Μεγάλη Εντολή Του, να Τον αγαπώ και να αγαπώ τον Αδελφό μου, όπως κι εκείνος αγαπά εμένα.
+
+Θα επιδιώκω τη Θεία Επιδοκιμασία στις 17 Μαρτίου κάθε έτους επισκεπτόμενος την Εκκλησία της επιλογής μου και προσφέροντας αφιερώσεις εκ μέρους των Αδελφών μου.
+
+Είθε ο Πατέρας όλων μας να ευλογεί τις προσπάθειές μας.
+
+Αμήν. Αμήν. Αμήν.
+
+Μπορεί να καθίσετε.
+(Όλοι κάθονται συμπεριλαμβανομένου του Sir Knight Commander).</div><div class="ritual-translation" lang="es">(Se levanta en su lugar).
+Cada Candidato colocará su mano derecha sobre su corazón, dirá “Yo”, pronunciará su nombre y repetirá detrás de mí la Obligación Solemne:
+
+Por mi propia voluntad y acuerdo, en presencia del Gran Arquitecto del Universo, que no está muerto y nunca morirá, y ante estos dedicados Caballeros reunidos, fieles guardianes del Tesoro Asustado, solemnemente en mi Sagrado Honor, afirmo mi creencia en el Ser Supremo, Padre, Hijo y Espíritu Santo y prometo mis incansables esfuerzos para observar la Solemnidad de Sus Leyes.
+
+Además, prometo que practicaré, hasta donde esté en mi poder, Su Gran Mandamiento: amarlo a Él y a mi Hermano, así como él me ama a mí.
+
+Buscaré la Aprobación Divina el 17 de marzo de cada año visitando la Iglesia de mi elección y ofreciendo devociones en nombre de mis Hermanos.
+
+Que el Padre de todos nosotros bendiga nuestros esfuerzos.
+
+Amén. Amén. Amén.
+
+Puede que esté sentado.
+(Todos se sientan, incluido el Sir Knight Commander).</div><div class="ritual-translation" lang="fr">(Il se lève à sa place).
+Chaque Candidat placera sa main droite sur son cœur, dira « Je », prononcera son nom et répétera après moi l&#x27;Obligation Solennelle :
+
+De mon plein gré et de mon plein gré, en présence du Grand Architecte de l&#x27;Univers, qui n&#x27;est pas mort et ne mourra jamais, et devant ces Chevaliers dévoués rassemblés, fidèles gardiens du Trésor Effrayé, faites solennellement sur mon Honneur Sacré, affirmez ma croyance en l&#x27;Être Suprême, Père, Fils et Saint-Esprit et engagez mes efforts incessants pour observer la solennité de ses lois.
+
+Je fais en outre le vœu de mettre en pratique, autant que je le peux, son grand commandement, de l&#x27;aimer et d&#x27;aimer mon frère, comme il m&#x27;aime.
+
+Je demanderai l&#x27;approbation divine le 17 mars de chaque année en visitant l&#x27;église de mon choix et en offrant des dévotions au nom de mes frères.
+
+Que notre Père à tous bénisse nos efforts.
+
+Amen. Amen. Amen.
+
+Vous pouvez vous asseoir.
+(Tous sont assis, y compris le Sir Knight Commander).</div>
 </article>
-<div class="section-head"><h2>THE MEANS OF RECOGNITION</h2></div>
-<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden</span></div>
+<div class="section-head"><h2>THE MEANS OF RECOGNITION<span class="ritual-translation" lang="el">ΤΑ ΜΕΣΑ ΑΝΑΓΝΩΡΙΣΗΣ</span><span class="ritual-translation" lang="es">LOS MEDIOS DE RECONOCIMIENTO</span><span class="ritual-translation" lang="fr">LES MOYENS DE RECONNAISSANCE</span></h2></div>
+<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden<span class="ritual-translation" lang="el">Sir Knight Junior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Junior Guardián</span><span class="ritual-translation" lang="fr">Sir Knight Gardien Junior</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and steps to the east of Altar facing the Candidate).</span>
 The Sign of Adoration is made in this manner:
 
@@ -1110,20 +1440,77 @@ This, my Brothers, is the Sign of a Knight of the Order of Saint Patrick.
 <span class="rubric">(He extends right arm horizontally and brings the right hand to the shoulder).</span>
 
 And these are the words “Follow Me”.
-<span class="rubric">(Junior Warden returns to place and sits).</span></div>
+<span class="rubric">(Junior Warden returns to place and sits).</span></div><div class="ritual-translation" lang="el">(Ανεβαίνει και βαδίζει ανατολικά του Βωμού με όψη προς τον Υποψήφιο).
+Το σημάδι της λατρείας γίνεται με αυτόν τον τρόπο:
+
+Έτσι λέει ο Κύριος: «Ορκίστηκα στον εαυτό μου, ο λόγος βγήκε από το στόμα μου με δικαιοσύνη και θα επιστρέψει».
+(Γονατίζει).
+
+ «Ότι θα σηκώσω τα μάτια μου στους λόφους από όπου έρχεται η βοήθειά μου· η βοήθειά μου έρχεται από τον Κύριο που έκανε τον ουρανό και τη γη».
+(Σηκώνει τα μάτια του και διπλώνει τα χέρια σε στάση προσευχής, κρατά τη θέση του για μια στιγμή και μετά σηκώνεται).
+
+Αυτό, αδέρφια μου, είναι το σημάδι ενός Ιππότη του Τάγματος του Αγίου Πατρικίου.
+(Απλώνει το δεξί χέρι οριζόντια και φέρνει το δεξί χέρι στον ώμο).
+
+Και αυτές είναι οι λέξεις «Ακολούθησέ με».
+(Ο Junior Warden επιστρέφει στη θέση του και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y camina hacia el este del Altar de cara al Candidato).
+La Señal de Adoración se hace de esta manera:
+
+Así dice el Señor: “He jurado por mí mismo, la palabra ha salido de mi boca en justicia y volverá”.
+(Se arrodilla).
+
+ “Que alzaré mis ojos a los collados de donde viene mi socorro; mi socorro viene del Señor que hizo los cielos y la tierra”.
+(Levanta los ojos y cruza las manos en posición de oración, mantiene la posición por un momento y luego se levanta).
+
+Éste, hermanos míos, es el Signo de un Caballero de la Orden de San Patricio.
+(Extiende el brazo derecho horizontalmente y lleva la mano derecha al hombro).
+
+Y estas son las palabras &quot;Sígueme&quot;.
+(El Junior Warden regresa a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Se lève et marche à l&#x27;est de l&#x27;autel face au candidat).
+Le Signe d&#x27;Adoration se fait de cette manière :
+
+Ainsi parle le Seigneur : « Je l&#x27;ai juré sur moi-même, la parole est sortie de ma bouche avec justice et elle reviendra ».
+(à genoux).
+
+ &quot;Pour que je lève les yeux vers les collines d&#x27;où me vient mon secours ; mon secours vient du Seigneur qui a fait le Ciel et la Terre&quot;.
+(Lève les yeux et croise les mains en position de prière, reste un instant en position puis se lève).
+
+Ceci, mes Frères, est le Signe d&#x27;un Chevalier de l&#x27;Ordre de Saint Patrick.
+(Il étend le bras droit horizontalement et amène la main droite à l&#x27;épaule).
+
+Et ce sont les mots « Suivez-moi ».
+(Le jeune gardien revient à sa place et s&#x27;assoit).</div>
 </article>
-<div class="section-head"><h2>THE PURPOSE</h2></div>
-<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden</span></div>
+<div class="section-head"><h2>THE PURPOSE<span class="ritual-translation" lang="el">Ο ΣΚΟΠΟΣ</span><span class="ritual-translation" lang="es">EL PROPÓSITO</span><span class="ritual-translation" lang="fr">LE BUT</span></h2></div>
+<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden<span class="ritual-translation" lang="el">Sir Knight Junior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Junior Guardián</span><span class="ritual-translation" lang="fr">Sir Knight Gardien Junior</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and steps to the south of Altar).</span>
 We ascribe to the principles of this Noble Order and exercise the prerogatives of good men and true to form and confer this Ancient Order of Knighthood.
 
 Henceforth, let its members be known as Knights of the Order of Saint Patrick.
 
 May your name be enrolled in the Book of Life forever.
-<span class="rubric">(Junior Warden returns to place and sits).</span></div>
+<span class="rubric">(Junior Warden returns to place and sits).</span></div><div class="ritual-translation" lang="el">(Ανεβαίνει και σκαλώνει στα νότια του Βωμού).
+Αποδίδουμε στις αρχές αυτού του Ευγενούς Τάγματος και ασκούμε τα προνόμια των καλών ανθρώπων και πιστεύουμε να σχηματίζουμε και να απονέμουμε αυτό το Αρχαίο Τάγμα Ιπποτών.
+
+Στο εξής, ας είναι τα μέλη του γνωστά ως Ιππότες του Τάγματος του Αγίου Πατρικίου.
+
+Είθε το όνομά σας να είναι εγγεγραμμένο στο Βιβλίο της Ζωής για πάντα.
+(Ο Junior Warden επιστρέφει στη θέση του και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y camina hacia el sur de Altar).
+Nos adscribimos a los principios de esta Noble Orden y ejercitamos las prerrogativas de hombres buenos y fieles para formar y conferir esta Antigua Orden de Caballería.
+
+En adelante, sus miembros serán conocidos como Caballeros de la Orden de San Patricio.
+
+Que tu nombre quede inscrito en el Libro de la Vida para siempre.
+(El Junior Warden regresa a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Montées et marches au sud de l&#x27;autel).
+Nous adhérons aux principes de cet Ordre Noble et exerçons les prérogatives d&#x27;hommes bons et fidèles pour former et conférer cet Ordre Ancien de Chevalerie.
+
+Désormais, que ses membres soient connus sous le nom de Chevaliers de l&#x27;Ordre de Saint-Patrick.
+
+Que ton nom soit inscrit pour toujours dans le Livre de Vie.
+(Le jeune gardien revient à sa place et s&#x27;assoit).</div>
 </article>
-<div class="section-head"><h2>THE INVESTITURE</h2></div>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
+<div class="section-head"><h2>THE INVESTITURE<span class="ritual-translation" lang="el">Η ΕΠΕΝΔΥΣΗ</span><span class="ritual-translation" lang="es">LA INVESTITURA</span><span class="ritual-translation" lang="fr">L&#x27;INVESTITURE</span></h2></div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises and asks Candidates to rise, places a green collarette on the Representative Candidate and says:)</span>
 I Invest you with this Green Collarette on which is appended the Jewel of our Order and with this you are now ranked and titled as a Knight of the Order of Saint Patrick.
 
@@ -1137,24 +1524,72 @@ You will refer to this Christian Order only as the Order of Saint Patrick.
 Henceforth you will be known as Saint Patrick and will answer inquiries with the words “I will consult with Saint Patrick”.
 
 This Order may be convened upon the request of Three Knight Commanders and may be conferred only upon those Companions who have received the Degrees of Symbolic masonry and the several Degrees of Erie and or Knight Masonry.
-<span class="rubric">(Senior Warden returns to place and sits).</span></div>
+<span class="rubric">(Senior Warden returns to place and sits).</span></div><div class="ritual-translation" lang="el">(Σηκώνεται και ζητά από τους Υποψηφίους να σηκωθούν, τοποθετεί ένα πράσινο κολάρο στον Υποψήφιο Αντιπρόσωπο και λέει:)
+Σας επενδύω με αυτό το Green Collarette στο οποίο είναι προσαρτημένο το Κόσμημα του Τάγματος μας και με αυτό κατατάσσεστε πλέον και ονομάζεστε Ιππότης του Τάγματος του Αγίου Πατρικίου.
+
+		(Τοποθετεί το Collar of Brass στον υποψήφιο αντιπρόσωπο και λέει:)
+Σου τοποθετώ αυτό το Κολάρο από ορείχαλκο.
+
+Ο ορείχαλκος είναι εμβληματικός των Στύλων, οι οποίοι περιέχουν τον λόγο του Θεού προς εμάς – και αποτελούν την οριοθετημένη αγάπη και φιλία που έχουμε ως Παιδιά του Θεού.
+
+Θα αναφερθείτε σε αυτό το Χριστιανικό Τάγμα μόνο ως το Τάγμα του Αγίου Πατρικίου.
+
+Στο εξής θα είστε γνωστός ως Άγιος Πατρίκιος και θα απαντάτε σε ερωτήσεις με τις λέξεις «Θα συμβουλευτώ τον Άγιο Πατρίκιο».
+
+Αυτό το Τάγμα μπορεί να συγκληθεί κατόπιν αιτήματος Τριών Ιπποτών Διοικητών και μπορεί να απονεμηθεί μόνο σε εκείνους τους Συντρόφους που έχουν λάβει τους βαθμούς συμβολικής τοιχοποιίας και τους διάφορους βαθμούς Έρι και ή Τεκτονισμού Ιπποτών.
+(Ο Senior Warden επιστρέφει στη θέση του και κάθεται).</div><div class="ritual-translation" lang="es">(Se levanta y pide a los Candidatos que se pongan de pie, le coloca un collar verde al Candidato Representante y dice:)
+Te investigo con este collar verde en el que se adjunta la Joya de nuestra Orden y con esto ahora estás clasificado y titulado Caballero de la Orden de San Patricio.
+
+		(Coloca un collar de latón sobre el candidato a representante y dice:)
+Os coloco este Collar de Latón.
+
+El latón es emblemático de los Pilares, que contienen la palabra de Dios para nosotros y forman el amor y la amistad que tenemos como Hijos de Dios.
+
+Te referirás a esta Orden cristiana únicamente como Orden de San Patricio.
+
+De ahora en adelante serás conocido como San Patricio y responderás consultas con las palabras “Consultaré con San Patricio”.
+
+Esta Orden puede convocarse a petición de Tres Caballeros Comendadores y puede conferirse únicamente a aquellos Compañeros que hayan recibido los Grados de Masonería Simbólica y los diversos Grados de Erie o Caballero Masonería.
+(El Guardián Mayor regresa a su lugar y se sienta).</div><div class="ritual-translation" lang="fr">(Se lève et demande aux candidats de se lever, place une collerette verte sur le candidat représentatif et dit :)
+Je vous investis de cette Collerette Verte sur laquelle est apposé le Joyau de notre Ordre et avec celle-ci vous êtes désormais classé et titré Chevalier de l&#x27;Ordre de Saint Patrick.
+
+		(Place un collier d&#x27;airain sur le candidat représentatif et dit :)
+Je place sur toi ce collier d&#x27;airain.
+
+Le laiton est emblématique des piliers, qui contiennent la parole de Dieu pour nous – et forment l’amour et l’amitié que nous entretenons en tant qu’enfants de Dieu.
+
+Vous ferez référence à cet Ordre chrétien uniquement sous le nom d&#x27;Ordre de Saint Patrick.
+
+Désormais, vous serez connu sous le nom de Saint Patrick et répondrez aux demandes de renseignements par les mots « Je consulterai Saint Patrick ».
+
+Cet Ordre peut être convoqué à la demande de Trois Chevaliers Commandeurs et ne peut être conféré qu&#x27;aux Compagnons qui ont reçu les Degrés de Maçonnerie Symbolique et les différents Degrés d&#x27;Érié et/ou de Chevalier-Maçonnerie.
+(Le directeur principal revient à sa place et s&#x27;assoit).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Rises at his place).</span>
 You are now entitled to all the rights and privileges of a Sir Knight of the Order of Saint Patrick.
 
- </div>
+ </div><div class="ritual-translation" lang="el">(Σηκώνεται στη θέση του).
+Τώρα δικαιούστε όλα τα δικαιώματα και τα προνόμια ενός Sir Knight του Τάγματος του Αγίου Πατρικίου.</div><div class="ritual-translation" lang="es">(Se levanta en su lugar).
+Ahora tiene todos los derechos y privilegios de un Señor Caballero de la Orden de San Patricio.</div><div class="ritual-translation" lang="fr">(Il se lève à sa place).
+Vous avez désormais droit à tous les droits et privilèges d&#x27;un Sir Chevalier de l&#x27;Ordre de Saint Patrick.</div>
 </article>
-<div class="section-head"><h2>CLOSING A LODGE OF SAINT PATRICK</h2></div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>CLOSING A LODGE OF SAINT PATRICK<span class="ritual-translation" lang="el">ΚΛΕΙΝΟΝΤΑΣ ΣΤΟΙΧΕΙΟ ΤΟΥ ΑΓΙΟΥ ΠΑΤΡΙΚΟΥ</span><span class="ritual-translation" lang="es">CIERRE DE UNA LOGIA DE SAN PATRICIO</span><span class="ritual-translation" lang="fr">FERMETURE D&#x27;UNE LODGE DE SAINT PATRICK</span></h2></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">  Sir Knights Arise,
 <span class="rubric">(All Rise).</span>
 Let us proceed with the Formation and Closing.
- </div>
+ </div><div class="ritual-translation" lang="el">Sir Knights Rise,
+(All Rise).
+Ας προχωρήσουμε με το Σχηματισμό και το Κλείσιμο.</div><div class="ritual-translation" lang="es">Señores caballeros levántense,
+(Todos se levantan).
+Procedamos con la Formación y Clausura.</div><div class="ritual-translation" lang="fr">Messieurs les Chevaliers, levez-vous,
+(Tous se lèvent).
+Passons à la Formation et à la Clôture.</div>
 </article>
-<div class="section-head"><h2>THE FORMATION</h2></div>
-<div class="speech-en ritual-copy">Sir Knight Commander stands to the east of the Altar, with Sir Knight Senior Warden to his immediate right and Sir Knight Junior Warden to his immediate left (facing west). Sir Knight Priest goes to the west of the Altar, Sir Knight Master of Ceremonies stands in the west to the immediate left of Sir Knight Priest and Sir Knight Deacon stands to the immediate right of Sir Knight Priest (facing east). </div>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<div class="section-head"><h2>THE FORMATION<span class="ritual-translation" lang="el">Ο ΣΧΗΜΑΤΙΣΜΟΣ</span><span class="ritual-translation" lang="es">LA FORMACIÓN</span><span class="ritual-translation" lang="fr">LA FORMATION</span></h2></div>
+<div class="speech-en ritual-copy">Sir Knight Commander stands to the east of the Altar, with Sir Knight Senior Warden to his immediate right and Sir Knight Junior Warden to his immediate left (facing west). Sir Knight Priest goes to the west of the Altar, Sir Knight Master of Ceremonies stands in the west to the immediate left of Sir Knight Priest and Sir Knight Deacon stands to the immediate right of Sir Knight Priest (facing east). </div><div class="ritual-translation" lang="el">Ο Sir Knight Commander στέκεται στα ανατολικά του Βωμού, με τον Sir Knight Senior Warden στα αμέσως δεξιά του και τον Sir Knight Junior Warden στα αμέσως αριστερά του (με κατεύθυνση προς τα δυτικά). Ο Sir Knight Priest πηγαίνει στα δυτικά του Βωμού, ο Sir Knight Master of Ceremonies στέκεται στα δυτικά, αμέσως αριστερά του Sir Knight Priest και ο Sir Knight Deacon στέκεται στα δεξιά του Sir Knight Priest (με κατεύθυνση προς τα ανατολικά).</div><div class="ritual-translation" lang="es">Sir Knight Commander se encuentra al este del Altar, con Sir Knight Senior Warden a su derecha inmediata y Sir Knight Junior Warden a su izquierda inmediata (mirando hacia el oeste). Sir Knight Priest va al oeste del Altar, Sir Knight Master of Ceremonies se encuentra en el oeste, inmediatamente a la izquierda de Sir Knight Priest y Sir Knight Deacon se encuentra inmediatamente a la derecha de Sir Knight Priest (mirando hacia el este).</div><div class="ritual-translation" lang="fr">Sir Knight Commander se tient à l&#x27;est de l&#x27;autel, avec Sir Knight Senior Warden à sa droite immédiate et Sir Knight Junior Warden à sa gauche immédiate (face à l&#x27;ouest). Sir Knight Priest se trouve à l&#x27;ouest de l&#x27;autel, Sir Knight Master of Ceremones se tient à l&#x27;ouest, immédiatement à gauche de Sir Knight Priest et Sir Knight Deacon se tient immédiatement à droite de Sir Knight Priest (face à l&#x27;est).</div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Sir Knights, you will form a circle around the altar with the left hand on the right shoulder of the Knight on your left.
 <span class="rubric">(All Sir Knights present now join the Lodge Officers to form a circle around the Altar with their left hand on the right shoulder of the Knight on their left. When formed the ceremony continues).</span>
 You will repeat after me:
@@ -1163,62 +1598,119 @@ May we in secret meet – our Brotherhood to keep.
 
 May all our acts proclaim – the goodness of our Masters Name.
 
-To this end we vow anew – ‘til we meet again, adieu.</div>
+To this end we vow anew – ‘til we meet again, adieu.</div><div class="ritual-translation" lang="el">Κύριε Knights, θα σχηματίσετε έναν κύκλο γύρω από το βωμό με το αριστερό χέρι στον δεξιό ώμο του Ιππότη στον αριστερό σας.
+(Όλοι οι παρόντες Sir Knights τώρα ενώνονται με τους Αξιωματικούς της Στοάς για να σχηματίσουν έναν κύκλο γύρω από τον Βωμό με το αριστερό τους χέρι στον δεξιό ώμο του Ιππότη στα αριστερά τους. Όταν σχηματιστεί η τελετή συνεχίζεται).
+Θα επαναλάβετε μετά από μένα:
+
+Είθε να συναντηθούμε στα κρυφά – η Αδελφότητα μας να κρατήσει.
+
+Είθε όλες οι πράξεις μας να διακηρύξουν – την καλοσύνη του Ονόματος των Κυρίων μας.
+
+Για το σκοπό αυτό ορκιζόμαστε εκ νέου - «μέχρι να ξανασυναντηθούμε, αντίο.</div><div class="ritual-translation" lang="es">Señores Caballeros, formarán un círculo alrededor del altar con la mano izquierda en el hombro derecho del Caballero a su izquierda.
+(Todos los Señores Caballeros presentes ahora se unen a los Oficiales de la Logia para formar un círculo alrededor del Altar con su mano izquierda en el hombro derecho del Caballero a su izquierda. Cuando se forma, la ceremonia continúa).
+Repetirás después de mí:
+
+Que nos reunamos en secreto: nuestra Hermandad para mantener.
+
+Que todos nuestros actos proclamen la bondad del Nombre de nuestro Maestro.
+
+Con este fin hacemos un nuevo voto: hasta que nos volvamos a encontrar, adiós.</div><div class="ritual-translation" lang="fr">Messieurs les Chevaliers, vous formerez un cercle autour de l&#x27;autel avec la main gauche sur l&#x27;épaule droite du chevalier à votre gauche.
+(Tous les Sir Knights présents rejoignent maintenant les Officiers de Loge pour former un cercle autour de l&#x27;Autel avec leur main gauche sur l&#x27;épaule droite du Chevalier à leur gauche. Une fois formés, la cérémonie continue).
+Vous répéterez après moi :
+
+Puissions-nous nous rencontrer en secret – notre Fraternité à conserver.
+
+Que tous nos actes proclament – ​​la bonté du Nom de notre Maître.
+
+À cette fin, nous faisons un nouveau vœu – jusqu’à ce que nous nous revoyions, adieu.</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies</span></div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias</span><span class="ritual-translation" lang="fr">Sir Knight Maître de Cérémonie</span></span></div>
 <div class="speech-en ritual-copy">Sir Knights you will adopt the Sign of Reverence.
-<span class="rubric">(All drop their hands to their side, stand straight and adopt Sign).</span></div>
+<span class="rubric">(All drop their hands to their side, stand straight and adopt Sign).</span></div><div class="ritual-translation" lang="el">Κύριε Knights θα υιοθετήσετε το Σημείο της Ευλάβειας.
+(Όλοι πέφτουν τα χέρια τους στο πλάι, στέκονται ίσια και υιοθετούν το Sign).</div><div class="ritual-translation" lang="es">Señores Caballeros, adoptarán el Signo de Reverencia.
+(Todos dejan caer las manos a los costados, se paran erguidos y adoptan la seña).</div><div class="ritual-translation" lang="fr">Messieurs les Chevaliers, vous adopterez le signe de la révérence.
+(Tous laissent tomber leurs mains, se tiennent droits et adoptent Sign).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy">Sir Knight Priest attend the Altar.</div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy">Sir Knight Priest attend the Altar.</div><div class="ritual-translation" lang="el">Ο Sir Knight Priest παρευρίσκεται στο Βωμό.</div><div class="ritual-translation" lang="es">Sir Knight Priest asiste al Altar.</div><div class="ritual-translation" lang="fr">Sir Knight Priest assiste à l&#x27;autel.</div>
 </article>
-<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest</span></div>
-<div class="speech-en ritual-copy"><span class="rubric">(Kneels at the Altar gives the ‘Sign of Adoration’, closes the Bible, rises and steps back. All discharge the Sign of Reverence).</span></div>
+<article class="speech-card" data-role="priest"><div class="speech-header"><span class="speaker-title">Sir Knight Priest<span class="ritual-translation" lang="el">Sir Knight Priest</span><span class="ritual-translation" lang="es">Señor Caballero Sacerdote</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Prêtre</span></span></div>
+<div class="speech-en ritual-copy"><span class="rubric">(Kneels at the Altar gives the ‘Sign of Adoration’, closes the Bible, rises and steps back. All discharge the Sign of Reverence).</span></div><div class="ritual-translation" lang="el">(Γονατίζει στο Βωμό δίνει το «Σήμα της Λατρείας», κλείνει τη Βίβλο, σηκώνεται και υποχωρεί. Όλοι εκφορτίζουν το Σημείο Ευλάβειας).</div><div class="ritual-translation" lang="es">(Se arrodilla ante el Altar y hace la “Señal de Adoración”, cierra la Biblia, se levanta y da un paso atrás. Todos realizan la Señal de Reverencia).</div><div class="ritual-translation" lang="fr">(S&#x27;agenouille devant l&#x27;autel donne le « signe d&#x27;adoration », ferme la Bible, se lève et recule. Tous déchargent le signe de révérence).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">Officers you will prove your proficiency with the Battery.
-<span class="rubric">(The Battery is given by stamping the right foot. After the Battery, each Officer states aloud the name of the Order).</span></div>
+<span class="rubric">(The Battery is given by stamping the right foot. After the Battery, each Officer states aloud the name of the Order).</span></div><div class="ritual-translation" lang="el">Αξιωματικοί θα αποδείξετε την επάρκειά σας με την Μπαταρία.
+(Η Μπαταρία δίνεται πατώντας το δεξί πόδι. Μετά τη Μπαταρία, κάθε Αξιωματικός δηλώνει φωναχτά το όνομα της Διαταγής).</div><div class="ritual-translation" lang="es">Oficiales, demostrarán su competencia con la batería.
+(La Batería se da dando un golpe con el pie derecho. Después de la Batería, cada Oficial dice en voz alta el nombre de la Orden).</div><div class="ritual-translation" lang="fr">Officiers, vous prouverez votre maîtrise de la batterie.
+(La Batterie est donnée en tapant du pied droit. Après la Batterie, chaque Officier prononce à haute voix le nom de l&#x27;Ordre).</div>
 </article>
-<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Lodge</div>
+<article class="speech-card" data-role="mc"><div class="speech-header"><span class="speaker-title">Sir Knight Master of Ceremonies<span class="ritual-translation" lang="el">Sir Knight Master of Ceremonies</span><span class="ritual-translation" lang="es">Señor Caballero Maestro de Ceremonias</span><span class="ritual-translation" lang="fr">Sir Knight Maître de Cérémonie</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(3)</span> Lodge</div><div class="ritual-translation" lang="el">Lodge</div><div class="ritual-translation" lang="es">Logia</div><div class="ritual-translation" lang="fr">Loge</div>
 </article>
-<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 3 knocks, 1 knock"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Chapter</div>
+<article class="speech-card" data-role="jw"><div class="speech-header"><span class="speaker-title">Sir Knight Junior Warden<span class="ritual-translation" lang="el">Sir Knight Junior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Junior Guardián</span><span class="ritual-translation" lang="fr">Sir Knight Gardien Junior</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 3 knocks, 1 knock"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(7)</span> Chapter</div><div class="ritual-translation" lang="el">Κεφάλαιο</div><div class="ritual-translation" lang="es">Capítulo</div><div class="ritual-translation" lang="fr">Chapitre</div>
 </article>
-<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 2 knocks, 2 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Knight Masonry</div>
+<article class="speech-card" data-role="sw"><div class="speech-header"><span class="speaker-title">Sir Knight Senior Warden<span class="ritual-translation" lang="el">Sir Knight Senior Warden</span><span class="ritual-translation" lang="es">Señor Caballero Guardián Mayor</span><span class="ritual-translation" lang="fr">Sir Knight, directeur principal</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="3 knocks, 2 knocks, 2 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span> <span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(7)</span> Knight Masonry</div><div class="ritual-translation" lang="el">Ιππότης Τεκτονισμός</div><div class="ritual-translation" lang="es">Albañilería de caballeros</div><div class="ritual-translation" lang="fr">Chevalier Maçonnerie</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
-<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="5 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> Order of Saint Patrick
-<span class="rubric">(Following a short pause).</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
+<div class="speech-en ritual-copy"><span class="knock-pattern" role="img" aria-label="5 knocks"><span class="knock-group"><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""><img class="knock-icon" src="./gavel-knock.png" width="64" height="56" alt=""></span></span> <span class="knock-count" aria-hidden="true">(5)</span> Order of Saint Patrick
+<span class="rubric">(Following a short pause).</span></div><div class="ritual-translation" lang="el">Τάγμα του Αγίου Πατρικίου
+(Μετά από μια μικρή παύση).</div><div class="ritual-translation" lang="es">Orden de San Patricio
+(Tras una breve pausa).</div><div class="ritual-translation" lang="fr">Ordre de Saint Patrick
+(Après une courte pause).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">I now declare the labors of our Lodge to be transacted to my satisfaction.
 <span class="rubric">(He stamps his right foot, then each Sir Knight, commencing with Sir Knight Junior Warden, stamps once with his right foot continuing clockwise finishing with Sir Knight Senior Warden).</span>
 
 Sir Knights Return to your places.
-<span class="rubric">(All return to their stations).</span></div>
+<span class="rubric">(All return to their stations).</span></div><div class="ritual-translation" lang="el">Δηλώνω τώρα ότι οι κόποι της Στοάς μας θα διεκπεραιωθούν προς ικανοποίησή μου.
+(Σφραγίζει το δεξί του πόδι, μετά κάθε Sir Knight, ξεκινώντας με τον Sir Knight Junior Warden, χτυπά μια φορά με το δεξί του πόδι συνεχίζοντας δεξιόστροφα τελειώνοντας με τον Sir Knight Senior Warden).
+
+Sir Knights Επιστρέψτε στα μέρη σας.
+(Όλοι επιστρέφουν στους σταθμούς τους).</div><div class="ritual-translation" lang="es">Declaro ahora que las labores de nuestra Logia se realizarán a mi entera satisfacción.
+(Él golpea su pie derecho, luego cada Sir Knight, comenzando con Sir Knight Junior Warden, golpea una vez con su pie derecho continuando en el sentido de las agujas del reloj y terminando con Sir Knight Senior Warden).
+
+Señores Caballeros, regresen a sus lugares.
+(Todos regresan a sus puestos).</div><div class="ritual-translation" lang="fr">Je déclare maintenant que les travaux de notre Loge sont accomplis à ma satisfaction.
+(Il frappe du pied droit, puis chaque Sir Knight, en commençant par Sir Knight Junior Warden, frappe une fois avec son pied droit en continuant dans le sens des aiguilles d&#x27;une montre en terminant par Sir Knight Senior Warden).
+
+Sir Knights Retournez à vos places.
+(Tous retournent à leur poste).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">
-Sir Knight Deacon, you will attend the door.</div>
+Sir Knight Deacon, you will attend the door.</div><div class="ritual-translation" lang="el">Κύριε Knight Deacon, θα παρευρεθείτε στην πόρτα.</div><div class="ritual-translation" lang="es">Señor Caballero Diácono, atenderá la puerta.</div><div class="ritual-translation" lang="fr">Sir Chevalier Deacon, vous vous présenterez à la porte.</div>
 </article>
-<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon</span></div>
+<article class="speech-card" data-role="deacon"><div class="speech-header"><span class="speaker-title">Sir Knight Deacon<span class="ritual-translation" lang="el">Sir Knight Deacon</span><span class="ritual-translation" lang="es">Señor Caballero Diácono</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Diacre</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric"> 	(Goes to the door). </span>
-                  </div>
+                  </div><div class="ritual-translation" lang="el">(Πηγαίνει στην πόρτα).</div><div class="ritual-translation" lang="es">(Se acerca a la puerta).</div><div class="ritual-translation" lang="fr">(Il se dirige vers la porte).</div>
 </article>
-<article class="speech-card" data-role="sentinel"><div class="speech-header"><span class="speaker-title">Sir Knight Sentinel</span></div>
+<article class="speech-card" data-role="sentinel"><div class="speech-header"><span class="speaker-title">Sir Knight Sentinel<span class="ritual-translation" lang="el">Σερ Νάιτ Σέντινελ</span><span class="ritual-translation" lang="es">Señor Caballero Centinela</span><span class="ritual-translation" lang="fr">Sir Knight Sentinelle</span></span></div>
 <div class="speech-en ritual-copy"><span class="rubric">(Responds). </span>
-                  </div>
+                  </div><div class="ritual-translation" lang="el">(Απαντά).</div><div class="ritual-translation" lang="es">(Responde).</div><div class="ritual-translation" lang="fr">(Répond).</div>
 </article>
-<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander</span></div>
+<article class="speech-card" data-role="kc"><div class="speech-header"><span class="speaker-title">Sir Knight Commander<span class="ritual-translation" lang="el">Sir Knight Commander</span><span class="ritual-translation" lang="es">señor caballero comandante</span><span class="ritual-translation" lang="fr">Monsieur Chevalier Commandant</span></span></div>
 <div class="speech-en ritual-copy">I now declare this Lodge of the Order of Saint Patrick closed.
 
 <span class="rubric">(Extinguishes the candle).</span>
 
-Sir Knights, you are dismissed.</div>
+Sir Knights, you are dismissed.</div><div class="ritual-translation" lang="el">Τώρα δηλώνω κλειστή αυτή τη Στοά του Τάγματος του Αγίου Πατρικίου.
+
+(Σβήνει το κερί).
+
+Κύριε Knights, απολύεστε.</div><div class="ritual-translation" lang="es">Declaro cerrada esta Logia de la Orden de San Patricio.
+
+(Apaga la vela).
+
+Señores Caballeros, pueden despedirse.</div><div class="ritual-translation" lang="fr">Je déclare désormais fermée cette Loge de l&#x27;Ordre de Saint Patrick.
+
+(Il éteint la bougie).
+
+Sir Knights, vous êtes renvoyé.</div>
 </article>
-<div class="section-head"><h2>END OF CEREMONY</h2></div>
+<div class="section-head"><h2>END OF CEREMONY<span class="ritual-translation" lang="el">ΤΕΛΟΣ ΤΕΛΕΤΗΣ</span><span class="ritual-translation" lang="es">FIN DE CEREMONIA</span><span class="ritual-translation" lang="fr">FIN DE LA CÉRÉMONIE</span></h2></div>
 </section>
     </main>
 
@@ -1229,6 +1721,19 @@ Sir Knights, you are dismissed.</div>
 
     <script>
       (function () {
+        const ritual = document.querySelector('[aria-label="Ritual text"]');
+        const languageButtons = document.querySelectorAll('.language-flag');
+        languageButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const language = button.dataset.language;
+            const active = ritual.dataset.translation === language;
+            ritual.dataset.translation = active ? '' : language;
+            languageButtons.forEach((option) => {
+              option.setAttribute('aria-pressed', String(!active && option === button));
+            });
+          });
+        });
+
         const roleNames = {
           kc: { title: "Sir Knight Commander", person: "Paul Johnston" },
           priest: { title: "Sir Knight Priest", person: "Paul Hollebone" },
