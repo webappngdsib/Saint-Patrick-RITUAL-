@@ -299,8 +299,8 @@
 
       .chamber-meetings {
         position: absolute;
-        z-index: 3;
-        inset: auto 12% 3.3%;
+        z-index: 4;
+        inset: auto 8% 3.3% 16%;
         transform: perspective(36rem) rotateX(36deg);
         transform-origin: center bottom;
         margin: 0;
@@ -320,7 +320,55 @@
 
       @container (max-width: 600px) {
         .chamber-meetings {
-          inset-inline: 5%;
+          inset-inline: 9% 1%;
+        }
+      }
+
+      .chamber-exterior {
+        position: absolute;
+        z-index: 3;
+        inset: 0;
+        overflow: hidden;
+        border-radius: var(--radius);
+        pointer-events: none;
+        background: #101713;
+        animation: exterior-reveal 9s both;
+      }
+
+      .chamber-photo .chamber-exterior img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        animation: exterior-approach 9s ease-out both;
+      }
+
+      @keyframes exterior-reveal {
+        0%, 100% { opacity: 0; }
+        24%, 80% { opacity: 1; }
+      }
+
+      @keyframes exterior-approach {
+        from { transform: scale(.96); }
+        to { transform: scale(1.04); }
+      }
+
+      .chamber-photo.is-revealing-exterior .closed-chamber {
+        animation: chamber-retreat 9s both;
+      }
+
+      @keyframes chamber-retreat {
+        0%, 100% { transform: none; }
+        24%, 80% { transform: scale(1.06); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .chamber-photo .chamber-exterior img,
+        .chamber-photo.is-revealing-exterior .closed-chamber {
+          animation: none;
+        }
+
+        .chamber-exterior {
+          animation-timing-function: steps(1, jump-end);
         }
       }
 
@@ -926,6 +974,9 @@
           <img id="open-cigar" class="station-cigar station-cigar--open" src="./lodge-cigar-open.webp" width="1536" height="1024" alt="An unlit cigar lies across the direction of the gavel on the Knight Commander’s desk.">
           <img id="closed-chamber" class="closed-chamber" src="./lodge-closed-no-banners.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed." hidden>
           <img id="closed-cigar" class="station-cigar station-cigar--closed" src="./lodge-cigar-closed.webp" width="1536" height="1024" alt="A lit cigar on the Knight Commander’s desk sends a thin wisp of smoke upwards." hidden>
+          <div id="chamber-exterior" class="chamber-exterior" hidden>
+            <img id="saint-patrick-exterior" width="1536" height="1024" alt="Saint Patrick standing outside the Lodge in full ceremonial robes.">
+          </div>
           <ul id="chamber-meetings" class="chamber-meetings" aria-label="Upcoming Lodge meetings" hidden></ul>
           <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false"></button>
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
@@ -1801,12 +1852,79 @@ Sir Knights, vous êtes renvoyé.</div>
         const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber):not(.station-cigar)");
         const lodgeLightsButton = document.getElementById("lodge-lights-button");
         const lodgeLightStatus = document.getElementById("lodge-light-status");
+        const chamber = closedChamber.parentElement;
+        const exterior = document.getElementById("chamber-exterior");
+        const saintPatrick = document.getElementById("saint-patrick-exterior");
+        const exteriorInterval = 180_000;
+        let exteriorTimer;
+        let exteriorEnd;
+        let strikeTimer;
+        let strikeContext;
+        let strikeBuffer;
+        let activeStrike;
+
+        function prepareTimedStrike() {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          strikeContext ||= new AudioContextClass();
+          strikeContext.resume().catch(() => {});
+          strikeBuffer ||= fetch(document.getElementById("gavel-strike").src)
+            .then((response) => response.arrayBuffer())
+            .then((bytes) => strikeContext.decodeAudioData(bytes))
+            .catch(() => {
+              strikeBuffer = undefined;
+              return null;
+            });
+        }
+
+        async function playTimedStrike() {
+          if (document.hidden || !strikeBuffer) return;
+          const buffer = await strikeBuffer;
+          if (!buffer || closedChamber.hidden || document.hidden || strikeContext.state !== "running") return;
+          const strike = strikeContext.createBufferSource();
+          activeStrike = strike;
+          strike.buffer = buffer;
+          strike.connect(strikeContext.destination);
+          strike.onended = () => {
+            if (activeStrike === strike) activeStrike = undefined;
+          };
+          strike.start();
+        }
+
+        function hideExterior() {
+          exterior.hidden = true;
+          chamber.classList.remove("is-revealing-exterior");
+        }
+
+        function showExterior() {
+          exteriorTimer = setTimeout(showExterior, exteriorInterval);
+          if (document.hidden || !saintPatrick.complete || !saintPatrick.naturalWidth) return;
+          exterior.hidden = false;
+          chamber.classList.add("is-revealing-exterior");
+          exteriorEnd = setTimeout(hideExterior, 9000);
+        }
+
+        function updateClosedChamberEffects(closed) {
+          clearTimeout(exteriorTimer);
+          clearTimeout(exteriorEnd);
+          clearInterval(strikeTimer);
+          hideExterior();
+          if (activeStrike) {
+            activeStrike.stop();
+            activeStrike = undefined;
+          }
+          if (!closed) return;
+          if (!saintPatrick.hasAttribute("src")) saintPatrick.src = "./saint-patrick-exterior.webp";
+          exteriorTimer = setTimeout(showExterior, 60_000);
+          strikeTimer = setInterval(playTimedStrike, exteriorInterval);
+        }
         let changingLights = false;
 
         async function toggleLodgeLights() {
           if (changingLights) return;
           const closing = closedChamber.hidden;
           if (closing) {
+            prepareTimedStrike();
             changingLights = true;
             try {
               await closedChamber.decode();
@@ -1821,6 +1939,7 @@ Sir Knights, vous êtes renvoyé.</div>
           closedCigar.hidden = !closing;
           openCigar.hidden = closing;
           altarSalt.hidden = closing;
+          updateClosedChamberEffects(closing);
           altarSwitch.setAttribute("aria-pressed", String(closing));
           lodgeLightsButton.textContent = closing ? "Switch on the Lodge lights" : "Switch off the Lodge lights";
           lodgeLightStatus.textContent = closing ? "The Lodge is closed." : "The Lodge is open.";
