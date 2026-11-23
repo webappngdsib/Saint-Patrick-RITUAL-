@@ -297,6 +297,31 @@
         border-radius: var(--radius);
       }
 
+      .chamber-meetings {
+        position: absolute;
+        z-index: 3;
+        inset: 8% 30% auto;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        overflow-wrap: anywhere;
+        color: #f4d894;
+        font: 700 clamp(.72rem, 1.35cqw, 1.25rem)/1.25 Georgia, serif;
+        text-shadow: 0 1px 3px #000, 0 0 7px #000;
+        pointer-events: none;
+      }
+
+      .chamber-meetings li + li {
+        margin-top: .25em;
+      }
+
+      @container (max-width: 600px) {
+        .chamber-meetings {
+          inset: 4% 5% auto;
+        }
+      }
+
       .chamber-photo .altar-salt {
         position: absolute;
         inset: 0;
@@ -898,6 +923,7 @@
           <img id="open-cigar" class="station-cigar station-cigar--open" src="./lodge-cigar-open.webp" width="1536" height="1024" alt="An unlit cigar lies across the direction of the gavel on the Knight Commander’s desk.">
           <img id="closed-chamber" class="closed-chamber" src="./lodge-closed-no-banners.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed." hidden>
           <img id="closed-cigar" class="station-cigar station-cigar--closed" src="./lodge-cigar-closed.webp" width="1536" height="1024" alt="A lit cigar on the Knight Commander’s desk sends a thin wisp of smoke upwards." hidden>
+          <ul id="chamber-meetings" class="chamber-meetings" aria-label="Upcoming Lodge meetings" hidden></ul>
           <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false"></button>
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
           <button type="button" class="seat-badge" data-role="priest" aria-label="2. Priest" aria-pressed="false" style="--x:64.4%;--y:34.9%;--hit-width:7.7%;--hit-height:16%"><span class="num" aria-hidden="true">2</span></button>
@@ -1748,6 +1774,7 @@ Sir Knights, vous êtes renvoyé.</div>
 
     <audio id="gavel-strike" src="./gavel-strike.wav?v=2" preload="auto"></audio>
 
+    <script type="module" src="./chamber-meetings.js"></script>
     <script>
       (function () {
         const ritual = document.querySelector('[aria-label="Ritual text"]');

@@ -1,18 +1,11 @@
+import { allowedPhoto, calendarDate, dateFormat, readDiary } from './diary-data.js';
+
 const get = (id) => document.getElementById(id);
 const dialog = get('entry-dialog');
 const form = get('entry-form');
 const save = get('save');
 const status = get('diary-status');
-const dateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' });
 let downloadUrl;
-const allowedPhoto = /^data:image\/(jpeg|png|webp|avif|gif);base64,[a-z\d+/]+=*$/i;
-
-function calendarDate() {
-  const now = new Date();
-  return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'),
-    String(now.getDate()).padStart(2, '0')].join('-');
-}
-
 function readBrowserEntries() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('saint-patrick-diary', 1);
@@ -72,21 +65,6 @@ function offerDownload(entries, title) {
   get('publish-entry').hidden = false;
 }
 
-async function readJson(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error('Could not read diary data.');
-  return response.json();
-}
-
-function validEntry(entry) {
-  if (!entry || typeof entry.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) return false;
-  const date = new Date(entry.date + 'T12:00:00');
-  return Number.isFinite(date.getTime()) && date.getDate() === Number(entry.date.slice(-2)) &&
-    typeof entry.location === 'string' && typeof entry.chamber === 'string' &&
-    Array.isArray(entry.photos) && entry.photos.length <= 3 &&
-    entry.photos.every((photo) => typeof photo === 'string' && allowedPhoto.test(photo));
-}
-
 function calendarLink(entry) {
   const tomorrow = new Date(entry.date + 'T00:00:00Z');
   tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
@@ -143,11 +121,8 @@ function makeEntry(entry) {
 }
 
 async function refresh() {
-  const manifest = await readJson('./diary-feed.json');
-  const results = await Promise.allSettled(manifest.map(readJson));
-  const entries = results.flatMap((result) =>
-    result.status === 'fulfilled' && Array.isArray(result.value) ? result.value.filter(validEntry) : []);
-  if (results.some((result) => result.status === 'rejected')) {
+  const { entries, incomplete } = await readDiary();
+  if (incomplete) {
     status.textContent = 'Some diary entries could not be loaded.';
   }
   const today = calendarDate();
