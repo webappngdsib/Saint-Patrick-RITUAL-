@@ -5,7 +5,10 @@ const dialog = get('entry-dialog');
 const form = get('entry-form');
 const save = get('save');
 const status = get('diary-status');
-let downloadUrl;
+const key = get('publisher-key');
+let publishingKey = '';
+let pendingPublication;
+const diaryDirectory = 'https://api.github.com/repos/webappngdsib/Saint-Patrick-RITUAL-/contents/diary-entries/';
 function readBrowserEntries() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('saint-patrick-diary', 1);
@@ -54,15 +57,41 @@ async function prepareEntry({ date, location, chamber, photos }) {
   return { date, location, chamber, photos: await Promise.all(photos.map(encodePhoto)) };
 }
 
-function offerDownload(entries, title) {
-  const blob = new Blob([JSON.stringify(entries, null, 2) + '\n'], { type: 'application/json' });
-  if (blob.size > 24 * 1024 * 1024) throw new Error('This export exceeds the GitHub web upload limit.');
-  if (downloadUrl) URL.revokeObjectURL(downloadUrl);
-  downloadUrl = URL.createObjectURL(blob);
-  const link = get('download-entry');
-  link.href = downloadUrl;
-  link.download = title + '-' + crypto.randomUUID().slice(0, 8) + '.json';
-  get('publish-entry').hidden = false;
+async function publishEntries(entries, token) {
+  const json = JSON.stringify(entries, null, 2) + '\n';
+  const bytes = new TextEncoder().encode(json);
+  if (bytes.length > 24 * 1024 * 1024) throw new Error('The entry is too large. Use smaller photographs.');
+  if (pendingPublication?.json !== json) {
+    pendingPublication = { json, id: crypto.randomUUID() };
+  }
+  const file = 'event-' + entries[0].date + '-' + pendingPublication.id + '.json';
+  const headers = {
+    Authorization: 'Bearer ' + token,
+    Accept: 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+  const content = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(new Blob([bytes]));
+  });
+  const response = await fetch(diaryDirectory + file, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ message: 'Publish Diary entry', branch: 'main', content }),
+  });
+  // A previous attempt may have committed successfully before the connection dropped.
+  if (response.status === 409 || response.status === 422) {
+    const existing = await fetch(diaryDirectory + file + '?ref=main', { headers });
+    if (existing.ok) return;
+  }
+  if (!response.ok) {
+    const message = [401, 403, 404].includes(response.status)
+      ? 'Check that your publishing key has write access to this repository.'
+      : 'The entry could not be published. Please try again.';
+    throw new Error(message);
+  }
 }
 
 function calendarLink(entry) {
@@ -135,11 +164,26 @@ async function refresh() {
   }
 }
 
-get('new-entry').addEventListener('click', () => {
+let legacyEntries = [];
+
+function openEntryDialog() {
   form.reset();
   form.elements.date.value = calendarDate();
+  for (const name of ['date', 'location', 'chamber', 'photos']) {
+    const field = form.elements[name];
+    field.disabled = legacyEntries.length > 0;
+    field.closest('label').hidden = field.disabled;
+  }
+  get('entry-title').textContent = legacyEntries.length ? 'Publish previous entries' : 'New diary entry';
   get('form-error').textContent = '';
+  get('publisher-key-label').hidden = Boolean(publishingKey);
+  key.required = !publishingKey;
   dialog.showModal();
+}
+
+get('new-entry').addEventListener('click', () => {
+  legacyEntries = [];
+  openEntryDialog();
 });
 get('cancel').addEventListener('click', () => dialog.close());
 dialog.addEventListener('cancel', (event) => {
@@ -151,7 +195,7 @@ form.addEventListener('submit', async (event) => {
   error.textContent = '';
   const { date, location, chamber } = Object.fromEntries(new FormData(form));
   const photos = Array.from(form.elements.photos.files);
-  if (!location.trim() || !chamber.trim()) {
+  if (!legacyEntries.length && (!location.trim() || !chamber.trim())) {
     error.textContent = 'Enter a location and lodge chamber.';
     return;
   }
@@ -161,15 +205,22 @@ form.addEventListener('submit', async (event) => {
   }
   save.disabled = get('cancel').disabled = true;
   try {
-    const entry = await prepareEntry({ date, location: location.trim(), chamber: chamber.trim(), photos });
-    offerDownload([entry], 'event-' + date);
-    get('prepared-calendar').replaceChildren(calendarLink(entry));
+    const entries = await Promise.all((legacyEntries.length ? legacyEntries : [
+      { date, location: location.trim(), chamber: chamber.trim(), photos },
+    ]).map(prepareEntry));
+    const token = publishingKey || key.value.trim();
+    await publishEntries(entries, token);
+    publishingKey = token;
+    key.value = '';
+    pendingPublication = undefined;
+    if (legacyEntries.length) get('legacy-tools').hidden = true;
     dialog.close();
-    get('download-entry').focus();
-    status.textContent = 'Entry ready for GitHub.';
-  } catch {
-    error.textContent = 'The entry could not be prepared. Check that the photographs open and try again.';
-    return;
+    status.textContent = 'Published. The public Diary and Lodge wall will update after GitHub Pages deploys.';
+  } catch (problem) {
+    publishingKey = '';
+    get('publisher-key-label').hidden = false;
+    key.required = true;
+    error.textContent = problem.message || 'The entry could not be published. Please try again.';
   } finally {
     save.disabled = get('cancel').disabled = false;
   }
@@ -184,21 +235,9 @@ if (window.indexedDB) {
   readBrowserEntries().then((entries) => {
     if (!entries.length) return;
     get('legacy-tools').hidden = false;
-    get('export-legacy').addEventListener('click', async (event) => {
-      event.currentTarget.disabled = true;
-      const button = event.currentTarget;
-      try {
-        const exported = [];
-        for (const entry of entries) exported.push(await prepareEntry(entry));
-        offerDownload(exported, 'browser-diary-export');
-        get('prepared-calendar').replaceChildren();
-        get('download-entry').focus();
-        status.textContent = 'Browser entries ready for GitHub.';
-      } catch (error) {
-        status.textContent = 'Could not prepare the browser export. ' + error.message;
-      } finally {
-        button.disabled = false;
-      }
+    get('publish-legacy').addEventListener('click', () => {
+      legacyEntries = entries;
+      openEntryDialog();
     });
   }).catch(() => {});
 }

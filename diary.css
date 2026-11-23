@@ -30,7 +30,7 @@ h2 { font-size: clamp(1.65rem, 4vw, 2.4rem); font-weight: 400; color: var(--gold
 h3 { font-size: 1.55rem; font-weight: 500; overflow-wrap: anywhere; }
 main { padding-block: 1.5rem 4rem; }
 main section { margin-top: 2rem; }
-.storage-note, .empty, small, .location { color: var(--muted); }
+.empty, small, .location { color: var(--muted); }
 .entries { list-style: none; padding: 0; margin: .9rem 0 0; display: grid; gap: .85rem; }
 .entry {
   display: grid;
@@ -60,7 +60,7 @@ button:disabled { opacity: .55; cursor: default; }
 dialog { width: min(32rem, 100% - 2rem); padding: 1.3rem; background: #222c26; color: var(--light); border: 1px solid var(--gold); }
 dialog::backdrop { background: #0b100dd9; }
 form { display: grid; gap: .8rem; }
-form label { display: grid; gap: .2rem; min-width: 0; }
+form label:not([hidden]) { display: grid; gap: .2rem; min-width: 0; }
 form input { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; border: 1px solid var(--line); color: inherit; }
 .form-actions { display: flex; flex-wrap: wrap; justify-content: end; gap: .6rem; }
 #form-error { color: #ffd0b3; }
@@ -70,13 +70,7 @@ form input { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; bo
   .entry { grid-template-columns: 1fr; gap: .2rem; }
 }
 
-.publish-entry {
-  margin-block: 1rem;
-  padding: 1rem;
-  border-inline-start: 3px solid var(--gold);
-  background: #282c28;
-}
-.publish-entry a { color: var(--gold); text-underline-offset: .2em; }
+#publisher-key-label a { color: var(--gold); text-underline-offset: .2em; }
 #legacy-tools { margin-block: .75rem; }
 
 .calendar-link {

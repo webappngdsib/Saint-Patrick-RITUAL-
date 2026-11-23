@@ -18,13 +18,7 @@
     </div>
   </header>
   <main class="wrap">
-    <p class="storage-note">Published events and photographs are stored in the public GitHub repository.</p>
-    <p id="legacy-tools" hidden><button type="button" id="export-legacy">Download previous browser entries</button></p>
-    <div id="publish-entry" class="publish-entry" hidden>
-      <p><a id="download-entry" download>Download the entry file</a>, then upload it to GitHub and commit it to <code>main</code>. Use an account with write access. The entry and photographs will be public.</p>
-      <div id="prepared-calendar"></div>
-      <a id="github-upload" href="https://github.com/webappngdsib/Saint-Patrick-RITUAL-/upload/main/diary-entries" target="_blank" rel="noopener">Open GitHub upload</a>
-    </div>
+    <p id="legacy-tools" hidden><button type="button" id="publish-legacy">Publish previous browser entries</button></p>
     <p id="diary-status" role="status"></p>
     <section aria-labelledby="upcoming-title">
       <h2 id="upcoming-title">Upcoming events</h2>
@@ -40,16 +34,21 @@
   <dialog id="entry-dialog" aria-labelledby="entry-title">
     <form id="entry-form">
       <h2 id="entry-title">New diary entry</h2>
+      <p>Published entries and photographs are public.</p>
       <label>Date <input name="date" type="date" required></label>
       <label>Location <input name="location" type="text" maxlength="160" required></label>
       <label>Lodge chamber <input name="chamber" type="text" maxlength="160" required></label>
       <label>Photographs <small>Optional · up to 3 · 10 MB each</small>
         <input name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" multiple>
       </label>
+      <label id="publisher-key-label">Publishing key
+        <input id="publisher-key" type="password" autocomplete="off" spellcheck="false" required>
+        <small>Use a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub key</a> for this repository with Contents read and write access. The key stays in this tab until you reload or leave.</small>
+      </label>
       <p id="form-error" role="alert"></p>
       <div class="form-actions">
         <button type="button" id="cancel">Cancel</button>
-        <button class="gold" type="submit" id="save">Prepare for GitHub</button>
+        <button class="gold" type="submit" id="save">Publish entry</button>
       </div>
     </form>
   </dialog>
