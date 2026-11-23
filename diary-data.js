@@ -26,9 +26,16 @@ function validEntry(entry) {
 async function readDiary() {
   const manifest = await readJson('./diary-feed.json');
   const results = await Promise.allSettled(manifest.map(readJson));
-  const entries = results.flatMap((result) =>
-    result.status === 'fulfilled' && Array.isArray(result.value) ? result.value.filter(validEntry) : []);
-  return { entries, incomplete: results.some((result) => result.status === 'rejected') };
+  const sources = new WeakMap();
+  const entries = results.flatMap((result, fileIndex) => {
+    if (result.status !== 'fulfilled' || !Array.isArray(result.value)) return [];
+    return result.value.filter((entry, index) => {
+      if (!validEntry(entry)) return false;
+      sources.set(entry, { url: manifest[fileIndex], index });
+      return true;
+    });
+  });
+  return { entries, sources, incomplete: results.some((result) => result.status === 'rejected') };
 }
 
 export { allowedPhoto, calendarDate, dateFormat, readDiary };

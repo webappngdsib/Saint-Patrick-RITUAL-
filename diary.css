@@ -80,3 +80,5 @@ form input, form select { width: 100%; min-width: 0; padding: .55rem; background
   color: var(--gold);
   text-underline-offset: .2em;
 }
+
+.edit-entry { margin-inline-start: .75rem; }
