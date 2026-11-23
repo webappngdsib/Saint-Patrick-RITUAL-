@@ -284,137 +284,57 @@
         font-size: clamp(1.3rem, 3vw, 1.85rem);
       }
 
-      /* Interactive Chamber Map */
-      .chamber-grid {
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 1.5rem;
-        align-items: start;
-      }
-
-      .chamber-board {
-        padding: 1.15rem;
-        border-radius: var(--radius);
-        background: var(--paper);
-        border: 1px solid var(--line);
-      }
-
-      .station-row {
-        display: flex;
-        justify-content: center;
-        gap: 0.85rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .station-row.bottom {
-        margin-top: 0.75rem;
-        margin-bottom: 0;
-      }
-
-      .chamber-middle {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 0.75rem;
-        align-items: center;
-      }
-
-      .pavement {
+      .chamber-photo {
         position: relative;
-        padding: 1.1rem 0.9rem;
-        border-radius: 8px;
-        border: 3px solid var(--emerald-deep);
-        background-color: #f7f3e8;
-        background-image:
-          linear-gradient(45deg, rgba(16, 23, 19, 0.14) 25%, transparent 25%),
-          linear-gradient(-45deg, rgba(16, 23, 19, 0.14) 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, rgba(16, 23, 19, 0.14) 75%),
-          linear-gradient(-45deg, transparent 75%, rgba(16, 23, 19, 0.14) 75%);
-        background-size: 28px 28px;
-        background-position: 0 0, 0 14px, 14px -14px, -14px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1.15rem;
+        margin: 0 0 1rem;
       }
 
-      .pavement-pair {
-        display: flex;
-        justify-content: space-around;
-        gap: 0.65rem;
-      }
-
-      .altar-box {
-        align-self: center;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        background: var(--emerald-deep);
-        color: #fff;
-        border: 2px solid var(--gold);
-        text-align: center;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-      }
-
-      .altar-cross {
-        font-size: 1.2rem;
-        color: var(--gold);
-        letter-spacing: 0.1em;
+      .chamber-photo img {
         display: block;
-      }
-
-      .altar-box strong {
-        font-family: var(--serif);
-        font-size: 0.85rem;
-        display: block;
-      }
-
-      .altar-box small {
-        font-size: 0.72rem;
-        color: var(--gold-soft);
+        width: 100%;
+        height: auto;
+        border-radius: var(--radius);
       }
 
       .seat-badge {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-width: 96px;
-        padding: 0.5rem 0.65rem;
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: max(var(--hit-width), 28px);
+        height: max(var(--hit-height), 28px);
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        padding: 0;
+        border: 0;
         border-radius: 8px;
-        background: #fff;
-        border: 1.5px solid var(--emerald);
-        color: var(--ink);
-        font-size: 0.76rem;
-        font-weight: 700;
-        text-align: center;
+        background: transparent;
         cursor: pointer;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        touch-action: manipulation;
       }
 
       .seat-badge .num {
-        display: inline-grid;
+        display: grid;
         place-items: center;
-        width: 22px;
-        height: 22px;
+        min-width: 1.5em;
+        min-height: 1.5em;
+        border: 1px solid var(--gold-soft);
         border-radius: 50%;
-        background: var(--emerald);
-        color: #fff;
-        font-size: 0.74rem;
-        font-weight: 800;
-        margin-bottom: 0.2rem;
+        background: var(--emerald-deep);
+        color: white;
+        font: 700 clamp(.75rem, 1.5vw, 1.05rem)/1 system-ui, sans-serif;
+        box-shadow: 0 1px 5px #0008;
       }
 
-      .seat-badge.active-seat {
-        background: var(--emerald-deep);
-        color: #fff;
-        border-color: var(--gold);
-        transform: scale(1.07);
-        box-shadow: 0 0 0 3px rgba(200, 162, 74, 0.45);
+      .seat-badge:is(:hover, :focus-visible, .active-seat) {
+        outline: 2px solid var(--gold-soft);
+        outline-offset: 2px;
+        background: #f6d58226;
       }
 
       .seat-badge.active-seat .num {
-        background: var(--gold);
-        color: #101713;
+        background: var(--gold-soft);
+        color: var(--emerald-deep);
       }
 
       .roster-table {
@@ -669,19 +589,7 @@
         letter-spacing: 0.08em;
       }
 
-      @media (max-width: 820px) {
-        .chamber-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
       @media (max-width: 560px) {
-        .seat-badge {
-          min-width: 78px;
-          padding: 0.42rem 0.45rem;
-          font-size: 0.7rem;
-        }
-
         .speech-card {
           padding: 1rem;
         }
@@ -810,6 +718,7 @@
               <option value="priest">Sir Knight Priest — Paul Hollebone</option>
               <option value="sw">Sir Knight Senior Warden — Ioannis Benetatos</option>
               <option value="jw">Sir Knight Junior Warden — Tony Lewis</option>
+              <option value="registrar">Registrar — Lodge Warrant Station</option>
               <option value="mc">Sir Knight Master of Ceremonies — Simon Polkinghorne</option>
               <option value="deacon">Sir Knight Deacon — Dimitrios Skiadopoulos</option>
               <option value="sentinel">Sir Knight Sentinel — Dimitrios Skiadopoulos</option>
@@ -834,89 +743,37 @@
           <span class="eyebrow" style="margin:0; color: var(--emerald);">Tap a station to highlight</span>
         </div>
 
-        <div class="chamber-grid">
-          <div class="chamber-board" aria-label="Lodge Chamber Floor Plan">
-            <!-- East: 1 & 2 -->
-            <div class="station-row">
-              <button type="button" class="seat-badge" data-role="kc">
-                <span class="num">1</span>
-                Knight Cmdr
-              </button>
-              <button type="button" class="seat-badge" data-role="priest">
-                <span class="num">2</span>
-                Priest
-              </button>
-            </div>
+        <div class="chamber-photo" role="group" aria-label="Lodge chamber officer stations">
+          <img src="./lodge-chamber.png" width="1536" height="1024" alt="Eight numbered officer chairs around the altar in the Lodge chamber.">
+          <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
+          <button type="button" class="seat-badge" data-role="priest" aria-label="2. Priest" aria-pressed="false" style="--x:64.4%;--y:34.9%;--hit-width:7.7%;--hit-height:16%"><span class="num" aria-hidden="true">2</span></button>
+          <button type="button" class="seat-badge" data-role="sw" aria-label="3. Senior Warden" aria-pressed="false" style="--x:34.8%;--y:36.7%;--hit-width:7.7%;--hit-height:14%"><span class="num" aria-hidden="true">3</span></button>
+          <button type="button" class="seat-badge" data-role="jw" aria-label="4. Junior Warden" aria-pressed="false" style="--x:76.4%;--y:39.5%;--hit-width:7.6%;--hit-height:14%"><span class="num" aria-hidden="true">4</span></button>
+          <button type="button" class="seat-badge" data-role="registrar" aria-label="5. Registrar" aria-pressed="false" style="--x:10.8%;--y:42.5%;--hit-width:7.8%;--hit-height:13%"><span class="num" aria-hidden="true">5</span></button>
+          <button type="button" class="seat-badge" data-role="mc" aria-label="6. Master of Ceremonies" aria-pressed="false" style="--x:75.5%;--y:68.5%;--hit-width:11.4%;--hit-height:19%"><span class="num" aria-hidden="true">6</span></button>
+          <button type="button" class="seat-badge" data-role="deacon" aria-label="7. Deacon" aria-pressed="false" style="--x:34.6%;--y:68.5%;--hit-width:10.4%;--hit-height:19%"><span class="num" aria-hidden="true">7</span></button>
+          <button type="button" class="seat-badge" data-role="sentinel" aria-label="8. Sentinel" aria-pressed="false" style="--x:10.6%;--y:80.3%;--hit-width:11.6%;--hit-height:22%"><span class="num" aria-hidden="true">8</span></button>
+        </div>
 
-            <!-- Middle: 5 on Left + Checkered Floor with 3, 4, Altar, 7, 6 -->
-            <div class="chamber-middle">
-              <button type="button" class="seat-badge" data-role="registrar">
-                <span class="num">5</span>
-                Registrar
-              </button>
+        <table class="roster-table">
+          <caption>Lodge officers</caption>
+          <thead>
+            <tr><th scope="col">Station</th><th scope="col">Office</th><th scope="col">Name / assignment</th></tr>
+          </thead>
+          <tbody>
+            <tr class="roster-item" data-role="kc"><td>1</td><th class="roster-role" scope="row">Knight Commander</th><td class="roster-name">Paul Johnston</td></tr>
+            <tr class="roster-item" data-role="priest"><td>2</td><th class="roster-role" scope="row">Priest</th><td class="roster-name">Paul Hollebone</td></tr>
+            <tr class="roster-item" data-role="sw"><td>3</td><th class="roster-role" scope="row">Senior Warden</th><td class="roster-name">Ioannis Benetatos</td></tr>
+            <tr class="roster-item" data-role="jw"><td>4</td><th class="roster-role" scope="row">Junior Warden</th><td class="roster-name">Tony Lewis</td></tr>
+            <tr class="roster-item" data-role="registrar"><td>5</td><th class="roster-role" scope="row">Registrar</th><td class="roster-name">Lodge Warrant Station</td></tr>
+            <tr class="roster-item" data-role="mc"><td>6</td><th class="roster-role" scope="row">Master of Ceremonies</th><td class="roster-name">Simon Polkinghorne</td></tr>
+            <tr class="roster-item" data-role="deacon"><td>7</td><th class="roster-role" scope="row">Deacon</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
+            <tr class="roster-item" data-role="sentinel"><td>8</td><th class="roster-role" scope="row">Sentinel</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
+          </tbody>
+        </table>
 
-              <div class="pavement">
-                <div class="pavement-pair">
-                  <button type="button" class="seat-badge" data-role="sw">
-                    <span class="num">3</span>
-                    Senior Warden
-                  </button>
-                  <button type="button" class="seat-badge" data-role="jw">
-                    <span class="num">4</span>
-                    Junior Warden
-                  </button>
-                </div>
-
-                <div class="altar-box">
-                  <span class="altar-cross" aria-hidden="true">☨</span>
-                  <strong>Altar &amp; V.S.L.</strong>
-                  <small>Cross with Five Bars</small>
-                </div>
-
-                <div class="pavement-pair">
-                  <button type="button" class="seat-badge" data-role="deacon">
-                    <span class="num">7</span>
-                    Deacon
-                  </button>
-                  <button type="button" class="seat-badge" data-role="mc">
-                    <span class="num">6</span>
-                    Master of Cer.
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- West / Outer Door: 8 -->
-            <div class="station-row bottom">
-              <button type="button" class="seat-badge" data-role="sentinel">
-                <span class="num">8</span>
-                Sentinel
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <table class="roster-table">
-              <caption>Lodge officers</caption>
-              <thead>
-                <tr><th scope="col">Station</th><th scope="col">Office</th><th scope="col">Name / assignment</th></tr>
-              </thead>
-              <tbody>
-                <tr class="roster-item" data-role="kc"><td>1</td><th class="roster-role" scope="row">Knight Commander</th><td class="roster-name">Paul Johnston</td></tr>
-                <tr class="roster-item" data-role="priest"><td>2</td><th class="roster-role" scope="row">Priest</th><td class="roster-name">Paul Hollebone</td></tr>
-                <tr class="roster-item" data-role="sw"><td>3</td><th class="roster-role" scope="row">Senior Warden</th><td class="roster-name">Ioannis Benetatos</td></tr>
-                <tr class="roster-item" data-role="jw"><td>4</td><th class="roster-role" scope="row">Junior Warden</th><td class="roster-name">Tony Lewis</td></tr>
-                <tr class="roster-item" data-role="registrar"><td>5</td><th class="roster-role" scope="row">Registrar</th><td class="roster-name">Lodge Warrant Station</td></tr>
-                <tr class="roster-item" data-role="mc"><td>6</td><th class="roster-role" scope="row">Master of Ceremonies</th><td class="roster-name">Simon Polkinghorne</td></tr>
-                <tr class="roster-item" data-role="deacon"><td>7</td><th class="roster-role" scope="row">Deacon</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
-                <tr class="roster-item" data-role="sentinel"><td>8</td><th class="roster-role" scope="row">Sentinel</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
-              </tbody>
-            </table>
-
-            <div class="equipment-note">
-              <strong>Chamber Equipment:</strong> Altar covered with an Altar Cloth bearing the Cross with five bars and the appropriate Volume of the Sacred Law. Candle and salt at the Knight Commander's station; Lodge Warrant at the Registrar's station; gavels for officers requiring them.
-            </div>
-          </div>
+        <div class="equipment-note">
+          <strong>Chamber Equipment:</strong> Altar covered with an Altar Cloth bearing the Cross with five bars and the appropriate Volume of the Sacred Law. Candle and salt at the Knight Commander's station; Lodge Warrant at the Registrar's station; gavels for officers requiring them.
         </div>
       </section>
 
@@ -1749,6 +1606,7 @@ Sir Knights, vous êtes renvoyé.</div>
           priest: { title: "Sir Knight Priest", person: "Paul Hollebone" },
           sw: { title: "Sir Knight Senior Warden", person: "Ioannis Benetatos" },
           jw: { title: "Sir Knight Junior Warden", person: "Tony Lewis" },
+          registrar: { title: "Registrar", person: "Lodge Warrant Station" },
           mc: { title: "Sir Knight Master of Ceremonies", person: "Simon Polkinghorne" },
           deacon: { title: "Sir Knight Deacon", person: "Dimitrios Skiadopoulos" },
           sentinel: { title: "Sir Knight Sentinel", person: "Dimitrios Skiadopoulos" }
@@ -1775,6 +1633,7 @@ Sir Knights, vous êtes renvoyé.</div>
           });
           document.querySelectorAll(".seat-badge").forEach((seat) => {
             seat.classList.remove("active-seat");
+            seat.setAttribute("aria-pressed", "false");
           });
           document.querySelectorAll(".roster-item").forEach((item) => {
             item.classList.remove("highlighted");
@@ -1788,11 +1647,6 @@ Sir Knights, vous êtes renvoyé.</div>
           }
 
           const info = roleNames[role];
-          welcomeHeadline.textContent = "Welcome, " + info.person;
-          welcomeSub.textContent =
-            "Office: " + info.title + " — Your lines are bolded and enlarged.";
-          welcomeBox.classList.add("visible");
-
           // Highlight matching speech cards, chamber seat, and roster entry
           roleMatches = Array.from(
             document.querySelectorAll('.speech-card[data-role="' + role + '"]')
@@ -1801,13 +1655,20 @@ Sir Knights, vous êtes renvoyé.</div>
 
           document
             .querySelectorAll('.seat-badge[data-role="' + role + '"]')
-            .forEach((seat) => seat.classList.add("active-seat"));
+            .forEach((seat) => {
+              seat.classList.add("active-seat");
+              seat.setAttribute("aria-pressed", "true");
+            });
 
           document
             .querySelectorAll('.roster-item[data-role="' + role + '"]')
             .forEach((item) => item.classList.add("highlighted"));
 
-          jumpNextBtn.hidden = roleMatches.length === 0;
+          const hasLines = roleMatches.length > 0;
+          welcomeHeadline.textContent = hasLines ? "Welcome, " + info.person : info.title;
+          welcomeSub.textContent = hasLines ? "Office: " + info.title + " — Your lines are bolded and enlarged." : info.person;
+          welcomeBox.classList.add("visible");
+          jumpFirstBtn.hidden = jumpNextBtn.hidden = !hasLines;
         }
 
         function scrollToMatch(index) {
