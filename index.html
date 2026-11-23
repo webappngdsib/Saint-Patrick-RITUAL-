@@ -300,14 +300,16 @@
       .chamber-meetings {
         position: absolute;
         z-index: 3;
-        inset: 8% 30% auto;
+        inset: auto 12% 3.3%;
+        transform: perspective(36rem) rotateX(36deg);
+        transform-origin: center bottom;
         margin: 0;
         padding: 0;
         list-style: none;
         text-align: center;
         overflow-wrap: anywhere;
         color: #f4d894;
-        font: 700 clamp(.72rem, 1.35cqw, 1.25rem)/1.25 Georgia, serif;
+        font: 700 clamp(.72rem, 1.35cqw, 1.25rem)/1.1 Georgia, serif;
         text-shadow: 0 1px 3px #000, 0 0 7px #000;
         pointer-events: none;
       }
@@ -318,7 +320,7 @@
 
       @container (max-width: 600px) {
         .chamber-meetings {
-          inset: 4% 5% auto;
+          inset-inline: 5%;
         }
       }
 

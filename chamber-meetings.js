@@ -1,6 +1,6 @@
 import { calendarDate, dateFormat, readDiary } from './diary-data.js';
 
-const wall = document.getElementById('chamber-meetings');
+const inscription = document.getElementById('chamber-meetings');
 let entries = [];
 let displayedDate;
 
@@ -18,8 +18,8 @@ function renderMeetings() {
     row.append(entry.chamber + ' · ', date, ' · ' + entry.location);
     return row;
   });
-  wall.replaceChildren(...rows);
-  wall.hidden = rows.length === 0;
+  inscription.replaceChildren(...rows);
+  inscription.hidden = rows.length === 0;
 }
 
 async function refreshMeetings() {
