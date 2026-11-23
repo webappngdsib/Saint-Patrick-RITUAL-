@@ -297,6 +297,13 @@
         border-radius: var(--radius);
       }
 
+      .chamber-photo .altar-salt {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        mask-image: radial-gradient(ellipse 3.8% 5.8% at 45.5% 51.2%, #000 70%, transparent 100%);
+      }
+
       .chamber-instruction {
         margin: 0 0 .85rem;
         color: var(--emerald-deep);
@@ -832,6 +839,7 @@
         <p id="chamber-instruction" class="chamber-instruction">Select your chair to highlight your lines in the ritual.</p>
         <div class="chamber-photo" role="group" aria-label="Lodge chamber officer stations" aria-describedby="chamber-instruction">
           <img src="./lodge-chamber.png" width="1536" height="1024" alt="Eight numbered officer chairs around the altar in the Lodge chamber.">
+          <img class="altar-salt" src="./lodge-chamber-salt.png" width="1536" height="1024" alt="A bowl of salt on the altar, with grains spilled onto the cloth.">
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
           <button type="button" class="seat-badge" data-role="priest" aria-label="2. Priest" aria-pressed="false" style="--x:64.4%;--y:34.9%;--hit-width:7.7%;--hit-height:16%"><span class="num" aria-hidden="true">2</span></button>
           <button type="button" class="seat-badge" data-role="sw" aria-label="3. Senior Warden" aria-pressed="false" style="--x:34.8%;--y:36.7%;--hit-width:7.7%;--hit-height:14%"><span class="num" aria-hidden="true">3</span></button>
