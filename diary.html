@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saint Patrick Diary</title>
+  <link rel="stylesheet" href="./diary.css">
+  <script src="./diary.js" defer></script>
+</head>
+<body>
+  <header class="castle">
+    <div class="wrap">
+      <a href="./">← Back to the ritual</a>
+      <div class="hero">
+        <h1>Saint Patrick Diary</h1>
+        <button class="gold" id="new-entry" disabled>+ New entry</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="storage-note">Entries and photographs are saved in this browser.</p>
+    <p id="diary-status" role="status"></p>
+    <section aria-labelledby="upcoming-title">
+      <h2 id="upcoming-title">Upcoming events</h2>
+      <ol class="entries" id="upcoming"></ol>
+      <p class="empty" id="upcoming-empty" hidden>No upcoming events.</p>
+    </section>
+    <section aria-labelledby="past-title">
+      <h2 id="past-title">Past events</h2>
+      <ol class="entries" id="past"></ol>
+      <p class="empty" id="past-empty" hidden>No past events.</p>
+    </section>
+  </main>
+  <dialog id="entry-dialog" aria-labelledby="entry-title">
+    <form id="entry-form">
+      <h2 id="entry-title">New diary entry</h2>
+      <label>Date <input name="date" type="date" required></label>
+      <label>Location <input name="location" type="text" maxlength="160" required></label>
+      <label>Lodge chamber <input name="chamber" type="text" maxlength="160" required></label>
+      <label>Photographs <small>Optional · up to 3 · 10 MB each</small>
+        <input name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" multiple>
+      </label>
+      <p id="form-error" role="alert"></p>
+      <div class="form-actions">
+        <button type="button" id="cancel">Cancel</button>
+        <button class="gold" type="submit" id="save">Save entry</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
