@@ -417,24 +417,24 @@
         color: #101713;
       }
 
-      .roster-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        gap: 0.55rem;
+      .roster-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--paper);
       }
 
-      .roster-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
-        padding: 0.65rem 0.85rem;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.78);
-        border: 1px solid var(--line);
-        transition: all 0.2s ease;
+      .roster-table caption {
+        text-align: left;
+        padding-bottom: 0.5rem;
+        font-weight: 800;
+        color: var(--emerald-deep);
+      }
+
+      .roster-table :is(th, td) {
+        padding: 0.55rem clamp(0.25rem, 1vw, 0.75rem);
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        overflow-wrap: anywhere;
       }
 
       .roster-item.highlighted {
@@ -884,40 +884,22 @@
           </div>
 
           <div>
-            <ul class="roster-list">
-              <li class="roster-item" data-role="kc">
-                <span class="roster-role">1. Knight Commander</span>
-                <span class="roster-name">Paul Johnston</span>
-              </li>
-              <li class="roster-item" data-role="priest">
-                <span class="roster-role">2. Priest</span>
-                <span class="roster-name">Paul Hollebone</span>
-              </li>
-              <li class="roster-item" data-role="sw">
-                <span class="roster-role">3. Senior Warden</span>
-                <span class="roster-name">Ioannis Benetatos</span>
-              </li>
-              <li class="roster-item" data-role="jw">
-                <span class="roster-role">4. Junior Warden</span>
-                <span class="roster-name">Tony Lewis</span>
-              </li>
-              <li class="roster-item" data-role="registrar">
-                <span class="roster-role">5. Registrar</span>
-                <span class="roster-name">Lodge Warrant Station</span>
-              </li>
-              <li class="roster-item" data-role="mc">
-                <span class="roster-role">6. Master of Ceremonies</span>
-                <span class="roster-name">Simon Polkinghorne</span>
-              </li>
-              <li class="roster-item" data-role="deacon">
-                <span class="roster-role">7. Deacon</span>
-                <span class="roster-name">Dimitrios Skiadopoulos</span>
-              </li>
-              <li class="roster-item" data-role="sentinel">
-                <span class="roster-role">8. Sentinel</span>
-                <span class="roster-name">Dimitrios Skiadopoulos</span>
-              </li>
-            </ul>
+            <table class="roster-table">
+              <caption>Lodge officers</caption>
+              <thead>
+                <tr><th scope="col">Station</th><th scope="col">Office</th><th scope="col">Name / assignment</th></tr>
+              </thead>
+              <tbody>
+                <tr class="roster-item" data-role="kc"><td>1</td><th class="roster-role" scope="row">Knight Commander</th><td class="roster-name">Paul Johnston</td></tr>
+                <tr class="roster-item" data-role="priest"><td>2</td><th class="roster-role" scope="row">Priest</th><td class="roster-name">Paul Hollebone</td></tr>
+                <tr class="roster-item" data-role="sw"><td>3</td><th class="roster-role" scope="row">Senior Warden</th><td class="roster-name">Ioannis Benetatos</td></tr>
+                <tr class="roster-item" data-role="jw"><td>4</td><th class="roster-role" scope="row">Junior Warden</th><td class="roster-name">Tony Lewis</td></tr>
+                <tr class="roster-item" data-role="registrar"><td>5</td><th class="roster-role" scope="row">Registrar</th><td class="roster-name">Lodge Warrant Station</td></tr>
+                <tr class="roster-item" data-role="mc"><td>6</td><th class="roster-role" scope="row">Master of Ceremonies</th><td class="roster-name">Simon Polkinghorne</td></tr>
+                <tr class="roster-item" data-role="deacon"><td>7</td><th class="roster-role" scope="row">Deacon</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
+                <tr class="roster-item" data-role="sentinel"><td>8</td><th class="roster-role" scope="row">Sentinel</th><td class="roster-name">Dimitrios Skiadopoulos</td></tr>
+              </tbody>
+            </table>
 
             <div class="equipment-note">
               <strong>Chamber Equipment:</strong> Altar covered with an Altar Cloth bearing the Cross with five bars and the appropriate Volume of the Sacred Law. Candle and salt at the Knight Commander's station; Lodge Warrant at the Registrar's station; gavels for officers requiring them.
