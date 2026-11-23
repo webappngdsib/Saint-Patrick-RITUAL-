@@ -3,9 +3,9 @@ const dialog = get('entry-dialog');
 const form = get('entry-form');
 const save = get('save');
 const status = get('diary-status');
-const photoUrls = [];
 const dateFormat = new Intl.DateTimeFormat('en-GB', { dateStyle: 'long' });
-let database;
+let downloadUrl;
+const allowedPhoto = /^data:image\/(jpeg|png|webp|avif|gif);base64,[a-z\d+/]+=*$/i;
 
 function calendarDate() {
   const now = new Date();
@@ -13,32 +13,78 @@ function calendarDate() {
     String(now.getDate()).padStart(2, '0')].join('-');
 }
 
-function openDiary() {
+function readBrowserEntries() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('saint-patrick-diary', 1);
-    request.onupgradeneeded = () => request.result.createObjectStore('events', {
-      keyPath: 'id', autoIncrement: true
-    });
-    request.onsuccess = () => resolve(request.result);
+    request.onupgradeneeded = () => {
+      request.transaction.abort();
+      resolve([]);
+    };
     request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const database = request.result;
+      const transaction = database.transaction('events');
+      const entries = transaction.objectStore('events').getAll();
+      entries.onsuccess = () => resolve(entries.result);
+      entries.onerror = () => reject(entries.error);
+      transaction.oncomplete = transaction.onabort = () => database.close();
+    };
   });
 }
 
-function readEntries() {
+function encodePhoto(file) {
   return new Promise((resolve, reject) => {
-    const request = database.transaction('events').objectStore('events').getAll();
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
+    const url = URL.createObjectURL(file);
+    const image = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      try {
+        const ratio = Math.min(1, 1280 / Math.max(image.naturalWidth, image.naturalHeight));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.max(1, Math.round(image.naturalWidth * ratio));
+        canvas.height = Math.max(1, Math.round(image.naturalHeight * ratio));
+        canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/webp', .82));
+      } catch (error) {
+        reject(error);
+      }
+    };
+    image.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('A photograph could not be opened.'));
+    };
+    image.src = url;
   });
 }
 
-function storeEntry(entry) {
-  return new Promise((resolve, reject) => {
-    const transaction = database.transaction('events', 'readwrite');
-    transaction.oncomplete = resolve;
-    transaction.onabort = () => reject(transaction.error);
-    transaction.objectStore('events').add(entry);
-  });
+async function prepareEntry({ date, location, chamber, photos }) {
+  return { date, location, chamber, photos: await Promise.all(photos.map(encodePhoto)) };
+}
+
+function offerDownload(entries, title) {
+  const blob = new Blob([JSON.stringify(entries, null, 2) + '\n'], { type: 'application/json' });
+  if (blob.size > 24 * 1024 * 1024) throw new Error('This export exceeds the GitHub web upload limit.');
+  if (downloadUrl) URL.revokeObjectURL(downloadUrl);
+  downloadUrl = URL.createObjectURL(blob);
+  const link = get('download-entry');
+  link.href = downloadUrl;
+  link.download = title + '-' + crypto.randomUUID().slice(0, 8) + '.json';
+  get('publish-entry').hidden = false;
+}
+
+async function readJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error('Could not read diary data.');
+  return response.json();
+}
+
+function validEntry(entry) {
+  if (!entry || typeof entry.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(entry.date)) return false;
+  const date = new Date(entry.date + 'T12:00:00');
+  return Number.isFinite(date.getTime()) && date.getDate() === Number(entry.date.slice(-2)) &&
+    typeof entry.location === 'string' && typeof entry.chamber === 'string' &&
+    Array.isArray(entry.photos) && entry.photos.length <= 3 &&
+    entry.photos.every((photo) => typeof photo === 'string' && allowedPhoto.test(photo));
 }
 
 function makeEntry(entry) {
@@ -58,16 +104,13 @@ function makeEntry(entry) {
     const gallery = document.createElement('div');
     gallery.className = 'photos';
     entry.photos.forEach((photo, i) => {
-      const url = URL.createObjectURL(photo);
-      photoUrls.push(url);
       const link = document.createElement('a');
-      link.href = url;
-      link.target = '_blank';
-      link.rel = 'noopener';
+      link.href = photo;
+      link.download = 'lodge-photograph-' + (i + 1) + '.' + photo.match(allowedPhoto)[1].replace('jpeg', 'jpg');
       const image = document.createElement('img');
-      image.src = url;
+      image.src = photo;
       image.loading = 'lazy';
-      image.alt = 'Open photograph ' + (i + 1) + ' of ' + entry.chamber;
+      image.alt = 'Download photograph ' + (i + 1) + ' of ' + entry.chamber;
       link.append(image);
       gallery.append(link);
     });
@@ -78,10 +121,15 @@ function makeEntry(entry) {
 }
 
 async function refresh() {
-  const entries = await readEntries();
+  const manifest = await readJson('./diary-feed.json');
+  const results = await Promise.allSettled(manifest.map(readJson));
+  const entries = results.flatMap((result) =>
+    result.status === 'fulfilled' && Array.isArray(result.value) ? result.value.filter(validEntry) : []);
+  if (results.some((result) => result.status === 'rejected')) {
+    status.textContent = 'Some diary entries could not be loaded.';
+  }
   const today = calendarDate();
-  const byDate = (a, b) => a.date.localeCompare(b.date) || a.id - b.id;
-  photoUrls.splice(0).forEach((url) => URL.revokeObjectURL(url));
+  const byDate = (a, b) => a.date.localeCompare(b.date);
   const upcoming = entries.filter((entry) => entry.date >= today).sort(byDate);
   const past = entries.filter((entry) => entry.date < today).sort((a, b) => byDate(b, a));
   for (const [id, records] of [['upcoming', upcoming], ['past', past]]) {
@@ -116,26 +164,42 @@ form.addEventListener('submit', async (event) => {
   }
   save.disabled = get('cancel').disabled = true;
   try {
-    await storeEntry({ date, location: location.trim(), chamber: chamber.trim(), photos });
+    const entry = await prepareEntry({ date, location: location.trim(), chamber: chamber.trim(), photos });
+    offerDownload([entry], 'event-' + date);
+    dialog.close();
+    get('download-entry').focus();
+    status.textContent = 'Entry ready for GitHub.';
   } catch {
-    error.textContent = 'The entry could not be saved. Check your browser storage and try again.';
+    error.textContent = 'The entry could not be prepared. Check that the photographs open and try again.';
     return;
   } finally {
     save.disabled = get('cancel').disabled = false;
   }
-  dialog.close();
-  status.textContent = 'Diary entry saved.';
-  try {
-    await refresh();
-  } catch {
-    status.textContent = 'Diary entry saved. Reload the diary to refresh the list.';
-  }
 });
 
-openDiary().then(async (opened) => {
-  database = opened;
-  await refresh();
-  get('new-entry').disabled = false;
-}).catch(() => {
-  status.textContent = 'The diary could not open. Check that this browser allows local storage.';
+get('new-entry').disabled = false;
+refresh().catch(() => {
+  status.textContent = 'The public diary could not be loaded. Reload to try again.';
 });
+
+if (window.indexedDB) {
+  readBrowserEntries().then((entries) => {
+    if (!entries.length) return;
+    get('legacy-tools').hidden = false;
+    get('export-legacy').addEventListener('click', async (event) => {
+      event.currentTarget.disabled = true;
+      const button = event.currentTarget;
+      try {
+        const exported = [];
+        for (const entry of entries) exported.push(await prepareEntry(entry));
+        offerDownload(exported, 'browser-diary-export');
+        get('download-entry').focus();
+        status.textContent = 'Browser entries ready for GitHub.';
+      } catch (error) {
+        status.textContent = 'Could not prepare the browser export. ' + error.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }).catch(() => {});
+}

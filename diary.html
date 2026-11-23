@@ -18,7 +18,12 @@
     </div>
   </header>
   <main class="wrap">
-    <p class="storage-note">Entries and photographs are saved in this browser.</p>
+    <p class="storage-note">Published events and photographs are stored in the public GitHub repository.</p>
+    <p id="legacy-tools" hidden><button type="button" id="export-legacy">Download previous browser entries</button></p>
+    <div id="publish-entry" class="publish-entry" hidden>
+      <p><a id="download-entry" download>Download the entry file</a>, then upload it to GitHub and commit it to <code>main</code>. Use an account with write access. The entry and photographs will be public.</p>
+      <a id="github-upload" href="https://github.com/webappngdsib/Saint-Patrick-RITUAL-/upload/main/diary-entries" target="_blank" rel="noopener">Open GitHub upload</a>
+    </div>
     <p id="diary-status" role="status"></p>
     <section aria-labelledby="upcoming-title">
       <h2 id="upcoming-title">Upcoming events</h2>
@@ -43,7 +48,7 @@
       <p id="form-error" role="alert"></p>
       <div class="form-actions">
         <button type="button" id="cancel">Cancel</button>
-        <button class="gold" type="submit" id="save">Save entry</button>
+        <button class="gold" type="submit" id="save">Prepare for GitHub</button>
       </div>
     </form>
   </dialog>

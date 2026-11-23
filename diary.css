@@ -19,7 +19,7 @@ body { margin: 0; }
   display: grid;
   align-items: stretch;
   border-bottom: 3px double var(--gold);
-  background: linear-gradient(90deg, #101917e8, #161b1c40), url("./diary-castle.webp") center / cover, #303936;
+  background: linear-gradient(90deg, #101917e8, #161b1c40), url("./diary-saint-patrick.webp") 67% center / cover, #303936;
 }
 .castle .wrap { display: grid; align-content: space-between; gap: 5rem; }
 .castle a { color: var(--light); width: fit-content; text-underline-offset: .23em; }
@@ -69,3 +69,12 @@ form input { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; bo
   .castle { min-height: 19rem; }
   .entry { grid-template-columns: 1fr; gap: .2rem; }
 }
+
+.publish-entry {
+  margin-block: 1rem;
+  padding: 1rem;
+  border-inline-start: 3px solid var(--gold);
+  background: #282c28;
+}
+.publish-entry a { color: var(--gold); text-underline-offset: .2em; }
+#legacy-tools { margin-block: .75rem; }
