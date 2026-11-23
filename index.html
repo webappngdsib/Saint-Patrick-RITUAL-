@@ -286,6 +286,7 @@
 
       .chamber-photo {
         position: relative;
+        container-type: inline-size;
         margin: 0 0 1rem;
       }
 
@@ -365,7 +366,7 @@
       }
 
       .seat-badge .num {
-        transform: translateY(45%);
+        transform: translateY(calc(45% + 3cqw));
         display: grid;
         place-items: center;
         min-width: 1.5em;
