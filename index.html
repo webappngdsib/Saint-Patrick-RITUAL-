@@ -893,7 +893,7 @@
           <img src="./lodge-chamber.png" width="1536" height="1024" alt="Eight numbered officer chairs around the altar in the Lodge chamber.">
           <img class="altar-salt" src="./lodge-chamber-salt.png" width="1536" height="1024" alt="A bowl of salt on the altar, with grains spilled onto the cloth.">
           <img id="open-cigar" class="station-cigar station-cigar--open" src="./lodge-cigar-open.webp" width="1536" height="1024" alt="An unlit cigar lies across the direction of the gavel on the Knight Commander’s desk.">
-          <img id="closed-chamber" class="closed-chamber" src="./lodge-closed.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed beside the bowl of salt." hidden>
+          <img id="closed-chamber" class="closed-chamber" src="./lodge-closed.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed." hidden>
           <img id="closed-cigar" class="station-cigar station-cigar--closed" src="./lodge-cigar-closed.webp" width="1536" height="1024" alt="A lit cigar on the Knight Commander’s desk sends a thin wisp of smoke upwards." hidden>
           <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false"></button>
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
@@ -1762,6 +1762,7 @@ Sir Knights, vous êtes renvoyé.</div>
 
         const altarSwitch = document.getElementById("altar-switch");
         const closedChamber = document.getElementById("closed-chamber");
+        const altarSalt = document.querySelector(".altar-salt");
         const openCigar = document.getElementById("open-cigar");
         const closedCigar = document.getElementById("closed-cigar");
         const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber):not(.station-cigar)");
@@ -1786,6 +1787,7 @@ Sir Knights, vous êtes renvoyé.</div>
           closedChamber.hidden = !closing;
           closedCigar.hidden = !closing;
           openCigar.hidden = closing;
+          altarSalt.hidden = closing;
           altarSwitch.setAttribute("aria-pressed", String(closing));
           lodgeLightsButton.textContent = closing ? "Switch on the Lodge lights" : "Switch off the Lodge lights";
           lodgeLightStatus.textContent = closing ? "The Lodge is closed." : "The Lodge is open.";
