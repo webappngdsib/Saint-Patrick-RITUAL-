@@ -310,6 +310,20 @@
         pointer-events: none;
       }
 
+      .chamber-photo .station-cigar {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .station-cigar--open {
+        mask-image: radial-gradient(ellipse 2% 2.5% at 48.8% 39.3%, #000 63%, transparent 100%);
+      }
+
+      .station-cigar--closed {
+        mask-image: radial-gradient(ellipse 2.6% 7.4% at 49.1% 35.8%, #000 74%, transparent 100%);
+      }
+
       .chamber-photo img[hidden] {
         display: none;
       }
@@ -322,8 +336,7 @@
         width: max(4.8%, 44px);
         height: max(11%, 44px);
         transform: translate(-50%, -50%);
-        border: 2px solid #ffda82;
-        box-shadow: 0 0 0 1px #352810;
+        border: 0;
         border-radius: 999px;
         background: transparent;
         cursor: pointer;
@@ -338,7 +351,7 @@
         margin: 0 0 1rem;
       }
 
-      .altar-switch:is(:hover, :focus-visible) {
+      .altar-switch:focus-visible {
         outline: 2px solid var(--gold-soft);
         outline-offset: 2px;
       }
@@ -879,8 +892,10 @@
         <div class="chamber-photo" role="group" aria-label="Lodge chamber officer stations" aria-describedby="chamber-instruction">
           <img src="./lodge-chamber.png" width="1536" height="1024" alt="Eight numbered officer chairs around the altar in the Lodge chamber.">
           <img class="altar-salt" src="./lodge-chamber-salt.png" width="1536" height="1024" alt="A bowl of salt on the altar, with grains spilled onto the cloth.">
+          <img id="open-cigar" class="station-cigar station-cigar--open" src="./lodge-cigar-open.webp" width="1536" height="1024" alt="An unlit cigar lies across the direction of the gavel on the Knight Commander’s desk.">
           <img id="closed-chamber" class="closed-chamber" src="./lodge-closed.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed beside the bowl of salt." hidden>
-          <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false" title="Extinguish the altar candle"></button>
+          <img id="closed-cigar" class="station-cigar station-cigar--closed" src="./lodge-cigar-closed.webp" width="1536" height="1024" alt="A lit cigar on the Knight Commander’s desk sends a thin wisp of smoke upwards." hidden>
+          <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false"></button>
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
           <button type="button" class="seat-badge" data-role="priest" aria-label="2. Priest" aria-pressed="false" style="--x:64.4%;--y:34.9%;--hit-width:7.7%;--hit-height:16%"><span class="num" aria-hidden="true">2</span></button>
           <button type="button" class="seat-badge" data-role="sw" aria-label="3. Senior Warden" aria-pressed="false" style="--x:34.8%;--y:36.7%;--hit-width:7.7%;--hit-height:14%"><span class="num" aria-hidden="true">3</span></button>
@@ -1747,7 +1762,9 @@ Sir Knights, vous êtes renvoyé.</div>
 
         const altarSwitch = document.getElementById("altar-switch");
         const closedChamber = document.getElementById("closed-chamber");
-        const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber)");
+        const openCigar = document.getElementById("open-cigar");
+        const closedCigar = document.getElementById("closed-cigar");
+        const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber):not(.station-cigar)");
         const lodgeLightsButton = document.getElementById("lodge-lights-button");
         const lodgeLightStatus = document.getElementById("lodge-light-status");
         let changingLights = false;
@@ -1767,8 +1784,9 @@ Sir Knights, vous êtes renvoyé.</div>
             }
           }
           closedChamber.hidden = !closing;
+          closedCigar.hidden = !closing;
+          openCigar.hidden = closing;
           altarSwitch.setAttribute("aria-pressed", String(closing));
-          altarSwitch.title = closing ? "Relight the altar candle" : "Extinguish the altar candle";
           lodgeLightsButton.textContent = closing ? "Switch on the Lodge lights" : "Switch off the Lodge lights";
           lodgeLightStatus.textContent = closing ? "The Lodge is closed." : "The Lodge is open.";
           openChamberLayers.forEach((layer) => layer.setAttribute("aria-hidden", String(closing)));
