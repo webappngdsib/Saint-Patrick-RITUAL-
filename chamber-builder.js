@@ -22,7 +22,7 @@ async function buildChamber() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = T.PCFSoftShadowMap;
   renderer.toneMapping = T.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
+  renderer.toneMappingExposure = 1.12;
   stage.prepend(renderer.domElement);
   renderer.domElement.setAttribute('aria-label', 'Lodge chamber with eight draggable officer chairs');
   const camera = new T.PerspectiveCamera(43, 1, .1, 100);
@@ -31,9 +31,9 @@ async function buildChamber() {
   plan.up.set(0, 0, -1);
   plan.lookAt(0, 0, 0);
   let activeCamera = camera;
-  const ambient = new T.HemisphereLight(0xffedd3, 0x503521, 1.9);
+  const ambient = new T.HemisphereLight(0xffe8cb, 0x534332, 1.45);
   scene.add(ambient);
-  const light = new T.DirectionalLight(0xffdfaa, 3.1);
+  const light = new T.DirectionalLight(0xffe0b4, 2.2);
   light.position.set(-3, 13, 4);
   light.castShadow = true;
   light.shadow.mapSize.set(1024, 1024);
@@ -43,11 +43,42 @@ async function buildChamber() {
 
   const material = (color, roughness = .72, metalness = 0) =>
     new T.MeshStandardMaterial({ color, roughness, metalness });
-  const wood = material('#512c18');
-  const trim = material('#986039');
-  const panel = material('#71472b');
+  function texture(width, height, paint) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    paint(canvas.getContext('2d'));
+    const map = new T.CanvasTexture(canvas);
+    map.colorSpace = T.SRGBColorSpace;
+    map.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    return map;
+  }
+
+  const walnut = texture(256, 512, (ctx) => {
+    ctx.fillStyle = '#aa7751';
+    ctx.fillRect(0, 0, 256, 512);
+    for (let line = 0; line < 430; line++) {
+      const x = (line * 73.21) % 256;
+      ctx.strokeStyle = line % 3 ? 'rgba(67,34,18,.12)' : 'rgba(251,202,144,.18)';
+      ctx.lineWidth = .25 + (line % 6) / 7;
+      ctx.beginPath();
+      for (let y = 0; y <= 512; y += 8) {
+        const drift = Math.sin(y / 89 + x / 24) * 3.7 + Math.sin(y / 31 + x / 12) * .8;
+        if (y === 0) ctx.moveTo(x + drift, y);
+        else ctx.lineTo(x + drift, y);
+      }
+      ctx.stroke();
+    }
+  });
+  function walnutFinish(color, roughness) {
+    return new T.MeshStandardMaterial({ color, map: walnut, bumpMap: walnut, bumpScale: .027, roughness });
+  }
+  const wood = walnutFinish('#856042', .47);
+  const trim = walnutFinish('#bf9674', .37);
+  const panel = walnutFinish('#b78a66', .62);
+  const leather = material('#37251d', .42);
+  const leatherEdge = material('#513629', .43);
   const green = material('#145339');
-  const velvet = material('#143e2e');
   const gold = material('#cba055', .36, .5);
   const ivory = material('#eee7d5');
   const dark = material('#28251f');
@@ -60,6 +91,25 @@ async function buildChamber() {
     mesh.receiveShadow = true;
     parent.add(mesh);
     return mesh;
+  }
+
+  function spindle(parent, mat, x, y, z, height, radius) {
+    const profile = [
+      [0, 0], [.55, 0], [.65, .08], [.43, .18], [.49, .35],
+      [.78, .65], [1, .78], [.64, .89], [.72, 1], [0, 1],
+    ].map(([r, h]) => new T.Vector2(r * radius, h * height));
+    const mesh = new T.Mesh(new T.LatheGeometry(profile, 12), mat);
+    mesh.position.set(x, y, z);
+    mesh.castShadow = true;
+    parent.add(mesh);
+    return mesh;
+  }
+
+  function curvedTrim(parent, mat, points, radius = .026) {
+    const curve = new T.CatmullRomCurve3(points.map((point) => new T.Vector3(...point)));
+    const mesh = new T.Mesh(new T.TubeGeometry(curve, 14, radius, 6, false), mat);
+    mesh.castShadow = true;
+    parent.add(mesh);
   }
 
   function label(text, background = '#142a21', foreground = '#f5db9c', height = .36) {
@@ -84,6 +134,41 @@ async function buildChamber() {
   }
 
   box(scene, wood, [14, .16, 18], [0, -.12, 0]);
+  for (let i = 0; i < 31; i++) {
+    const x = (i - 15) * .45;
+    for (const z of [-8.26, 8.26]) {
+      box(scene, i % 3 ? panel : trim, [.442, .025, 1.62], [x, -.03, z]);
+    }
+  }
+  for (let i = 0; i < 31; i++) {
+    for (const x of [-6.14, 6.14]) {
+      box(scene, i % 3 ? panel : wood, [1.71, .025, .572], [x, -.03, (i - 15) * .57]);
+    }
+  }
+  const woven = texture(1024, 64, (ctx) => {
+    ctx.fillStyle = '#143b2a';
+    ctx.fillRect(0, 0, 1024, 64);
+    ctx.strokeStyle = '#9c9a56';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(0, 4, 1024, 56);
+    for (const phase of [0, Math.PI]) {
+      ctx.beginPath();
+      for (let x = 0; x <= 1024; x += 2) {
+        const y = 32 + 14 * Math.sin(x * Math.PI / 32 + phase);
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+  });
+  const carpet = new T.MeshStandardMaterial({ map: woven, roughness: .95 });
+  function carpetEdge(length, x, z, angle) {
+    const edge = new T.Mesh(new T.PlaneGeometry(length, .43), carpet);
+    edge.rotation.set(-Math.PI / 2, 0, angle);
+    edge.position.set(x, .031, z);
+    edge.receiveShadow = true;
+    scene.add(edge);
+  }
   for (let row = 0; row < 20; row++) {
     for (let column = 0; column < 14; column++) {
       box(scene, (row + column) % 2 ? ivory : dark,
@@ -92,11 +177,11 @@ async function buildChamber() {
   }
   for (const x of [-4.85, 4.85]) {
     box(scene, green, [.45, .035, 14.85], [x, 0, 0]);
-    box(scene, gold, [.035, .042, 14.85], [x, .01, 0]);
+    carpetEdge(14.85, x, 0, Math.PI / 2);
   }
   for (const z of [-7.4, 7.4]) {
     box(scene, green, [10.15, .036, .45], [0, 0, z]);
-    box(scene, gold, [10.15, .042, .035], [0, .01, z]);
+    carpetEdge(10.15, 0, z, 0);
     const direction = label(z < 0 ? 'EAST' : 'WEST', '#192f24', '#f5db9c', .28);
     direction.position.set(0, .08, z < 0 ? -8.15 : 8.15);
     scene.add(direction);
@@ -105,15 +190,27 @@ async function buildChamber() {
   const walls = new T.Group();
   scene.add(walls);
   box(walls, wood, [14, 4.7, .18], [0, 2.35, -8.95]);
+  function wallPanel(x, z, angle) {
+    const frame = new T.Group();
+    frame.position.set(x, 0, z);
+    frame.rotation.y = angle;
+    walls.add(frame);
+    for (const [y, height] of [[2.89, 2.17], [.85, 1.11]]) {
+      box(frame, panel, [1.62, height, .09], [0, y, 0]);
+      for (const edge of [-1, 1]) {
+        box(frame, trim, [.064, height, .095], [edge * .84, y, .045]);
+        box(frame, trim, [1.75, .075, .095], [0, y + edge * height / 2, .045]);
+      }
+    }
+    box(frame, wood, [2, .24, .16], [0, .16, .05]);
+    box(frame, trim, [2, .12, .14], [0, 1.53, .05]);
+    box(frame, trim, [2, .15, .14], [0, 4.15, .05]);
+  }
   for (const x of [-6.95, 6.95]) {
     box(walls, wood, [.16, 4.7, 18], [x, 2.35, 0]);
-    for (let z = -8; z <= 8; z += 2) {
-      box(walls, panel, [.20, 3.9, 1.76], [x, 2.3, z]);
-    }
+    for (let z = -8; z <= 8; z += 2) wallPanel(x - Math.sign(x) * .105, z, -Math.sign(x) * Math.PI / 2);
   }
-  for (let x = -6; x <= 6; x += 2) {
-    box(walls, panel, [1.76, 3.9, .20], [x, 2.3, -8.85]);
-  }
+  for (let x = -6; x <= 6; x += 2) wallPanel(x, -8.83, 0);
   const tapestry = document.createElement('canvas');
   tapestry.width = 384;
   tapestry.height = 528;
@@ -142,23 +239,54 @@ async function buildChamber() {
   const secondBanner = banner.clone();
   secondBanner.position.x = 4.2;
   walls.add(secondBanner);
-  for (const z of [-6, -1, 4]) {
-    const ring = new T.Mesh(new T.TorusGeometry(.62, .035, 8, 28), gold);
-    ring.rotation.x = Math.PI / 2;
-    ring.position.set(0, 4.1, z);
-    walls.add(ring);
+  for (const [center, z] of [[-2.5, -5.6], [2.5, -5.6], [-2.7, 2.4], [2.7, 2.4]]) {
+    spindle(walls, gold, center, 3.81, z, .9, .12);
     for (let arm = 0; arm < 6; arm++) {
       const theta = arm * Math.PI / 3;
-      box(walls, ivory, [.08, .22, .08], [.62 * Math.cos(theta), 4.22, z + .62 * Math.sin(theta)]);
+      const offsetX = .62 * Math.cos(theta);
+      const offsetZ = .62 * Math.sin(theta);
+      const x = center + offsetX;
+      curvedTrim(walls, gold, [
+        [center, 3.95, z], [center + offsetX * .62, 3.69, z + offsetZ * .62],
+        [x, 4.05, z + offsetZ]
+      ], .029);
+      spindle(walls, gold, x, 4.02, z + offsetZ, .1, .095);
+      candle(x, 4.1, z + offsetZ, walls, false);
     }
+    const glow = new T.PointLight(0xffba7d, 11, 7);
+    glow.position.set(center, 4.15, z);
+    walls.add(glow);
+  }
+  for (const x of [-6, -2, 2, 6]) {
+    box(walls, gold, [.16, .36, .08], [x, 2.71, -8.66]);
+    curvedTrim(walls, gold, [[x, 2.62, -8.64], [x, 2.55, -8.45], [x, 2.79, -8.37]]);
+    candle(x, 2.78, -8.37, walls);
   }
 
+  const drape = new T.PlaneGeometry(2.08, 1.09, 48, 12);
+  const folds = drape.attributes.position;
+  for (let i = 0; i < folds.count; i++) {
+    const x = folds.getX(i);
+    const y = folds.getY(i);
+    const weight = (.545 - y) / 1.09;
+    folds.setZ(i, Math.sin(x * 34 + weight * 1.3) * .042 * weight);
+  }
+  drape.computeVertexNormals();
   box(scene, linen, [1.98, 1.08, 1.5], [0, .54, 0]);
+  for (const [x, z, angle, sx] of [[0, .77, 0, 1], [0, -.77, Math.PI, 1], [-1.01, 0, -Math.PI / 2, .74], [1.01, 0, Math.PI / 2, .74]]) {
+    const cloth = new T.Mesh(drape, linen);
+    cloth.position.set(x, .56, z);
+    cloth.rotation.y = angle;
+    cloth.scale.x = sx;
+    cloth.castShadow = true;
+    cloth.receiveShadow = true;
+    scene.add(cloth);
+  }
   box(scene, green, [1.92, .04, 1.44], [0, 1.1, 0]);
   box(scene, gold, [1.99, .055, 1.51], [0, .13, 0]);
-  box(scene, green, [.065, .55, .018], [0, .57, .76]);
+  box(scene, green, [.065, .55, .018], [0, .57, .82]);
   [ .39, .48, .57, .66, .75 ].forEach((y, i) =>
-    box(scene, green, [.56 - Math.abs(i - 2) * .13, .045, .018], [0, y, .76]));
+    box(scene, green, [.56 - Math.abs(i - 2) * .13, .045, .018], [0, y, .82]));
   for (const x of [-.24, .24]) {
     box(scene, wood, [.49, .048, .59], [x, 1.13, 0]);
     box(scene, ivory, [.45, .068, .55], [x, 1.16, 0]);
@@ -166,22 +294,35 @@ async function buildChamber() {
       box(scene, dark, [.32, .003, .009], [x, 1.196, line * .055 - .16]);
     }
   }
-  function candle(x, y, z) {
-    box(scene, gold, [.23, .06, .23], [x, y + .03, z]);
-    box(scene, ivory, [.083, .31, .083], [x, y + .2, z]);
+  function candle(x, y, z, parent = scene, warmLight = true) {
+    spindle(parent, gold, x, y, z, .12, .11);
+    spindle(parent, ivory, x, y + .08, z, .28, .047);
     const flame = new T.Mesh(new T.SphereGeometry(.057, 10, 8),
       new T.MeshBasicMaterial({color: 0xffcb62}));
     flame.scale.y = 1.55;
     flame.position.set(x, y + .4, z);
-    scene.add(flame);
+    parent.add(flame);
+    if (warmLight) {
+      const glow = new T.PointLight(0xffa655, 2.6, 2.6);
+      glow.position.set(x, y + .44, z);
+      parent.add(glow);
+    }
   }
   function desk(x, z) {
     box(scene, trim, [1.3, .12, .72], [x, .77, z]);
+    box(scene, wood, [1.22, .16, .64], [x, .66, z]);
     for (const dx of [-.52, .52]) for (const dz of [-.26, .26])
-      box(scene, wood, [.1, .72, .1], [x + dx, .36, z + dz]);
-    box(scene, wood, [.38, .05, .065], [x + .25, .86, z + .11]);
-    box(scene, trim, [.12, .11, .21], [x + .08, .88, z + .11]);
+      spindle(scene, trim, x + dx, 0, z + dz, .66, .077);
+    const handle = new T.Mesh(new T.CylinderGeometry(.022, .032, .38, 12), wood);
+    handle.rotation.z = Math.PI / 2;
+    handle.position.set(x + .25, .865, z + .11);
+    scene.add(handle);
+    const head = new T.Mesh(new T.CylinderGeometry(.059, .063, .18, 18), trim);
+    head.rotation.x = Math.PI / 2;
+    head.position.set(x + .08, .89, z + .11);
+    scene.add(head);
   }
+  candle(.77, 1.12, .38);
   desk(0, -5.5);
   candle(-.43, .83, -5.59);
   const salt = new T.Mesh(new T.CylinderGeometry(.13, .09, .06, 24), ivory);
@@ -196,16 +337,32 @@ async function buildChamber() {
   stations.forEach(([office, , x, z, angle], i) => {
     const chair = new T.Group();
     chair.userData.station = i;
-    const high = i === 0 ? 1.72 : 1.45;
-    box(chair, wood, [.85, .17, .82], [0, .53, 0]);
-    box(chair, velvet, [.71, .12, .68], [0, .66, .025]);
-    box(chair, trim, [.82, high - .55, .14], [0, (.55 + high) / 2, -.37]);
-    box(chair, velvet, [.65, high - .72, .05], [0, (.65 + high) / 2, -.284]);
-    box(chair, gold, [.83, .035, .15], [0, high - .12, -.37]);
-    for (const dx of [-.33, .33]) {
-      for (const dz of [-.31, .31]) box(chair, wood, [.11, .55, .11], [dx, .275, dz]);
-      box(chair, trim, [.1, .1, .7], [dx, .87, .015]);
-      box(chair, wood, [.085, .27, .085], [dx, .73, .26]);
+    const high = i === 0 ? 1.99 : 1.64;
+    box(chair, trim, [.91, .16, .84], [0, .53, 0]);
+    box(chair, leatherEdge, [.78, .095, .72], [0, .64, .025]);
+    box(chair, leather, [.72, .075, .67], [0, .69, .025]);
+    box(chair, leather, [.69, high - .9, .13], [0, (high + .56) / 2, -.37]);
+    for (const dx of [-.39, .39]) {
+      for (const dz of [-.31, .31]) spindle(chair, trim, dx * .9, 0, dz, .52, .078);
+      spindle(chair, trim, dx, .55, -.37, high - .56, .067);
+      spindle(chair, trim, dx, .56, .26, .37, .056);
+      curvedTrim(chair, trim, [[dx, .99, -.36], [dx, .94, -.03], [dx, .94, .23], [dx, .89, .33]], .055);
+      const finial = new T.Mesh(new T.SphereGeometry(.061, 12, 10), trim);
+      finial.position.set(dx, high - .015, -.37);
+      chair.add(finial);
+      for (let stud = 0; stud < 11; stud++) {
+        box(chair, gold, [.024, .024, .024], [dx * .79, .7 + (high - .98) * stud / 10, -.291]);
+      }
+    }
+    curvedTrim(chair, trim, [[-.4, high - .11, -.37], [-.24, high - .075, -.38],
+      [0, high + .035, -.38], [.24, high - .075, -.38], [.4, high - .11, -.37]], .066);
+    curvedTrim(chair, gold, [[-.33, high - .14, -.285], [0, high - .055, -.285],
+      [.33, high - .14, -.285]], .017);
+    if (i === 0) {
+      for (const side of [-1, 1]) {
+        curvedTrim(chair, trim, [[0, high + .08, -.37], [side * .1, high + .14, -.37],
+          [side * .19, high + .041, -.37], [side * .21, high - .03, -.37]], .036);
+      }
     }
     chair.position.set(x, 0, z);
     chair.rotation.y = T.MathUtils.degToRad(angle);
@@ -269,7 +426,7 @@ async function buildChamber() {
     const aspect = width / height;
     renderer.setSize(width, height, false);
     camera.aspect = aspect;
-    camera.position.set(0, 11, aspect < 1 ? 22 : 17);
+    camera.position.set(aspect < 1 ? .5 : 1.65, 8.4, aspect < 1 ? 23 : 17.6);
     camera.lookAt(0, .1, -.7);
     camera.updateProjectionMatrix();
     const halfHeight = Math.max(10, 7.6 / aspect);
