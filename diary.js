@@ -87,6 +87,28 @@ function validEntry(entry) {
     entry.photos.every((photo) => typeof photo === 'string' && allowedPhoto.test(photo));
 }
 
+function calendarLink(entry) {
+  const tomorrow = new Date(entry.date + 'T00:00:00Z');
+  tomorrow.setUTCDate(tomorrow.getUTCDate() + 1);
+  const start = entry.date.replaceAll('-', '');
+  const end = tomorrow.toISOString().slice(0, 10).replaceAll('-', '');
+  const url = new URL('https://calendar.google.com/calendar/render');
+  url.search = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: 'ST PATRICK LODGE',
+    dates: start + '/' + end,
+    location: entry.location,
+    details: 'Lodge chamber: ' + entry.chamber,
+  });
+  const link = document.createElement('a');
+  link.className = 'calendar-link';
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = 'Add to Google Calendar';
+  return link;
+}
+
 function makeEntry(entry) {
   const item = document.createElement('li');
   item.className = 'entry';
@@ -99,7 +121,7 @@ function makeEntry(entry) {
   const location = document.createElement('p');
   location.className = 'location';
   location.textContent = entry.location;
-  details.append(heading, location);
+  details.append(heading, location, calendarLink(entry));
   if (entry.photos.length) {
     const gallery = document.createElement('div');
     gallery.className = 'photos';
@@ -166,6 +188,7 @@ form.addEventListener('submit', async (event) => {
   try {
     const entry = await prepareEntry({ date, location: location.trim(), chamber: chamber.trim(), photos });
     offerDownload([entry], 'event-' + date);
+    get('prepared-calendar').replaceChildren(calendarLink(entry));
     dialog.close();
     get('download-entry').focus();
     status.textContent = 'Entry ready for GitHub.';
@@ -193,6 +216,7 @@ if (window.indexedDB) {
         const exported = [];
         for (const entry of entries) exported.push(await prepareEntry(entry));
         offerDownload(exported, 'browser-diary-export');
+        get('prepared-calendar').replaceChildren();
         get('download-entry').focus();
         status.textContent = 'Browser entries ready for GitHub.';
       } catch (error) {

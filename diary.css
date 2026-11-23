@@ -78,3 +78,10 @@ form input { width: 100%; min-width: 0; padding: .55rem; background: #171f1a; bo
 }
 .publish-entry a { color: var(--gold); text-underline-offset: .2em; }
 #legacy-tools { margin-block: .75rem; }
+
+.calendar-link {
+  display: inline-block;
+  margin-block: .55rem;
+  color: var(--gold);
+  text-underline-offset: .2em;
+}
