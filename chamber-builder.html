@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lodge Chamber Builder | Order of Saint Patrick</title>
+<link rel="stylesheet" href="chamber-builder.css">
+</head>
+<body>
+<header class="masthead">
+  <a href="./#chamber-heading">← Ritual &amp; officers</a>
+  <span>Athenian Shamrock Lodge</span>
+</header>
+<main>
+  <div class="title">
+    <h1>Lodge Chamber Builder</h1>
+    <div class="views" role="group" aria-label="Camera view">
+      <button id="perspective" type="button" aria-pressed="true">Chamber view</button>
+      <button id="plan" type="button" aria-pressed="false">Floor plan</button>
+    </div>
+  </div>
+  <div class="builder">
+    <div id="stage" aria-label="Interactive 3D Lodge chamber">
+      <p id="load-status" role="status">Loading the chamber…</p>
+    </div>
+    <section class="controls" aria-labelledby="chair-heading">
+      <h2 id="chair-heading">Officer chairs</h2>
+      <p class="hint">Drag a chair to move it, or use the position controls. Select a chair to rotate it.</p>
+      <label for="chair">Chair</label>
+      <select id="chair"></select>
+      <p id="officer"></p>
+      <fieldset disabled id="position">
+        <legend>Position and rotation</legend>
+        <label>Across the room <input id="x" type="range" min="-6" max="6" step="0.1"></label>
+        <label>East to west <input id="z" type="range" min="-8" max="8" step="0.1"></label>
+        <label>Rotation <output id="angle-value" for="angle"></output>
+          <input id="angle" type="range" min="0" max="359" step="1">
+        </label>
+        <div class="actions">
+          <button id="turn-left" type="button" aria-label="Rotate left 15 degrees">↶ 15°</button>
+          <button id="turn-right" type="button" aria-label="Rotate right 15 degrees">↷ 15°</button>
+          <button id="reset" type="button">Reset layout</button>
+        </div>
+      </fieldset>
+    </section>
+  </div>
+  <details>
+    <summary>Chamber equipment</summary>
+    <p>The central altar bears the five-bar cross and the Volume of the Sacred Law. A candle and salt sit at the Knight Commander’s station, with the Lodge Warrant at the Registrar’s station and gavels at the officer stations.</p>
+  </details>
+</main>
+<script type="module" src="./chamber-builder.js"></script>
+</body>
+</html>
