@@ -1,229 +1,1285 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An introduction to the Saint Patrick ritual presentation and a link to the public website of the Masonic Order of Saint Patrick.">
-  <meta name="theme-color" content="#102920">
-  <title>The Masonic Order of Saint Patrick | Ritual Presentation</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --green: #102920;
-      --green-light: #1d4938;
-      --gold: #e2c485;
-      --paper: #f8f5ed;
-      --ink: #23352d;
-      --muted: #43564c;
-      --border: #d9d3c3;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 1rem/1.65 system-ui, sans-serif;
-    }
-
-    a {
-      color: inherit;
-      text-underline-offset: 0.22em;
-    }
-
-    a:hover {
-      text-decoration-thickness: 0.15em;
-    }
-
-    a:focus-visible {
-      outline: 3px solid currentColor;
-      outline-offset: 5px;
-    }
-
-    .container {
-      width: min(100% - 2rem, 68rem);
-      margin-inline: auto;
-    }
-
-    .skip-link {
-      position: absolute;
-      z-index: 1;
-      top: 0.75rem;
-      left: 0.75rem;
-      padding: 0.65rem 1rem;
-      transform: translateY(-200%);
-      background: white;
-      color: var(--green);
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .site-header {
-      background: var(--green);
-      color: white;
-      border-bottom: 1px solid #476055;
-    }
-
-    .site-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.65rem 1.5rem;
-      padding-block: 1rem;
-    }
-
-    .site-name {
-      font: 1.1rem/1.4 Georgia, serif;
-    }
-
-    .site-nav a {
-      color: var(--gold);
-    }
-
-    .hero {
-      padding-block: clamp(3.75rem, 9vw, 8rem);
-      background: linear-gradient(145deg, var(--green), var(--green-light));
-      color: white;
-      border-bottom: 4px solid var(--gold);
-    }
-
-    .eyebrow {
-      margin: 0 0 1rem;
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    h1,
-    h2 {
-      margin: 0;
-      font-family: Georgia, serif;
-      font-weight: 400;
-      line-height: 1.12;
-    }
-
-    h1 {
-      max-width: 18ch;
-      font-size: clamp(2.6rem, 7vw, 5.4rem);
-    }
-
-    h2 {
-      font-size: clamp(1.65rem, 4vw, 2.35rem);
-    }
-
-    .hero p:last-child {
-      margin: 1.25rem 0 0;
-      max-width: 55ch;
-      color: #ecf0ea;
-      font-size: 1.1rem;
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-      padding-block: clamp(2rem, 6vw, 4.5rem);
-    }
-
-    .card {
-      padding: clamp(1.25rem, 4vw, 2rem);
-      background: #fffdf8;
-      border: 1px solid var(--border);
-      border-radius: 0.4rem;
-    }
-
-    .card p {
-      margin: 1rem 0;
-      color: var(--muted);
-    }
-
-    .card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 0.25rem;
-      padding: 0.65rem 1rem;
-      background: var(--green);
-      color: white;
-      border-radius: 0.25rem;
-      font-weight: 650;
-    }
-
-    .site-footer {
-      padding-block: 1.35rem;
-      background: var(--green);
-      color: #ecf0ea;
-    }
-
-    .site-footer p {
-      margin: 0;
-    }
-
-    @media (max-width: 42rem) {
-      .content {
-        grid-template-columns: 1fr;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Masonic Order of Saint Patrick — Ceremony &amp; Chamber Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #101713;
+        --ink-soft: #26342c;
+        --emerald: #006b3f;
+        --emerald-deep: #033b27;
+        --emerald-glow: #18a96b;
+        --gold: #c8a24a;
+        --gold-soft: #ead8a4;
+        --parchment: #f4efe3;
+        --paper: #fffaf0;
+        --mist: #e8efe9;
+        --line: rgba(16, 23, 19, 0.14);
+        --shadow: 0 24px 80px rgba(3, 59, 39, 0.16);
+        --radius: 10px;
+        --serif: "Cinzel", Georgia, serif;
+        --sans: "Inter", system-ui, sans-serif;
       }
-    }
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="container site-nav" aria-label="Main navigation">
-      <span class="site-name">The Masonic Order of Saint Patrick</span>
-      <a href="https://webappngdsib.github.io/St-Patrick/">Public website</a>
-    </nav>
-  </header>
+      * {
+        box-sizing: border-box;
+      }
 
-  <main id="main">
-    <section class="hero" aria-labelledby="page-title">
-      <div class="container">
-        <p class="eyebrow">Ritual Presentation</p>
-        <h1 id="page-title">The Masonic Order of Saint Patrick</h1>
-        <p>Presentation status and a guide to the Order’s public resources.</p>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 0%, rgba(200, 162, 74, 0.18), transparent 36rem),
+          linear-gradient(180deg, #fbf7ec 0%, #eef4ed 50%, #fbf7ec 100%);
+        font-family: var(--sans);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Sticky Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+        background: rgba(251, 247, 236, 0.92);
+        border-bottom: 1px solid rgba(0, 107, 63, 0.16);
+        backdrop-filter: blur(16px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 0;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand-crest {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(145deg, var(--emerald-deep), var(--emerald));
+        color: var(--gold-soft);
+        border: 1.5px solid var(--gold);
+        font-family: var(--serif);
+        font-weight: 800;
+        font-size: 1.15rem;
+        flex-shrink: 0;
+      }
+
+      .brand strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+        line-height: 1.1;
+        color: var(--emerald-deep);
+      }
+
+      .brand small {
+        display: block;
+        color: var(--emerald);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .pill-btn {
+        border: 1px solid rgba(0, 107, 63, 0.25);
+        border-radius: 999px;
+        padding: 0.5rem 0.9rem;
+        background: var(--paper);
+        color: var(--emerald-deep);
+        font: inherit;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .pill-btn:hover,
+      .pill-btn:focus-visible {
+        background: var(--emerald);
+        color: #fff;
+        border-color: var(--emerald);
+      }
+
+      .pill-btn.gold {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #141c17;
+      }
+
+      /* Container */
+      .wrap {
+        width: min(1040px, calc(100% - 1.5rem));
+        margin-inline: auto;
+      }
+
+      /* Hero & Role Selector */
+      .hero-banner {
+        margin-top: 1.25rem;
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+        border-radius: var(--radius);
+        color: #fff;
+        background:
+          radial-gradient(circle at 85% 20%, rgba(200, 162, 74, 0.22), transparent 28rem),
+          linear-gradient(135deg, var(--emerald-deep) 0%, #06261a 100%);
+        border: 1px solid rgba(200, 162, 74, 0.35);
+        box-shadow: var(--shadow);
+      }
+
+      .eyebrow {
+        margin: 0 0 0.45rem;
+        color: var(--gold);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--serif);
+        line-height: 1.15;
+      }
+
+      .hero-banner h1 {
+        font-size: clamp(1.75rem, 4.5vw, 3rem);
+        letter-spacing: -0.02em;
+      }
+
+      .hero-sub {
+        margin: 0.65rem 0 0;
+        color: rgba(255, 255, 255, 0.82);
+        max-width: 62ch;
+        font-size: 0.98rem;
+      }
+
+      /* Role Control Card */
+      .role-control {
+        margin-top: 1.5rem;
+        padding: 1.2rem;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(234, 216, 164, 0.32);
+        backdrop-filter: blur(10px);
+      }
+
+      .role-control label {
+        display: block;
+        color: var(--gold-soft);
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+
+      .role-select-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .role-select {
+        flex: 1 1 280px;
+        min-height: 48px;
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
+        border: 1.5px solid var(--gold);
+        background: var(--paper);
+        color: var(--ink);
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .welcome-box {
+        display: none;
+        margin-top: 1rem;
+        padding: 0.9rem 1.1rem;
+        border-radius: 8px;
+        background: linear-gradient(90deg, rgba(200, 162, 74, 0.25), rgba(24, 169, 107, 0.18));
+        border-left: 4px solid var(--gold);
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .welcome-box.visible {
+        display: flex;
+      }
+
+      .welcome-text {
+        font-family: var(--serif);
+        font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .welcome-text span {
+        color: var(--gold-soft);
+        display: block;
+        font-family: var(--sans);
+        font-size: 0.82rem;
+        font-weight: 600;
+        margin-top: 0.15rem;
+      }
+
+      /* Section Cards */
+      .section-block {
+        margin-top: 1.75rem;
+        padding: clamp(1.25rem, 3.5vw, 2.25rem);
+        border-radius: var(--radius);
+        background: linear-gradient(165deg, rgba(255, 250, 240, 0.96), rgba(235, 242, 236, 0.9));
+        border: 1px solid var(--line);
+        box-shadow: 0 12px 40px rgba(3, 59, 39, 0.07);
+      }
+
+      .section-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding-bottom: 0.9rem;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid var(--gold);
+      }
+
+      .section-head h2 {
+        color: var(--emerald-deep);
+        font-size: clamp(1.3rem, 3vw, 1.85rem);
+      }
+
+      /* Interactive Chamber Map */
+      .chamber-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .chamber-board {
+        padding: 1.15rem;
+        border-radius: var(--radius);
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      .station-row {
+        display: flex;
+        justify-content: center;
+        gap: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .station-row.bottom {
+        margin-top: 0.75rem;
+        margin-bottom: 0;
+      }
+
+      .chamber-middle {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .pavement {
+        position: relative;
+        padding: 1.1rem 0.9rem;
+        border-radius: 8px;
+        border: 3px solid var(--emerald-deep);
+        background-color: #f7f3e8;
+        background-image:
+          linear-gradient(45deg, rgba(16, 23, 19, 0.14) 25%, transparent 25%),
+          linear-gradient(-45deg, rgba(16, 23, 19, 0.14) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(16, 23, 19, 0.14) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(16, 23, 19, 0.14) 75%);
+        background-size: 28px 28px;
+        background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.15rem;
+      }
+
+      .pavement-pair {
+        display: flex;
+        justify-content: space-around;
+        gap: 0.65rem;
+      }
+
+      .altar-box {
+        align-self: center;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        background: var(--emerald-deep);
+        color: #fff;
+        border: 2px solid var(--gold);
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      }
+
+      .altar-cross {
+        font-size: 1.2rem;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        display: block;
+      }
+
+      .altar-box strong {
+        font-family: var(--serif);
+        font-size: 0.85rem;
+        display: block;
+      }
+
+      .altar-box small {
+        font-size: 0.72rem;
+        color: var(--gold-soft);
+      }
+
+      .seat-badge {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 96px;
+        padding: 0.5rem 0.65rem;
+        border-radius: 8px;
+        background: #fff;
+        border: 1.5px solid var(--emerald);
+        color: var(--ink);
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .seat-badge .num {
+        display: inline-grid;
+        place-items: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--emerald);
+        color: #fff;
+        font-size: 0.74rem;
+        font-weight: 800;
+        margin-bottom: 0.2rem;
+      }
+
+      .seat-badge.active-seat {
+        background: var(--emerald-deep);
+        color: #fff;
+        border-color: var(--gold);
+        transform: scale(1.07);
+        box-shadow: 0 0 0 3px rgba(200, 162, 74, 0.45);
+      }
+
+      .seat-badge.active-seat .num {
+        background: var(--gold);
+        color: #101713;
+      }
+
+      .roster-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.55rem;
+      }
+
+      .roster-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.65rem 0.85rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid var(--line);
+        transition: all 0.2s ease;
+      }
+
+      .roster-item.highlighted {
+        background: var(--emerald-deep);
+        color: #fff;
+        border-color: var(--gold);
+        font-weight: 700;
+      }
+
+      .roster-item.highlighted .roster-role {
+        color: var(--gold-soft);
+      }
+
+      .roster-role {
+        color: var(--emerald);
+        font-weight: 800;
+        font-size: 0.88rem;
+      }
+
+      .roster-name {
+        font-weight: 600;
+        font-size: 0.92rem;
+      }
+
+      .equipment-note {
+        margin-top: 1rem;
+        padding: 0.9rem 1rem;
+        border-radius: 8px;
+        background: rgba(0, 107, 63, 0.08);
+        border-left: 3px solid var(--emerald);
+        font-size: 0.88rem;
+        color: var(--ink-soft);
+      }
+
+      /* Ritual Speech Cards */
+      .speech-list {
+        display: grid;
+        gap: 1.15rem;
+      }
+
+      .speech-card {
+        padding: 1.15rem 1.25rem;
+        border-radius: var(--radius);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--emerald);
+        transition: all 0.25s ease;
+      }
+
+      .speech-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.65rem;
+      }
+
+      .speaker-title {
+        font-family: var(--serif);
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--emerald-deep);
+        letter-spacing: 0.02em;
+      }
+
+      .speaker-holder {
+        display: inline-block;
+        margin-left: 0.45rem;
+        font-family: var(--sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ink-soft);
+      }
+
+      /* Bullet on the right of the title to toggle Greek translation */
+      .greek-bullet {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 0.65rem;
+        border-radius: 999px;
+        border: 1.5px solid var(--emerald);
+        background: rgba(0, 107, 63, 0.08);
+        color: var(--emerald-deep);
+        font-size: 0.78rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .greek-bullet .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--emerald);
+        transition: background 0.2s ease;
+      }
+
+      .greek-bullet[aria-expanded="true"] {
+        background: var(--emerald-deep);
+        color: var(--gold-soft);
+        border-color: var(--gold);
+      }
+
+      .greek-bullet[aria-expanded="true"] .dot {
+        background: var(--gold);
+      }
+
+      .speech-en {
+        font-size: 1.02rem;
+        color: var(--ink);
+      }
+
+      .speech-en p {
+        margin: 0 0 0.75rem;
+      }
+
+      .speech-en p:last-child {
+        margin-bottom: 0;
+      }
+
+      .speech-el {
+        display: none;
+        margin-top: 0.9rem;
+        padding: 0.9rem 1rem;
+        border-radius: 8px;
+        background: rgba(0, 107, 63, 0.07);
+        border-top: 1.5px dashed rgba(0, 107, 63, 0.35);
+        color: var(--emerald-deep);
+        font-size: 0.98rem;
+      }
+
+      .speech-el.open {
+        display: block;
+      }
+
+      .speech-el p {
+        margin: 0 0 0.7rem;
+      }
+
+      .speech-el p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Selected Role Highlight: Bolder and One Size Bigger */
+      .speech-card.role-selected {
+        background: #fffdf6;
+        border-color: var(--gold);
+        border-left: 6px solid var(--gold);
+        box-shadow: 0 14px 36px rgba(3, 59, 39, 0.14);
+      }
+
+      .speech-card.role-selected .speaker-title {
+        font-size: 1.24rem;
+        color: var(--emerald);
+      }
+
+      .speech-card.role-selected .speech-en {
+        font-size: 1.22rem;
+        font-weight: 700;
+        line-height: 1.72;
+        color: #0b140f;
+      }
+
+      .speech-card.role-selected .speech-el {
+        font-size: 1.16rem;
+        font-weight: 700;
+        line-height: 1.72;
+      }
+
+      /* Dark Green Rubrics (formerly red letters) with Tap-to-Zoom */
+      .rubric {
+        display: block;
+        margin: 0.65rem 0;
+        padding: 0.55rem 0.85rem;
+        border-radius: 8px;
+        color: var(--emerald);
+        background: rgba(0, 107, 63, 0.08);
+        border: 1px dashed rgba(0, 107, 63, 0.35);
+        font-style: italic;
+        font-weight: 700;
+        font-size: 0.96rem;
+        cursor: zoom-in;
+        transition: all 0.22s ease;
+        user-select: none;
+      }
+
+      .rubric::after {
+        content: "  [+]";
+        font-style: normal;
+        font-size: 0.76rem;
+        opacity: 0.75;
+      }
+
+      .rubric.zoomed {
+        position: relative;
+        z-index: 15;
+        padding: 1.15rem 1.25rem;
+        font-size: clamp(1.25rem, 3.8vw, 1.55rem);
+        font-style: normal;
+        font-weight: 800;
+        line-height: 1.5;
+        color: #ffffff;
+        background: var(--emerald-deep);
+        border: 2px solid var(--gold);
+        box-shadow: 0 18px 48px rgba(3, 59, 39, 0.35);
+        cursor: zoom-out;
+      }
+
+      .rubric.zoomed::after {
+        content: "  [−]";
+        color: var(--gold-soft);
+      }
+
+      /* Footer */
+      .site-footer {
+        margin-top: 2.5rem;
+        padding: 1.75rem 1rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.78);
+        background: #06140f;
+        font-size: 0.85rem;
+      }
+
+      .site-footer strong {
+        color: var(--gold);
+        font-family: var(--serif);
+        letter-spacing: 0.08em;
+      }
+
+      @media (max-width: 820px) {
+        .chamber-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .seat-badge {
+          min-width: 78px;
+          padding: 0.42rem 0.45rem;
+          font-size: 0.7rem;
+        }
+
+        .speech-card {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">
+        <span class="brand-crest" aria-hidden="true">☘</span>
+        <span>
+          <strong>Order of Saint Patrick</strong>
+          <small>Ceremony &amp; Chamber Guide</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <button id="toggle-all-greek" class="pill-btn" type="button">Show All ΕΛ</button>
+        <button id="jump-next-btn" class="pill-btn gold" type="button" hidden>Next My Line ↓</button>
       </div>
-    </section>
+    </header>
 
-    <div class="container content">
-      <section class="card" aria-labelledby="presentation-heading">
-        <h2 id="presentation-heading">Ritual presentation</h2>
-        <p>The full ritual presentation is currently unavailable on this page.</p>
-        <p>
-          <a href="https://github.com/webappngdsib/Saint-Patrick-RITUAL-/blob/main/README.md">
-            View the project README
-          </a>
+    <main id="top" class="wrap">
+      <!-- Hero & Officer Role Selector -->
+      <section class="hero-banner" aria-labelledby="page-title">
+        <p class="eyebrow">Quis Separabit</p>
+        <h1 id="page-title">The Masonic Order of Saint Patrick</h1>
+        <p class="hero-sub">
+          Mobile-ready ceremony companion. Select your office below to highlight and enlarge your spoken parts,
+          tap any dark-green rubric to zoom in, or press the bullet beside any officer title for the Greek translation.
         </p>
+
+        <div class="role-control">
+          <label for="role-select">Select Your Officer Role</label>
+          <div class="role-select-row">
+            <select id="role-select" class="role-select">
+              <option value="">— Choose your office to enlarge &amp; bold your lines —</option>
+              <option value="kc">Sir Knight Commander — Paul Johnston</option>
+              <option value="priest">Sir Knight Priest — Paul Hollebone</option>
+              <option value="sw">Sir Knight Senior Warden — Ioannis Benetatos</option>
+              <option value="jw">Sir Knight Junior Warden — Tony Lewis</option>
+              <option value="mc">Sir Knight Master of Ceremonies — Simon Polkinghorne</option>
+              <option value="deacon">Sir Knight Deacon — Dimitrios Skiadopoulos</option>
+              <option value="sentinel">Sir Knight Sentinel — Dimitrios Skiadopoulos</option>
+            </select>
+          </div>
+
+          <div id="welcome-box" class="welcome-box" role="status" aria-live="polite">
+            <div class="welcome-text">
+              <div id="welcome-headline">Welcome</div>
+              <span id="welcome-sub">Your lines are now bolded and enlarged for easy reading.</span>
+            </div>
+            <button id="jump-first-btn" class="pill-btn gold" type="button">Jump to My First Part ↓</button>
+          </div>
+        </div>
       </section>
 
-      <section class="card" aria-labelledby="order-heading">
-        <h2 id="order-heading">About the Order</h2>
-        <p>
-          The public website covers the Order’s history, its relationship
-          with the Allied Masonic Degrees, admission requirements, symbols,
-          lodges, and Grand Lodge officers and honours.
-        </p>
-        <a class="button" href="https://webappngdsib.github.io/St-Patrick/">
-          Visit the Order’s website
-        </a>
-      </section>
-    </div>
-  </main>
+      <!-- Section 1: Lodge Chamber Layout & Officers -->
+      <section class="section-block" aria-labelledby="chamber-heading">
+        <div class="section-head">
+          <h2 id="chamber-heading">Lodge Chamber Layout &amp; Officers</h2>
+          <span class="eyebrow" style="margin:0; color: var(--emerald);">Tap a station to highlight</span>
+        </div>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>The Masonic Order of Saint Patrick</p>
-    </div>
-  </footer>
-</body>
+        <div class="chamber-grid">
+          <div class="chamber-board" aria-label="Lodge Chamber Floor Plan">
+            <!-- East: 1 & 2 -->
+            <div class="station-row">
+              <button type="button" class="seat-badge" data-role="kc">
+                <span class="num">1</span>
+                Knight Cmdr
+              </button>
+              <button type="button" class="seat-badge" data-role="priest">
+                <span class="num">2</span>
+                Priest
+              </button>
+            </div>
+
+            <!-- Middle: 5 on Left + Checkered Floor with 3, 4, Altar, 7, 6 -->
+            <div class="chamber-middle">
+              <button type="button" class="seat-badge" data-role="registrar">
+                <span class="num">5</span>
+                Registrar
+              </button>
+
+              <div class="pavement">
+                <div class="pavement-pair">
+                  <button type="button" class="seat-badge" data-role="sw">
+                    <span class="num">3</span>
+                    Senior Warden
+                  </button>
+                  <button type="button" class="seat-badge" data-role="jw">
+                    <span class="num">4</span>
+                    Junior Warden
+                  </button>
+                </div>
+
+                <div class="altar-box">
+                  <span class="altar-cross" aria-hidden="true">☨</span>
+                  <strong>Altar &amp; V.S.L.</strong>
+                  <small>Cross with Five Bars</small>
+                </div>
+
+                <div class="pavement-pair">
+                  <button type="button" class="seat-badge" data-role="deacon">
+                    <span class="num">7</span>
+                    Deacon
+                  </button>
+                  <button type="button" class="seat-badge" data-role="mc">
+                    <span class="num">6</span>
+                    Master of Cer.
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- West / Outer Door: 8 -->
+            <div class="station-row bottom">
+              <button type="button" class="seat-badge" data-role="sentinel">
+                <span class="num">8</span>
+                Sentinel
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <ul class="roster-list">
+              <li class="roster-item" data-role="kc">
+                <span class="roster-role">1. Knight Commander</span>
+                <span class="roster-name">Paul Johnston</span>
+              </li>
+              <li class="roster-item" data-role="priest">
+                <span class="roster-role">2. Priest</span>
+                <span class="roster-name">Paul Hollebone</span>
+              </li>
+              <li class="roster-item" data-role="sw">
+                <span class="roster-role">3. Senior Warden</span>
+                <span class="roster-name">Ioannis Benetatos</span>
+              </li>
+              <li class="roster-item" data-role="jw">
+                <span class="roster-role">4. Junior Warden</span>
+                <span class="roster-name">Tony Lewis</span>
+              </li>
+              <li class="roster-item" data-role="registrar">
+                <span class="roster-role">5. Registrar</span>
+                <span class="roster-name">Lodge Warrant Station</span>
+              </li>
+              <li class="roster-item" data-role="mc">
+                <span class="roster-role">6. Master of Ceremonies</span>
+                <span class="roster-name">Simon Polkinghorne</span>
+              </li>
+              <li class="roster-item" data-role="deacon">
+                <span class="roster-role">7. Deacon</span>
+                <span class="roster-name">Dimitrios Skiadopoulos</span>
+              </li>
+              <li class="roster-item" data-role="sentinel">
+                <span class="roster-role">8. Sentinel</span>
+                <span class="roster-name">Dimitrios Skiadopoulos</span>
+              </li>
+            </ul>
+
+            <div class="equipment-note">
+              <strong>Chamber Equipment:</strong> Altar covered with an Altar Cloth bearing the Cross with five bars and the appropriate Volume of the Sacred Law. Candle and salt at the Knight Commander's station; Lodge Warrant at the Registrar's station; gavels for officers requiring them.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Opening & Purpose -->
+      <section class="section-block" aria-labelledby="opening-heading">
+        <div class="section-head">
+          <h2 id="opening-heading">I. Opening of the Lodge</h2>
+          <span class="eyebrow" style="margin:0; color: var(--emerald);">Tap bullet • for Greek</span>
+        </div>
+
+        <div class="speech-list">
+          <article class="speech-card" data-role="kc">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Commander</span>
+                <span class="speaker-holder">(Paul Johnston)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Gives one rap with the gavel to call the Sir Knights to order.</span>
+              <p>
+                Sir Knights, assist me in opening this Lodge of the Masonic Order of Saint Patrick.
+                Sir Knight Junior Warden, what is the first care of every Knight of this Order?
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Δίνει ένα χτύπημα με τη σφύρα για να καλέσει τους Ιππότες σε τάξη.)</em></p>
+              <p>
+                Ιππότες, βοηθήστε με να ανοίξουμε αυτή τη Στοά του Τεκτονικού Τάγματος του Αγίου Πατρικίου.
+                Ιππότη Νεότερε Επόπτα, ποια είναι η πρώτη μέριμνα κάθε Ιππότη αυτού του Τάγματος;
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="jw">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Junior Warden</span>
+                <span class="speaker-holder">(Tony Lewis)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <p>
+                To see that the Chamber is properly tyled, Sir Knight Commander.
+              </p>
+              <span class="rubric">Turns toward the Deacon and directs him to instruct the Sentinel to tyle the door.</span>
+            </div>
+            <div class="speech-el">
+              <p>
+                Να βεβαιωθεί ότι η Αίθουσα είναι κατάλληλα φρουρούμενη, Ιππότη Διοικητά.
+              </p>
+              <p><em>(Στρέφεται προς τον Διάκονο και τον καθοδηγεί να ενημερώσει τον Φρουρό να ασφαλίσει τη θύρα.)</em></p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="deacon">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Deacon</span>
+                <span class="speaker-holder">(Dimitrios Skiadopoulos)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Proceeds to the door, gives the alarm to the Sentinel, and receives the answering report.</span>
+              <p>
+                Sir Knight Junior Warden, the Chamber is properly tyled and the Sentinel is at his post.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Μεταβαίνει στη θύρα, δίνει το σήμα στον Φρουρό και λαμβάνει την απάντηση.)</em></p>
+              <p>
+                Ιππότη Νεότερε Επόπτα, η Αίθουσα είναι κατάλληλα φρουρούμενη και ο Φρουρός βρίσκεται στη θέση του.
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="sentinel">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Sentinel</span>
+                <span class="speaker-holder">(Dimitrios Skiadopoulos)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Guards the outer door with drawn sword and answers the Deacon's knocks.</span>
+              <p>
+                All is secure without, Sir Knight Deacon; none may approach save those who are duly vouched and qualified.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Φρουρεί την εξωτερική θύρα με γυμνό ξίφος και απαντά στα χτυπήματα του Διακόνου.)</em></p>
+              <p>
+                Όλα είναι ασφαλή απ’ έξω, Ιππότη Διάκονε· κανείς δεν μπορεί να πλησιάσει παρά μόνο όσοι είναι δεόντως εγγυημένοι και κατάλληλοι.
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="sw">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Senior Warden</span>
+                <span class="speaker-holder">(Ioannis Benetatos)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Rises and faces the East.</span>
+              <p>
+                Sir Knight Commander, all present are acknowledged Knights of the Order, and the Altar is duly arrayed with the Cross of five bars and the Volume of the Sacred Law.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Εγείρεται και στρέφεται προς την Ανατολή.)</em></p>
+              <p>
+                Ιππότη Διοικητά, όλοι οι παρόντες είναι αναγνωρισμένοι Ιππότες του Τάγματος και ο Βωμός είναι δεόντως ευτρεπισμένος με τον Σταυρό των πέντε ράβδων και τον Τόμο του Ιερού Νόμου.
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="kc">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Commander</span>
+                <span class="speaker-holder">(Paul Johnston)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <p>
+                The reactivation of the Order of Saint Patrick has a solemn purpose. From the beginning of time, mankind has found a way to provide for his needs by using men of vision and leadership. In providing for those needs, he has either utilized his experiences of the past or invented a new instrument for his needs in the present and the future.
+              </p>
+              <p>
+                The purpose of the Order of Saint Patrick is to recognize those men who have provided vision and leadership; men who are the Salt of the Earth and Light of the World.
+              </p>
+              <span class="rubric">Calls the Sir Knights to stand while the Priest offers the Opening Prayer.</span>
+            </div>
+            <div class="speech-el">
+              <p>
+                Η επανενεργοποίηση του Τάγματος του Αγίου Πατρικίου έχει έναν ιερό σκοπό. Από την αρχή του χρόνου, η ανθρωπότητα βρήκε τρόπο να καλύπτει τις ανάγκες της αξιοποιώντας ανθρώπους με όραμα και ηγεσία. Για την κάλυψη αυτών των αναγκών, είτε αξιοποίησε τις εμπειρίες του παρελθόντος είτε επινόησε ένα νέο όργανο για τις ανάγκες του παρόντος και του μέλλοντος.
+              </p>
+              <p>
+                Ο σκοπός του Τάγματος του Αγίου Πατρικίου είναι να αναγνωρίσει εκείνους τους ανθρώπους που προσέφεραν όραμα και ηγεσία· ανθρώπους που αποτελούν το Άλας της Γης και το Φως του Κόσμου.
+              </p>
+              <p><em>(Καλεί τους Ιππότες να σταθούν όρθιοι ενώ ο Ιερέας αναπέμπει την Εναρκτήρια Προσευχή.)</em></p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="priest">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Priest</span>
+                <span class="speaker-holder">(Paul Hollebone)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Advances to the Altar, opens the Volume of the Sacred Law, and leads the prayer.</span>
+              <p>
+                Almighty and Everlasting God, who didst call Thy servant Patrick to bear the light of faith, charity, and steadfast courage, bless this assembly of Knights. Grant us wisdom in council, fidelity in brotherhood, and strength to serve humanity in Thy name. Amen.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Προχωρεί προς τον Βωμό, ανοίγει τον Τόμο του Ιερού Νόμου και προΐσταται της προσευχής.)</em></p>
+              <p>
+                Παντοδύναμε και Αιώνιε Θεέ, που κάλεσες τον δούλο Σου Πατρίκιο να φέρει το φως της πίστεως, της αγάπης και του ακλόνητου θάρρους, ευλόγησε αυτή τη σύναξη των Ιπποτών. Χάρισέ μας σοφία στις βουλές, πίστη στην αδελφοσύνη και δύναμη να υπηρετούμε την ανθρωπότητα στο όνομά Σου. Αμήν.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 3: Reception & Investiture -->
+      <section class="section-block" aria-labelledby="reception-heading">
+        <div class="section-head">
+          <h2 id="reception-heading">II. Reception &amp; Symbolic Instruction</h2>
+          <span class="eyebrow" style="margin:0; color: var(--emerald);">Tap rubrics to zoom</span>
+        </div>
+
+        <div class="speech-list">
+          <article class="speech-card" data-role="mc">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Master of Ceremonies</span>
+                <span class="speaker-holder">(Simon Polkinghorne)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Conducts the Candidate before the Altar and presents him to the East.</span>
+              <p>
+                Sir Knight Commander, I present this worthy Companion and Knight, who has been duly invited and found qualified to be received into the Masonic Order of Saint Patrick.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Οδηγεί τον Υποψήφιο ενώπιον του Βωμού και τον παρουσιάζει στην Ανατολή.)</em></p>
+              <p>
+                Ιππότη Διοικητά, παρουσιάζω αυτόν τον άξιο Εταίρο και Ιππότη, ο οποίος προσεκλήθη δεόντως και κρίθηκε κατάλληλος να γίνει δεκτός στο Τεκτονικό Τάγμα του Αγίου Πατρικίου.
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="kc">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Commander</span>
+                <span class="speaker-holder">(Paul Johnston)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <span class="rubric">Indicates the lighted candle and the vessel of salt upon his pedestal.</span>
+              <p>
+                Behold the emblems placed before you: the Salt that preserves integrity against corruption, and the Candle whose flame dispels darkness. Let your character remain incorruptible and your example shine before your fellow men.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p><em>(Υποδεικνύει την αναμμένη λαμπάδα και το δοχείο με το άλας επί του αναλογίου του.)</em></p>
+              <p>
+                Ιδού τα εμβλήματα που τίθενται ενώπιόν σου: το Άλας που διαφυλάσσει την ακεραιότητα από τη φθορά, και η Λαμπάδα της οποίας η φλόγα διαλύει το σκότος. Ας παραμένει ο χαρακτήρας σου άφθαρτος και το παράδειγμά σου ας λάμπει ενώπιον των συνανθρώπων σου.
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="sw">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Senior Warden</span>
+                <span class="speaker-holder">(Ioannis Benetatos)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <p>
+                Take with you the Shamrock of three leaves united upon a single stem—an enduring symbol of unity in faith, hope, and fraternal charity, and of the motto of our Order: <em>Quis Separabit</em>—Who shall separate us?
+              </p>
+            </div>
+            <div class="speech-el">
+              <p>
+                Λάβε μαζί σου το Τριφύλλι με τα τρία φύλλα ενωμένα σε έναν ενιαίο μίσχο — διαρκές σύμβολο ενότητας στην πίστη, την ελπίδα και την αδελφική αγάπη, καθώς και του ρητού του Τάγματός μας: <em>Quis Separabit</em> — Τις ημάς χωρίσει;
+              </p>
+            </div>
+          </article>
+
+          <article class="speech-card" data-role="jw">
+            <div class="speech-header">
+              <div>
+                <span class="speaker-title">Sir Knight Junior Warden</span>
+                <span class="speaker-holder">(Tony Lewis)</span>
+              </div>
+              <button class="greek-bullet" type="button" aria-expanded="false" title="Show/Hide Greek Translation">
+                <span class="dot"></span> ΕΛ
+              </button>
+            </div>
+            <div class="speech-en">
+              <p>
+                May the Lorica—the breastplate of spiritual protection—shield your steps in every trial, guiding you in humility, service, and steadfast loyalty to the Craft and to this Order.
+              </p>
+            </div>
+            <div class="speech-el">
+              <p>
+                Είθε η Lorica — ο θώρακας της πνευματικής προστασίας — να θωρακίζει τα βήματά σου σε κάθε δοκιμασία, καθοδηγώντας σε με ταπεινότητα, προσφορά και ακλόνητη αφοσίωση στον Τεκτονισμό και στο Τάγμα τούτο.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <strong>QUIS SEPARABIT</strong>
+      <p>The Masonic Order of Saint Patrick • Ceremony &amp; Chamber Presentation</p>
+    </footer>
+
+    <script>
+      (function () {
+        const roleNames = {
+          kc: { title: "Sir Knight Commander", person: "Paul Johnston" },
+          priest: { title: "Sir Knight Priest", person: "Paul Hollebone" },
+          sw: { title: "Sir Knight Senior Warden", person: "Ioannis Benetatos" },
+          jw: { title: "Sir Knight Junior Warden", person: "Tony Lewis" },
+          mc: { title: "Sir Knight Master of Ceremonies", person: "Simon Polkinghorne" },
+          deacon: { title: "Sir Knight Deacon", person: "Dimitrios Skiadopoulos" },
+          sentinel: { title: "Sir Knight Sentinel", person: "Dimitrios Skiadopoulos" }
+        };
+
+        const roleSelect = document.getElementById("role-select");
+        const welcomeBox = document.getElementById("welcome-box");
+        const welcomeHeadline = document.getElementById("welcome-headline");
+        const welcomeSub = document.getElementById("welcome-sub");
+        const jumpFirstBtn = document.getElementById("jump-first-btn");
+        const jumpNextBtn = document.getElementById("jump-next-btn");
+        const toggleAllGreekBtn = document.getElementById("toggle-all-greek");
+
+        let currentRole = "";
+        let roleMatches = [];
+        let currentMatchIndex = 0;
+        let allGreekOpen = false;
+
+        function applyRoleSelection(role) {
+          currentRole = role;
+          currentMatchIndex = 0;
+
+          // Clear existing highlights
+          document.querySelectorAll(".speech-card").forEach((card) => {
+            card.classList.remove("role-selected");
+          });
+          document.querySelectorAll(".seat-badge").forEach((seat) => {
+            seat.classList.remove("active-seat");
+          });
+          document.querySelectorAll(".roster-item").forEach((item) => {
+            item.classList.remove("highlighted");
+          });
+
+          if (!role || !roleNames[role]) {
+            welcomeBox.classList.remove("visible");
+            jumpNextBtn.hidden = true;
+            roleMatches = [];
+            return;
+          }
+
+          const info = roleNames[role];
+          welcomeHeadline.textContent = "Welcome, " + info.person;
+          welcomeSub.textContent =
+            "Office: " + info.title + " — Your lines are bolded and enlarged.";
+          welcomeBox.classList.add("visible");
+
+          // Highlight matching speech cards, chamber seat, and roster entry
+          roleMatches = Array.from(
+            document.querySelectorAll('.speech-card[data-role="' + role + '"]')
+          );
+          roleMatches.forEach((card) => card.classList.add("role-selected"));
+
+          document
+            .querySelectorAll('.seat-badge[data-role="' + role + '"]')
+            .forEach((seat) => seat.classList.add("active-seat"));
+
+          document
+            .querySelectorAll('.roster-item[data-role="' + role + '"]')
+            .forEach((item) => item.classList.add("highlighted"));
+
+          jumpNextBtn.hidden = roleMatches.length === 0;
+        }
+
+        function scrollToMatch(index) {
+          if (!roleMatches.length) return;
+          const target = roleMatches[index % roleMatches.length];
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        roleSelect.addEventListener("change", (e) => {
+          applyRoleSelection(e.target.value);
+        });
+
+        // Allow clicking a seat in the chamber diagram to select that officer
+        document.querySelectorAll(".seat-badge").forEach((seat) => {
+          seat.addEventListener("click", () => {
+            const r = seat.getAttribute("data-role");
+            if (roleNames[r]) {
+              roleSelect.value = r;
+              applyRoleSelection(r);
+            }
+          });
+        });
+
+        jumpFirstBtn.addEventListener("click", () => {
+          currentMatchIndex = 0;
+          scrollToMatch(0);
+        });
+
+        jumpNextBtn.addEventListener("click", () => {
+          if (!roleMatches.length) return;
+          currentMatchIndex = (currentMatchIndex + 1) % roleMatches.length;
+          scrollToMatch(currentMatchIndex);
+        });
+
+        // Toggle Greek translation per role bullet
+        document.querySelectorAll(".greek-bullet").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const card = btn.closest(".speech-card");
+            const elBlock = card.querySelector(".speech-el");
+            const isExpanded = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!isExpanded));
+            elBlock.classList.toggle("open", !isExpanded);
+          });
+        });
+
+        // Toggle all Greek translations at once
+        toggleAllGreekBtn.addEventListener("click", () => {
+          allGreekOpen = !allGreekOpen;
+          document.querySelectorAll(".greek-bullet").forEach((btn) => {
+            btn.setAttribute("aria-expanded", String(allGreekOpen));
+          });
+          document.querySelectorAll(".speech-el").forEach((elBlock) => {
+            elBlock.classList.toggle("open", allGreekOpen);
+          });
+          toggleAllGreekBtn.textContent = allGreekOpen ? "Hide All ΕΛ" : "Show All ΕΛ";
+        });
+
+        // Dark-green rubrics: click/tap to zoom larger for mobile screen
+        document.querySelectorAll(".rubric").forEach((rubric) => {
+          rubric.addEventListener("click", () => {
+            const wasZoomed = rubric.classList.contains("zoomed");
+            document.querySelectorAll(".rubric.zoomed").forEach((r) => r.classList.remove("zoomed"));
+            if (!wasZoomed) {
+              rubric.classList.add("zoomed");
+              rubric.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
 </html>

@@ -11,8 +11,8 @@ The public website covers the Order’s history, its relationship with the Allie
 ## Ritual presentation
 
 - [Source file](index.html)
-- [GitHub Pages address for this repository](https://webappngdsib.github.io/Saint-Patrick-RITUAL-/)
+- [View the ritual presentation](https://webappngdsib.github.io/Saint-Patrick-RITUAL-/)
 
-GitHub Pages is configured to publish from the root of `main`. The presentation URL currently returns 404. The supplied `index.html` ends partway through a CSS media query. A complete HTML file is needed to render the presentation.
+The presentation includes a Lodge chamber and officers guide, the opening of the Lodge, and the reception and symbolic instruction of the candidate. Use the Greek translation controls to show or hide Greek text.
 
-The presentation source uses HTML and inline CSS. Once the complete file is available, open `index.html` in a browser to preview it locally. No build step is required.
+GitHub Pages publishes from the root of `main`. To preview locally, open `index.html` in a browser. The page uses HTML, CSS, and JavaScript with no build step. An internet connection is needed to load the Google Fonts.
