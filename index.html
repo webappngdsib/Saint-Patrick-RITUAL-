@@ -317,15 +317,25 @@
       .altar-switch {
         position: absolute;
         left: 56%;
-        top: 46.4%;
-        width: max(3.5%, 32px);
-        height: max(8%, 32px);
+        top: 45.7%;
+        z-index: 1;
+        width: max(4.8%, 44px);
+        height: max(11%, 44px);
         transform: translate(-50%, -50%);
-        border: 1px solid #f5d784b3;
+        border: 2px solid #ffda82;
+        box-shadow: 0 0 0 1px #352810;
         border-radius: 999px;
         background: transparent;
         cursor: pointer;
         touch-action: manipulation;
+      }
+
+      .lodge-lights {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .55rem;
+        margin: 0 0 1rem;
       }
 
       .altar-switch:is(:hover, :focus-visible) {
@@ -881,6 +891,10 @@
           <button type="button" class="seat-badge" data-role="sentinel" aria-label="8. Sentinel" aria-pressed="false" style="--x:10.6%;--y:80.3%;--hit-width:11.6%;--hit-height:22%"><span class="num" aria-hidden="true">8</span></button>
         </div>
 
+        <div class="lodge-lights">
+          <button type="button" id="lodge-lights-button" class="pill-btn gold">Switch off the Lodge lights</button>
+          <span id="lodge-light-status" role="status"></span>
+        </div>
         <p id="chair-greeting" class="chair-greeting" role="status"></p>
 
         <table class="roster-table">
@@ -1734,20 +1748,34 @@ Sir Knights, vous êtes renvoyé.</div>
         const altarSwitch = document.getElementById("altar-switch");
         const closedChamber = document.getElementById("closed-chamber");
         const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber)");
-        altarSwitch.addEventListener("click", async () => {
+        const lodgeLightsButton = document.getElementById("lodge-lights-button");
+        const lodgeLightStatus = document.getElementById("lodge-light-status");
+        let changingLights = false;
+
+        async function toggleLodgeLights() {
+          if (changingLights) return;
           const closing = closedChamber.hidden;
           if (closing) {
+            changingLights = true;
             try {
               await closedChamber.decode();
             } catch {
+              lodgeLightStatus.textContent = "The closed Lodge image could not load. Please try again.";
               return;
+            } finally {
+              changingLights = false;
             }
           }
           closedChamber.hidden = !closing;
           altarSwitch.setAttribute("aria-pressed", String(closing));
           altarSwitch.title = closing ? "Relight the altar candle" : "Extinguish the altar candle";
+          lodgeLightsButton.textContent = closing ? "Switch on the Lodge lights" : "Switch off the Lodge lights";
+          lodgeLightStatus.textContent = closing ? "The Lodge is closed." : "The Lodge is open.";
           openChamberLayers.forEach((layer) => layer.setAttribute("aria-hidden", String(closing)));
-        });
+        }
+
+        altarSwitch.addEventListener("click", toggleLodgeLights);
+        lodgeLightsButton.addEventListener("click", toggleLodgeLights);
 
         const roleNames = {
           kc: { title: "Sir Knight Commander", person: "Paul Johnston" },
