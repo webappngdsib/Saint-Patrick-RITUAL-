@@ -304,6 +304,35 @@
         mask-image: radial-gradient(ellipse 3.8% 5.8% at 45.5% 51.2%, #000 70%, transparent 100%);
       }
 
+      .chamber-photo .closed-chamber {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .chamber-photo img[hidden] {
+        display: none;
+      }
+
+      .altar-switch {
+        position: absolute;
+        left: 56%;
+        top: 46.4%;
+        width: max(3.5%, 32px);
+        height: max(8%, 32px);
+        transform: translate(-50%, -50%);
+        border: 1px solid #f5d784b3;
+        border-radius: 999px;
+        background: transparent;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+
+      .altar-switch:is(:hover, :focus-visible) {
+        outline: 2px solid var(--gold-soft);
+        outline-offset: 2px;
+      }
+
       .chamber-instruction {
         margin: 0 0 .85rem;
         color: var(--emerald-deep);
@@ -836,10 +865,12 @@
           <a class="pill-btn" href="./chamber-builder.html">Open Chamber Builder</a>
         </div>
 
-        <p id="chamber-instruction" class="chamber-instruction">Select your chair to highlight your lines in the ritual.</p>
+        <p id="chamber-instruction" class="chamber-instruction">Select your chair to highlight your lines in the ritual. Tap the altar candle to close or reopen the Lodge.</p>
         <div class="chamber-photo" role="group" aria-label="Lodge chamber officer stations" aria-describedby="chamber-instruction">
           <img src="./lodge-chamber.png" width="1536" height="1024" alt="Eight numbered officer chairs around the altar in the Lodge chamber.">
           <img class="altar-salt" src="./lodge-chamber-salt.png" width="1536" height="1024" alt="A bowl of salt on the altar, with grains spilled onto the cloth.">
+          <img id="closed-chamber" class="closed-chamber" src="./lodge-closed.png" width="1536" height="1024" alt="The same Lodge chamber in darkness, with the candles extinguished and the Holy Bible closed beside the bowl of salt." hidden>
+          <button type="button" id="altar-switch" class="altar-switch" aria-label="Close the Lodge" aria-pressed="false" title="Extinguish the altar candle"></button>
           <button type="button" class="seat-badge" data-role="kc" aria-label="1. Knight Commander" aria-pressed="false" style="--x:50.7%;--y:30.2%;--hit-width:9.5%;--hit-height:17%"><span class="num" aria-hidden="true">1</span></button>
           <button type="button" class="seat-badge" data-role="priest" aria-label="2. Priest" aria-pressed="false" style="--x:64.4%;--y:34.9%;--hit-width:7.7%;--hit-height:16%"><span class="num" aria-hidden="true">2</span></button>
           <button type="button" class="seat-badge" data-role="sw" aria-label="3. Senior Warden" aria-pressed="false" style="--x:34.8%;--y:36.7%;--hit-width:7.7%;--hit-height:14%"><span class="num" aria-hidden="true">3</span></button>
@@ -1698,6 +1729,24 @@ Sir Knights, vous êtes renvoyé.</div>
               option.setAttribute('aria-pressed', String(!active && option === button));
             });
           });
+        });
+
+        const altarSwitch = document.getElementById("altar-switch");
+        const closedChamber = document.getElementById("closed-chamber");
+        const openChamberLayers = document.querySelectorAll(".chamber-photo img:not(.closed-chamber)");
+        altarSwitch.addEventListener("click", async () => {
+          const closing = closedChamber.hidden;
+          if (closing) {
+            try {
+              await closedChamber.decode();
+            } catch {
+              return;
+            }
+          }
+          closedChamber.hidden = !closing;
+          altarSwitch.setAttribute("aria-pressed", String(closing));
+          altarSwitch.title = closing ? "Relight the altar candle" : "Extinguish the altar candle";
+          openChamberLayers.forEach((layer) => layer.setAttribute("aria-hidden", String(closing)));
         });
 
         const roleNames = {
