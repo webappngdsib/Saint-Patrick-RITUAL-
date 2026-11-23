@@ -329,7 +329,17 @@
         touch-action: manipulation;
       }
 
+      .chair-greeting:not(:empty) {
+        margin: 0 0 1rem;
+        padding: .65rem 1rem;
+        color: var(--emerald-deep);
+        background: #e0f2df;
+        border-inline-start: 4px solid var(--emerald);
+        border-radius: 6px;
+      }
+
       .seat-badge .num {
+        transform: translateY(45%);
         display: grid;
         place-items: center;
         min-width: 1.5em;
@@ -778,6 +788,8 @@
           <button type="button" class="seat-badge" data-role="deacon" aria-label="7. Deacon" aria-pressed="false" style="--x:34.6%;--y:68.5%;--hit-width:10.4%;--hit-height:19%"><span class="num" aria-hidden="true">7</span></button>
           <button type="button" class="seat-badge" data-role="sentinel" aria-label="8. Sentinel" aria-pressed="false" style="--x:10.6%;--y:80.3%;--hit-width:11.6%;--hit-height:22%"><span class="num" aria-hidden="true">8</span></button>
         </div>
+
+        <p id="chair-greeting" class="chair-greeting" role="status"></p>
 
         <table class="roster-table">
           <caption>Lodge officers</caption>
@@ -1638,6 +1650,7 @@ Sir Knights, vous êtes renvoyé.</div>
 
         const roleSelect = document.getElementById("role-select");
         const welcomeBox = document.getElementById("welcome-box");
+        const chairGreeting = document.getElementById("chair-greeting");
         const welcomeHeadline = document.getElementById("welcome-headline");
         const welcomeSub = document.getElementById("welcome-sub");
         const jumpFirstBtn = document.getElementById("jump-first-btn");
@@ -1650,6 +1663,7 @@ Sir Knights, vous êtes renvoyé.</div>
         function applyRoleSelection(role) {
           currentRole = role;
           currentMatchIndex = 0;
+          chairGreeting.replaceChildren();
 
           // Clear existing highlights
           document.querySelectorAll(".speech-card").forEach((card) => {
@@ -1671,6 +1685,16 @@ Sir Knights, vous êtes renvoyé.</div>
           }
 
           const info = roleNames[role];
+          const officerName = document.createElement("strong");
+          officerName.textContent = info.person;
+          if (role === "deacon") {
+            chairGreeting.textContent = "Amon, Dimitrios! Don’t take all the chairs, save some glory for the other officers to attend!";
+          } else if (role === "registrar") {
+            chairGreeting.append(officerName);
+          } else {
+            chairGreeting.append("Welcome ", officerName);
+          }
+
           // Highlight matching speech cards, chamber seat, and roster entry
           roleMatches = Array.from(
             document.querySelectorAll('.speech-card[data-role="' + role + '"]')
