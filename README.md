@@ -13,6 +13,6 @@ The public website covers the Order’s history, its relationship with the Allie
 - [Source file](index.html)
 - [View the ritual presentation](https://webappngdsib.github.io/Saint-Patrick-RITUAL-/)
 
-The presentation includes a Lodge chamber and officers guide, the opening of the Lodge, and the reception and symbolic instruction of the candidate. Use the Greek translation controls to show or hide Greek text.
+The presentation includes the Lodge chamber and officers guide and the English ritual from opening through closing. Select an officer role to highlight and navigate to that officer’s parts.
 
 GitHub Pages publishes from the root of `main`. To preview locally, open `index.html` in a browser. The page uses HTML, CSS, and JavaScript with no build step. An internet connection is needed to load the Google Fonts.
