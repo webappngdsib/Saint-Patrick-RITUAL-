@@ -22,6 +22,7 @@ body { margin: 0; }
   background: linear-gradient(90deg, #101917e8, #161b1c40), url("./diary-saint-patrick.webp") 67% center / cover, #303936;
 }
 .castle .wrap { display: grid; align-content: space-between; gap: 5rem; }
+.diary-navigation { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .castle a { color: var(--light); width: fit-content; text-underline-offset: .23em; }
 .hero { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1.15rem; }
 h1, h2, h3, p { margin: 0; }
